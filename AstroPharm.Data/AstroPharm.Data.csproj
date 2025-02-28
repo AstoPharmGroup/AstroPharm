@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AstroPharm.Domain\AstroPharm.Domain.csproj" />
+    <ProjectReference Include="..\AstroPharm.Service\AstroPharm.Service.csproj" />
   </ItemGroup>
 
 </Project>
