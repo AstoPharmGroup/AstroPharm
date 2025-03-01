@@ -1,6 +1,8 @@
 
 using AstroPharm.Api.Extensions;
+using AstroPharm.Data.DbContexts;
 using AstroPharm.Service.Mappers;
+using Microsoft.EntityFrameworkCore;
 
 namespace AstroPharm.Api
 {
@@ -11,8 +13,9 @@ namespace AstroPharm.Api
             var builder = WebApplication.CreateBuilder(args);
 
             // Ozingizni data bazangizni ulang !!
+            builder.Services.AddDbContext<AppDbContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")));
 
-            
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
