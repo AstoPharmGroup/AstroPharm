@@ -5,6 +5,7 @@ namespace AstroPharm.Data.Repositories;
 
 public class Repository<TEntity> : IRepository<TEntity> where TEntity : Auditable
 {
+    // Shu yerda generic repositoryni yozilar 
     public Task<bool> DeleteAsync(long id)
     {
         throw new NotImplementedException();
