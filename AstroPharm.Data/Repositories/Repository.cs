@@ -1,32 +1,56 @@
-﻿using AstroPharm.Data.IRepositories;
+﻿using AstroPharm.Data.DbContexts;
+using AstroPharm.Data.IRepositories;
 using AstroPharm.Domain.Commons;
+using AstroPharm.Service.Exceptions;
+using Microsoft.EntityFrameworkCore;
 
 namespace AstroPharm.Data.Repositories;
 
 public class Repository<TEntity> : IRepository<TEntity> where TEntity : Auditable
 {
-    public Task<bool> DeleteAsync(long id)
+    private readonly AppDbContext _appDbContext;
+    private readonly DbSet<TEntity> _dbSet;
+
+    public Repository(AppDbContext appDbContext)
     {
-        throw new NotImplementedException();
+        _appDbContext = appDbContext;
+        _dbSet = _appDbContext.Set<TEntity>();
+    }
+    public async Task<bool> DeleteAsync(long id)
+    {
+        var entity_entity = await _dbSet.FirstOrDefaultAsync(x => x.Id == id);
+        if (entity_entity == null)
+        {
+            throw new AstoPharmException(404, "User not found");
+        }
+        _dbSet.Remove(entity_entity);
+        _appDbContext.SaveChanges();
+        return true;
     }
 
-    public Task<TEntity> InsertAsync(TEntity entity)
+    public async Task<TEntity> InsertAsync(TEntity entity)
     {
-        throw new NotImplementedException();
+        var entity_entity = await _dbSet.AddAsync(entity);
+        _appDbContext.SaveChanges();
+        return entity_entity.Entity;
     }
 
-    public IQueryable<TEntity> SelectAll()
+    public IQueryable<TEntity> SelectAll() => _dbSet;
+
+    public async Task<TEntity> SelectByIdAsync(long id)
     {
-        throw new NotImplementedException();
+        var entity_entity = await _dbSet.FirstOrDefaultAsync(x => x.Id == id);
+        if (entity_entity == null)
+        {
+            throw new AstoPharmException(404, "User not found");
+        }
+        return entity_entity;
     }
 
-    public Task<TEntity> SelectByIdAsync(long id)
+    public  async Task<TEntity> UpdateAsync(TEntity entity)
     {
-        throw new NotImplementedException();
-    }
-
-    public Task<TEntity> UpdateAsync(TEntity entity)
-    {
-        throw new NotImplementedException();
+        var entity_entity = _appDbContext.Update(entity);
+        _appDbContext.SaveChanges();
+        return entity_entity.Entity;
     }
 }
