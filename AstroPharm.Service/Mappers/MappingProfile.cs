@@ -1,4 +1,5 @@
 ﻿using AstroPharm.Domain.Entities;
+using AstroPharm.Service.DTOs.Medications;
 using AstroPharm.Service.DTOs.Users;
 using AutoMapper;
 
@@ -9,9 +10,15 @@ public class MappingProfile : Profile
     public MappingProfile()
     {
         // Shu yerda entity bilan DTO larni map qilasizlar
-    
-        CreateMap<User, UserForResultDto>();
-        CreateMap<UserForCreationDto, User>();
-        CreateMap<UserForUpdateDto, User>();
+
+        //User DTOs
+        CreateMap<User, UserForResultDto>().ReverseMap();
+        CreateMap<UserForCreationDto, User>().ReverseMap();
+        CreateMap<UserForUpdateDto, User>().ReverseMap();
+
+        //Medication DTOs
+        CreateMap<Medication, MedicationForResultDto>().ReverseMap();
+        CreateMap<MedicationForCreationDto, Medication>().ReverseMap();
+        CreateMap<MedicationForUpdateDto, Medication>().ReverseMap();
     }
 }
