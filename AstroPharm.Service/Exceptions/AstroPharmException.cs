@@ -1,10 +1,10 @@
 ﻿namespace AstroPharm.Service.Exceptions;
 
-public class AstoPharmException : Exception
+public class AstroPharmException : Exception
 {
     public int StatusCode { get; set; }
 
-    public AstoPharmException(int code,string message) : base(message)
+    public AstroPharmException(int code,string message) : base(message)
     {
         this.StatusCode = code;
     }

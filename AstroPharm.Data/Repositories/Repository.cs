@@ -1,33 +1,48 @@
-﻿using AstroPharm.Data.IRepositories;
+﻿using AstroPharm.Data.DbContexts;
+using AstroPharm.Data.IRepositories;
 using AstroPharm.Domain.Commons;
+using Microsoft.EntityFrameworkCore;
 
-namespace AstroPharm.Data.Repositories;
-
-public class Repository<TEntity> : IRepository<TEntity> where TEntity : Auditable
+namespace AstroPharm.Data.Repositories
 {
-    // Shu yerda generic repositoryni yozilar 
-    public Task<bool> DeleteAsync(long id)
+    public class Repository<TEntity> : IRepository<TEntity> where TEntity : Auditable
     {
-        throw new NotImplementedException();
-    }
+        private readonly AppDbContext _context;
+        private readonly DbSet<TEntity> _dbSet;
 
-    public Task<TEntity> InsertAsync(TEntity entity)
-    {
-        throw new NotImplementedException();
-    }
+        public Repository(AppDbContext context) 
+        {
+            _context = context;
+            _dbSet = context.Set<TEntity>(); 
+        }
 
-    public IQueryable<TEntity> SelectAll()
-    {
-        throw new NotImplementedException();
-    }
+        public async Task<bool> DeleteAsync(long id)
+        {
+            var entity = await _dbSet.FirstOrDefaultAsync(x => x.Id == id);
+            if (entity == null) return false;
 
-    public Task<TEntity> SelectByIdAsync(long id)
-    {
-        throw new NotImplementedException();
-    }
+            _dbSet.Remove(entity);
+            return await _context.SaveChangesAsync() > 0;
+        }
 
-    public Task<TEntity> UpdateAsync(TEntity entity)
-    {
-        throw new NotImplementedException();
+        public async Task<TEntity> InsertAsync(TEntity entity)
+        {
+            var entry = await _dbSet.AddAsync(entity);
+            await _context.SaveChangesAsync();
+            return entry.Entity;
+        }
+
+        public IQueryable<TEntity> SelectAll()
+            => _dbSet;
+
+        public async Task<TEntity> SelectByIdAsync(long id)
+            => await _dbSet.FirstOrDefaultAsync(x => x.Id == id);
+
+        public async Task<TEntity> UpdateAsync(TEntity entity)
+        {
+            var entry = _context.Update(entity);
+            await _context.SaveChangesAsync();
+            return entry.Entity;
+        }
     }
 }
