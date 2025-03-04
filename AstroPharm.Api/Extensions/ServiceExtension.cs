@@ -6,6 +6,8 @@ using AstroPharm.Service.Interfaces.Medications;
 using AstroPharm.Service.Interfaces.Users;
 using AstroPharm.Service.Services.Catalogs;
 using AstroPharm.Service.Services.Categories;
+using AstroPharm.Service.Interfaces.Medications;
+using AstroPharm.Service.Interfaces.Users;
 using AstroPharm.Service.Services.Medications;
 using AstroPharm.Service.Services.Users;
 using System.Runtime.CompilerServices;
