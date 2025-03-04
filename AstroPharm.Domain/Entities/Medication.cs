@@ -10,5 +10,5 @@ public class Medication : Auditable
     public DateTime ExpiredDate { get; set; }   
     public decimal Price { get; set; }
     public  Status Status { get; set; }
-    public ICollection<Order> Orders { get; set; }
+    public virtual ICollection<Order> Orders { get; set; }
 }

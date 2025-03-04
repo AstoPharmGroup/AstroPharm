@@ -12,5 +12,5 @@ public class User : Auditable
     public string Password { get; set; }
     public string PhoneNumber { get; set; }
     public Role Role { get; set; }
-    public ICollection<Order> Orders { get; set; }
+    public virtual ICollection<Order> Orders { get; set; }
 }

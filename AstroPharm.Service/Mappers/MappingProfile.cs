@@ -1,4 +1,6 @@
 ﻿using AstroPharm.Domain.Entities;
+using AstroPharm.Service.DTOs.Catalogs;
+using AstroPharm.Service.DTOs.Categories;
 using AstroPharm.Service.DTOs.Medications;
 using AstroPharm.Service.DTOs.Users;
 using AutoMapper;
@@ -20,5 +22,14 @@ public class MappingProfile : Profile
         CreateMap<Medication, MedicationForResultDto>().ReverseMap();
         CreateMap<MedicationForCreationDto, Medication>().ReverseMap();
         CreateMap<MedicationForUpdateDto, Medication>().ReverseMap();
+        
+        //Catalog DTOs
+        CreateMap<Catalog, CatalogForResultDto>().ReverseMap();
+        CreateMap<CatalogForCreationDto, Catalog>().ReverseMap();
+        CreateMap<CatalogForUpdateDto, Catalog>().ReverseMap();
+
+        CreateMap<Category, CategoryForResultDto>().ReverseMap();
+        CreateMap<CategoryForCreationDto, Category>().ReverseMap();
+        CreateMap<CategoryForUpdateDto, Category>().ReverseMap();
     }
 }

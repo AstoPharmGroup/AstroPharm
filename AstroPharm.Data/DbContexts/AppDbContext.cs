@@ -20,6 +20,18 @@ public class AppDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+
+        modelBuilder.Entity<Catalog>()
+          .HasMany(c => c.Categories) 
+          .WithOne(c => c.Catalog)     
+          .HasForeignKey(c => c.CatalogId) 
+          .OnDelete(DeleteBehavior.Cascade);
+    }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseLazyLoadingProxies();
+        base.OnConfiguring(optionsBuilder);
     }
 
 }

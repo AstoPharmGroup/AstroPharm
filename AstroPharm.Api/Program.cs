@@ -14,8 +14,18 @@ namespace AstroPharm.Api
 
             // Ozingizni data bazangizni ulang !!
             builder.Services.AddDbContext<AppDbContext>(options =>
+
                 options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")));
 
+            builder.Services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(policy =>
+                {
+                    policy.AllowAnyOrigin()
+                          .WithMethods("GET", "POST")
+                          .AllowAnyHeader();
+                });
+            });
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -30,13 +40,25 @@ namespace AstroPharm.Api
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
+
+            app.Use(async (context, next) =>
+            {
+                if (context.Request.Method == "DELETE")
+                {
+                    context.Response.StatusCode = 405;
+                    await context.Response.WriteAsync("This method is not allowed");
+                    return;
+                };
+                await next();
+            });
+
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
 
+            app.UseCors();
             // Rasm lar yoki va hakazo yoki Loglarni yozish uchun Static Fayldan Foydalanish
             app.UseStaticFiles();
 
