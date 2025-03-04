@@ -7,13 +7,21 @@ using AstroPharm.Domain.Entities;
 
 public class OrderService : IOrderInterface
 {
-    private readonly IRepository<Order> _orderRepository;
     private readonly IMapper _mapper;
+    private readonly IRepository<User> _userRepository;
+    private readonly IRepository<Order> _orderRepository;
+    private readonly IRepository<Medication> _medicationRepository;
 
-    public OrderService(IRepository<Order> orderRepository, IMapper mapper)
+    public OrderService(
+        IMapper mapper, 
+        IRepository<User> userRepository,
+        IRepository<Order> orderRepository,
+        IRepository<Medication> medicationRepository)
     {
-        _orderRepository = orderRepository;
         _mapper = mapper;
+        _userRepository = userRepository;
+        _orderRepository = orderRepository;
+        _medicationRepository = medicationRepository;
     }
 
     public async Task<OrderForResultDto> AddAsync(OrderForCreationDto dto)

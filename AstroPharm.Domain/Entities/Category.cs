@@ -7,4 +7,5 @@ public class Category : Auditable
     public long CatalogId { get; set; }
     public virtual Catalog Catalog { get; set; }
     public string CategoryName { get; set; }
+    public string Description { get; set; }
 }

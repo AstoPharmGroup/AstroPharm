@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace AstroPharm.Domain.Enums;
 
-namespace AstroPharm.Domain.Enums
+public enum PaymentMethod
 {
-    internal class PaymentMethod
-    {
-    }
+    cash = 1,
+    card
 }

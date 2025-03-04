@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AstroPharm.Domain.Commons;
 
-namespace AstroPharm.Domain.Entities
+namespace AstroPharm.Domain.Entities;
+
+public class Banner : Auditable
 {
-    internal class Banner
-    {
-    }
+    public string Title { get; set; }
+    public string Description { get; set; }
+    public string Image { get; set; }
+    public long CategoryId { get; set; }
+    public Category Category { get; set; }
+    public long MedicationId { get; set; }
+    public Medication Medication { get; set; }
 }
