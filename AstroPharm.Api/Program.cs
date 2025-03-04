@@ -1,8 +1,8 @@
-
 using AstroPharm.Api.Extensions;
 using AstroPharm.Data.DbContexts;
 using AstroPharm.Service.Mappers;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http;
 
 namespace AstroPharm.Api
 {
@@ -28,6 +28,18 @@ namespace AstroPharm.Api
             // Mapper ni royxatdan otkazish
             builder.Services.AddAutoMapper(typeof(MappingProfile));
 
+            //cors
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowGetPost", builder =>
+                {
+                    builder.AllowAnyOrigin()
+                           .WithMethods(HttpMethod.Get.ToString(), HttpMethod.Post.ToString())
+                           .AllowAnyHeader()
+                           .DisallowCredentials();
+                });
+            });
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -36,7 +48,7 @@ namespace AstroPharm.Api
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-
+            app.UseCors("AllowGetPost");
             // Rasm lar yoki va hakazo yoki Loglarni yozish uchun Static Fayldan Foydalanish
             app.UseStaticFiles();
 
