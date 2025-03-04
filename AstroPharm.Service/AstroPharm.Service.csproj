@@ -10,4 +10,9 @@
     <PackageReference Include="AutoMapper" Version="14.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AstroPharm.Data\AstroPharm.Data.csproj" />
+    <ProjectReference Include="..\AstroPharm.Domain\AstroPharm.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,29 +1,30 @@
 ﻿using AstroPharm.Api.Helpers;
-using AstroPharm.Service.DTOs.Users;
-using AstroPharm.Service.Interfaces.Users;
+using AstroPharm.Service.DTOs.Categories;
+using AstroPharm.Service.Interfaces.Categories;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AstroPharm.Api.Controllers.Users;
+namespace AstroPharm.Api.Controllers.Categories;
 
 [ApiController]
 [Route("api/[controller]")]
-public class UsersController : BaseController
-{ 
-    private readonly IUserInterface _userService;
+public class CategoryController : BaseController
+{
+    private readonly ICategoryInterface _CategoryService;
 
-    public UsersController(IUserInterface userService)
+    public CategoryController(ICategoryInterface CategoryService)
     {
-        _userService = userService;
+        _CategoryService = CategoryService;
     }
 
     [HttpGet]
+
     public async Task<IActionResult> GetAllAsync()
     {
         return Ok(new Response
         {
             StatusCode = 200,
             Message = "OK",
-            Data = await _userService.RetrieveAllAsync()
+            Data = await _CategoryService.GetAllAsync()
         });
     }
     [HttpGet("{id}")]
@@ -33,7 +34,7 @@ public class UsersController : BaseController
         {
             StatusCode = 200,
             Message = "OK",
-            Data = await _userService.RetrieveByIdAsync(id)
+            Data = await _CategoryService.GetByIdAsync(id)
         });
     }
 
@@ -44,28 +45,28 @@ public class UsersController : BaseController
         {
             StatusCode = 200,
             Message = "OK",
-            Data = await _userService.RemoveAsync(id)
+            Data = await _CategoryService.DeleteAsync(id)
         });
     }
     [HttpPost]
-    public async Task<IActionResult> AddAsync([FromBody] UserForCreationDto user)
+    public async Task<IActionResult> AddAsync([FromBody] CategoryForCreationDto Category)
     {
         return Ok(new Response
         {
             StatusCode = 200,
             Message = "OK",
-            Data = await _userService.AddAsync(user)
+            Data = await _CategoryService.AddAsync(Category)
         });
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateAsync([FromBody] UserForUpdateDto user, [FromRoute] long id)
+    public async Task<IActionResult> UpdateAsync([FromBody] CategoryForUpdateDto Category, [FromRoute] long id)
     {
         return Ok(new Response
         {
             StatusCode = 200,
             Message = "OK",
-            Data = await _userService.ModifyAsync(id, user)
+            Data = await _CategoryService.ModifyAsync(id, Category)
         });
     }
 }

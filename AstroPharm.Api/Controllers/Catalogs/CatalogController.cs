@@ -1,29 +1,30 @@
 ﻿using AstroPharm.Api.Helpers;
-using AstroPharm.Service.DTOs.Users;
-using AstroPharm.Service.Interfaces.Users;
+using AstroPharm.Service.DTOs.Catalogs;
+using AstroPharm.Service.Interfaces.Catalogs;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AstroPharm.Api.Controllers.Users;
+namespace AstroPharm.Api.Controllers.Catalogs;
 
 [ApiController]
 [Route("api/[controller]")]
-public class UsersController : BaseController
-{ 
-    private readonly IUserInterface _userService;
+public class CatalogController : BaseController
+{
+    private readonly ICatalogInterface _CatalogService;
 
-    public UsersController(IUserInterface userService)
+    public CatalogController(ICatalogInterface CatalogService)
     {
-        _userService = userService;
+        _CatalogService = CatalogService;
     }
 
     [HttpGet]
+
     public async Task<IActionResult> GetAllAsync()
     {
         return Ok(new Response
         {
             StatusCode = 200,
             Message = "OK",
-            Data = await _userService.RetrieveAllAsync()
+            Data = await _CatalogService.GetAllAsync()
         });
     }
     [HttpGet("{id}")]
@@ -33,7 +34,7 @@ public class UsersController : BaseController
         {
             StatusCode = 200,
             Message = "OK",
-            Data = await _userService.RetrieveByIdAsync(id)
+            Data = await _CatalogService.GetByIdAsync(id)
         });
     }
 
@@ -44,28 +45,28 @@ public class UsersController : BaseController
         {
             StatusCode = 200,
             Message = "OK",
-            Data = await _userService.RemoveAsync(id)
+            Data = await _CatalogService.DeleteAsync(id)
         });
     }
     [HttpPost]
-    public async Task<IActionResult> AddAsync([FromBody] UserForCreationDto user)
+    public async Task<IActionResult> AddAsync([FromBody] CatalogForCreationDto Catalog)
     {
         return Ok(new Response
         {
             StatusCode = 200,
             Message = "OK",
-            Data = await _userService.AddAsync(user)
+            Data = await _CatalogService.AddAsync(Catalog)
         });
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateAsync([FromBody] UserForUpdateDto user, [FromRoute] long id)
+    public async Task<IActionResult> UpdateAsync([FromBody] CatalogForUpdateDto Catalog, [FromRoute] long id)
     {
         return Ok(new Response
         {
             StatusCode = 200,
             Message = "OK",
-            Data = await _userService.ModifyAsync(id, user)
+            Data = await _CatalogService.ModifyAsync(id, Catalog)
         });
     }
 }
