@@ -1,4 +1,3 @@
-
 using AstroPharm.Api.Extensions;
 using AstroPharm.Data.DbContexts;
 using AstroPharm.Service.Mappers;
@@ -12,11 +11,11 @@ namespace AstroPharm.Api
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Ozingizni data bazangizni ulang !!
+            // Connect Database
             builder.Services.AddDbContext<AppDbContext>(options =>
-
                 options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")));
 
+            // Add : CORS
             builder.Services.AddCors(options =>
             {
                 options.AddDefaultPolicy(policy =>
@@ -26,9 +25,8 @@ namespace AstroPharm.Api
                           .AllowAnyHeader();
                 });
             });
-
-            builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+            // Add : Controller
+            builder.Services.AddControllers();  
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
@@ -40,7 +38,7 @@ namespace AstroPharm.Api
 
             var app = builder.Build();
 
-
+            // Use Middleware For Delete Method
             app.Use(async (context, next) =>
             {
                 if (context.Request.Method == "DELETE")
