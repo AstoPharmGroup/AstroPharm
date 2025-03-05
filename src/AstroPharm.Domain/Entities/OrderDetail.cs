@@ -8,9 +8,9 @@ public class OrderDetail : Auditable
     public decimal Discount { get; set; }
     public decimal TotalAmount { get; set; }
     public long OrderId { get; set; }
-    public Order Order { get; set; }
+    public virtual Order Order { get; set; }
     public long MedicationId { get; set; }
-    public Medication Medication { get; set; }
+    public virtual Medication Medication { get; set; }
     public long PaymentId { get; set; }
-    public Payment Payment { get; set; }
+    public virtual Payment Payment { get; set; }
 }

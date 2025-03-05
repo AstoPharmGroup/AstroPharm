@@ -13,7 +13,7 @@ public class User : Auditable
     public string Address { get; set; }
     public string PhoneNumber { get; set; }
     public Role Role { get; set; }
-    public ICollection<OrderDetail> OrderDetails { get; set; }
-    public ICollection<WishList> WishList { get; set; }
-    public ICollection<CartItem> CartItemList { get; set; }
+    public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+    public virtual ICollection<WishList> WishList { get; set; }
+    public virtual ICollection<CartItem> CartItemList { get; set; }
 }

@@ -10,4 +10,5 @@ public class CategoryForCreationDto
 {
     public long CatalogId { get; set; }
     public string CategoryName { get; set; }
+    public string Description { get; set; }
 }
