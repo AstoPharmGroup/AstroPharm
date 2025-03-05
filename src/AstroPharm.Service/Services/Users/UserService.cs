@@ -3,8 +3,10 @@ using AstroPharm.Domain.Entities;
 using AstroPharm.Service.DTOs.Users;
 using AstroPharm.Service.Exceptions;
 using AstroPharm.Service.Interfaces.Users;
+using AstroPharm.Service.Validators;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using System.Text.RegularExpressions;
 
 namespace AstroPharm.Service.Services.Users;
 
@@ -12,10 +14,12 @@ public class UserService : IUserInterface
 {
     private readonly IRepository<User> repository;
     private readonly IMapper mapper;
+    private readonly UserValidator validator;
     public UserService(IRepository<User> repository, IMapper mapper)
     {
         this.repository = repository;
         this.mapper = mapper;
+        validator = new UserValidator();
     }
 
     public async Task<UserForResultDto> AddAsync(UserForCreationDto dto)
@@ -24,9 +28,7 @@ public class UserService : IUserInterface
             .Where(x => x.Email == dto.Email)
             .FirstOrDefaultAsync();
 
-        if (user != null)
-            throw new AstroPharmException(409, "This User already exists!");
-
+        validator.ValidateUser(dto);
         var newUser = mapper.Map<User>(dto);
         newUser.CreatedAt = DateTime.UtcNow;
         await repository.InsertAsync(newUser);
@@ -68,6 +70,8 @@ public class UserService : IUserInterface
         var user = await repository.SelectByIdAsync(id);
         if (user == null)
             throw new AstroPharmException(404, "User not found!");
+
+        validator.ValidateUser(mapper.Map<UserForCreationDto>(dto));
         var modifiedUser = mapper.Map(dto, user);
         modifiedUser.UpdatedAt = DateTime.UtcNow;
         await repository.UpdateAsync(modifiedUser);

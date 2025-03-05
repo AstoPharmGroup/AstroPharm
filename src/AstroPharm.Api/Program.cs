@@ -18,12 +18,10 @@ namespace AstroPharm.Api
             // Add : CORS
             builder.Services.AddCors(options =>
             {
-                options.AddDefaultPolicy(policy =>
-                {
-                    policy.AllowAnyOrigin()
-                          .WithMethods("GET", "POST")
-                          .AllowAnyHeader();
-                });
+                options.AddPolicy("AllowAll",
+                    policy => policy.AllowAnyOrigin()
+                                   .AllowAnyMethod()
+                                   .AllowAnyHeader());
             });
             // Add : Controller
             builder.Services.AddControllers();  

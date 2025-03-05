@@ -8,4 +8,6 @@ public class Category : Auditable
     public virtual Catalog Catalog { get; set; }
     public string CategoryName { get; set; }
     public string Description { get; set; }
+    public ICollection<Banner> Banners { get; set; }
+    public ICollection<Medication> Medications { get; set; }
 }
