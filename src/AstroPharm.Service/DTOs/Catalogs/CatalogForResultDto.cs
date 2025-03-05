@@ -8,7 +8,7 @@ namespace AstroPharm.Service.DTOs.Catalogs
 {
     public class CatalogForResultDto
     {
-        public long Id { get; set; }    
+        public long Id { get; set; }
         public string CatalogName { get; set; }
     }
 }

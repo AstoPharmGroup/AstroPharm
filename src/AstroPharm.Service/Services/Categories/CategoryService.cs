@@ -10,13 +10,13 @@ namespace AstroPharm.Service.Services.Categories;
 
 public class CategoryService : ICategoryInterface
 {
-    private readonly IRepository<Category> _categoryRepository;
     private readonly IMapper _mapper;
+    private readonly IRepository<Category> _categoryRepository;
 
     public CategoryService(IRepository<Category> CategoryRepository, IMapper mapper)
     {
-        _categoryRepository = CategoryRepository;
         _mapper = mapper;
+        _categoryRepository = CategoryRepository;
     }
 
     public async Task<CategoryForResultDto> AddAsync(CategoryForCreationDto dto)
