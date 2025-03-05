@@ -10,10 +10,12 @@ namespace AstroPharm.Service.DTOs.Medications
 {
     public class MedicationForCreationDto
     {
-        public string MedicationName { get; set; }
-        public string Description { get; set; }
-        public DateTime ExpiredDate { get; set; }
         public decimal Price { get; set; }
         public Status Status { get; set; }
+        public long CategoryId { get; set; }
+        public string Description { get; set; }
+        public DateTime ExpiredDate { get; set; }
+        public string MedicationName { get; set; }
+        public string ImageUrl { get; set; }
     }
 }

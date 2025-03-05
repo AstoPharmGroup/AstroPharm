@@ -2,6 +2,7 @@
 using AstroPharm.Domain.Entities;
 using AstroPharm.Service.DTOs.Categories;
 using AstroPharm.Service.Exceptions;
+using AstroPharm.Service.Interfaces.Catalogs;
 using AstroPharm.Service.Interfaces.Categories;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
@@ -11,21 +12,27 @@ namespace AstroPharm.Service.Services.Categories;
 public class CategoryService : ICategoryInterface
 {
     private readonly IMapper _mapper;
+    private readonly ICatalogInterface catalogInterface;
     private readonly IRepository<Category> _categoryRepository;
 
-    public CategoryService(IRepository<Category> CategoryRepository, IMapper mapper)
+    public CategoryService(IRepository<Category> CategoryRepository, IMapper mapper, ICatalogInterface catalogInterface)
     {
         _mapper = mapper;
         _categoryRepository = CategoryRepository;
+        this.catalogInterface = catalogInterface;
     }
 
     public async Task<CategoryForResultDto> AddAsync(CategoryForCreationDto dto)
     {
+        var catalog = await catalogInterface.GetByIdAsync(dto.CatalogId);
+        if (catalog == null)
+            throw new AstroPharmException(404, "Catalog doesn't exist");
+
         var Category = await _categoryRepository.SelectAll()
             .Where(x => x.CategoryName == dto.CategoryName)
             .FirstOrDefaultAsync();
 
-        if (Category != null)
+        if (Category != null )
             throw new AstroPharmException(409, "This Category already exists");
 
         var mapped = _mapper.Map<Category>(dto);
@@ -64,6 +71,10 @@ public class CategoryService : ICategoryInterface
 
     public async Task<CategoryForResultDto> ModifyAsync(long id, CategoryForUpdateDto dto)
     {
+        var catalog = await catalogInterface.GetByIdAsync(dto.CatalogId);
+        if (catalog == null)
+            throw new AstroPharmException(404, "Catalog doesn't exist");
+
         var Category = await _categoryRepository.SelectByIdAsync(id);
         if (Category == null)
             throw new AstroPharmException(409, "Category not found!");

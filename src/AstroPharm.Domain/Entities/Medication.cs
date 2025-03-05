@@ -9,7 +9,7 @@ public class Medication : Auditable
     public decimal Price { get; set; }
     public  Status Status { get; set; }
     public long CategoryId { get; set; }
-    public Category Category { get; set; }
+    public virtual Category Category { get; set; }
     public string Description { get; set; }
     public DateTime ExpiredDate { get; set; }   
     public string MedicationName { get; set; }
