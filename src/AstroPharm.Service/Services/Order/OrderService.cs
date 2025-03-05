@@ -45,6 +45,7 @@ public class OrderService : IOrderInterface
     public async Task<IEnumerable<OrderForResultDto>> GetAllAsync()
     {
         var orders = _orderRepository.SelectAll();
+        
         return _mapper.Map<IEnumerable<OrderForResultDto>>(orders);
     }
 
