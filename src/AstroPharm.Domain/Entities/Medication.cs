@@ -5,6 +5,7 @@ namespace AstroPharm.Domain.Entities;
 
 public class Medication : Auditable
 {
+    public string Image { get; set; }
     public decimal Price { get; set; }
     public  Status Status { get; set; }
     public long CategoryId { get; set; }
@@ -12,5 +13,7 @@ public class Medication : Auditable
     public string Description { get; set; }
     public DateTime ExpiredDate { get; set; }   
     public string MedicationName { get; set; }
-    public string ImageUrl { get; set; }
+    public ICollection<WishList> WishLists { get; set; }
+    public ICollection<CartItem> CartItems { get; set; }
+    public ICollection<OrderDetail> OrderDetails { get; set; }
 }
