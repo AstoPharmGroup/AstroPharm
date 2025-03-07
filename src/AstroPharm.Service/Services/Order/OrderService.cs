@@ -42,11 +42,11 @@ public class OrderService : IOrderInterface
         }
     }
 
-    public async Task<IEnumerable<OrderForResultDto>> GetAllAsync()
+    public async Task<List<OrderForResultDto>> GetAllAsync()
     {
         var orders = _orderRepository.SelectAll();
         
-        return _mapper.Map<IEnumerable<OrderForResultDto>>(orders);
+        return _mapper.Map<List<OrderForResultDto>>(orders);
     }
 
     public async Task<OrderForResultDto> GetByIdAsync(long id)
@@ -59,29 +59,33 @@ public class OrderService : IOrderInterface
         return _mapper.Map<OrderForResultDto>(order);
     }
 
+public async Task<List<OrderForResultDto>> GetByUserIdAsync(long userId)
+{
+    var userOrders = _orderRepository.SelectAll().Where(x => x.UserId == userId).ToList();
+
+    if (!userOrders.Any())
+        throw new AstroPharmException(404, "Orders not found for this user");
+
+    return _mapper.Map<List<OrderForResultDto>>(userOrders);
+}
+
+
     public async Task<OrderForResultDto> ModifyAsync(long id, OrderForUpdateDto dto)
-    {
-        var user = await _userRepository.SelectByIdAsync(dto.UserId);
+{
+    var existingOrder = await _orderRepository.SelectByIdAsync(id);
+    if (existingOrder == null)
+        throw new AstroPharmException(404, "Order not found");
 
-        var existingOrder = await _orderRepository.SelectByIdAsync(id);
+    var userExists = await _userRepository.SelectByIdAsync(dto.UserId) != null;
+    if (!userExists)
+        throw new AstroPharmException(404, "User not found");
 
-        if (user is null)
-        {
-            throw new AstroPharmException(404, "User not found");
-        }
+    _mapper.Map(dto, existingOrder);
+    existingOrder.UpdatedAt = DateTime.UtcNow;
 
-        else if (existingOrder == null)
-        {
+    return _mapper.Map<OrderForResultDto>(await _orderRepository.UpdateAsync(existingOrder));
+}
 
-            throw new AstroPharmException(404, "Order not found");
-        }
-
-        _mapper.Map(dto, existingOrder);
-
-        existingOrder.UpdatedAt = DateTime.UtcNow;
-
-        return _mapper.Map<OrderForResultDto>(await _orderRepository.UpdateAsync(existingOrder));
-    }
 
     public async Task<bool> RemoveAsync(long id)
     {
