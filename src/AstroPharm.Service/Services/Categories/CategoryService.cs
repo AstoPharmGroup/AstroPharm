@@ -15,7 +15,9 @@ public class CategoryService : ICategoryInterface
     private readonly ICatalogInterface catalogInterface;
     private readonly IRepository<Category> _categoryRepository;
 
-    public CategoryService(IRepository<Category> CategoryRepository, IMapper mapper, ICatalogInterface catalogInterface)
+    public CategoryService(IRepository<Category> CategoryRepository,
+        IMapper mapper, 
+        ICatalogInterface catalogInterface)
     {
         _mapper = mapper;
         _categoryRepository = CategoryRepository;
@@ -55,7 +57,7 @@ public class CategoryService : ICategoryInterface
     public async Task<IEnumerable<CategoryForResultDto>> GetAllAsync()
     {
         var categories = await _categoryRepository.SelectAll()
-            .AsNoTracking()
+            //.AsNoTracking()
             .ToListAsync();
         return _mapper.Map<IEnumerable<CategoryForResultDto>>(categories);
     }

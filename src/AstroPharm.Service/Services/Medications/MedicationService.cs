@@ -11,11 +11,14 @@ namespace AstroPharm.Service.Services.Medications
 {
     public class MedicationService : IMedicationInterface
     {
-        private readonly IRepository<Medication> repository;
         private readonly IMapper mapper;
+        private readonly IRepository<Medication> repository;
         private readonly ICategoryInterface categoryInterface;
 
-        public MedicationService(IMapper mapper, IRepository<Medication> repository, ICategoryInterface category)
+        public MedicationService(
+            IMapper mapper,
+            IRepository<Medication> repository, 
+            ICategoryInterface category)
         {
             this.mapper = mapper;
             this.repository = repository;
@@ -53,7 +56,7 @@ namespace AstroPharm.Service.Services.Medications
         public async Task<IEnumerable<MedicationForResultDto>> GetAllAsync()
         {
             var medications = await repository.SelectAll()
-                .AsNoTracking()
+                //.AsNoTracking()
                 .ToListAsync();
 
             return mapper.Map<IEnumerable<MedicationForResultDto>>(medications);

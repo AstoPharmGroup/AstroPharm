@@ -11,8 +11,6 @@ public class MappingProfile : Profile
 {
     public MappingProfile()
     {
-        // Shu yerda entity bilan DTO larni map qilasizlar
-
         //User DTOs
         CreateMap<User, UserForResultDto>().ReverseMap();
         CreateMap<UserForCreationDto, User>().ReverseMap();
@@ -28,8 +26,14 @@ public class MappingProfile : Profile
         CreateMap<CatalogForCreationDto, Catalog>().ReverseMap();
         CreateMap<CatalogForUpdateDto, Catalog>().ReverseMap();
 
+        //Category DTOs
         CreateMap<Category, CategoryForResultDto>().ReverseMap();
         CreateMap<CategoryForCreationDto, Category>().ReverseMap();
         CreateMap<CategoryForUpdateDto, Category>().ReverseMap();
+
+        //Order DTOs
+        CreateMap<Order, OrderForCreationDto>().ReverseMap();
+        CreateMap<Order, OrderForResultDto>().ReverseMap();
+        CreateMap<Order, OrderForUpdateDto>().ReverseMap();
     }
 }

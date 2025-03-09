@@ -50,13 +50,14 @@ public class CatalogService : ICatalogInterface
         
     }
 
-    public async Task<IEnumerable<CatalogForResultDto>> GetAllAsync()
+   public async Task<IEnumerable<CatalogForResultDto>> GetAllAsync()
     {
         var catalogs = await _catalogRepository.SelectAll()
-            .AsNoTracking()
+            //.AsNoTracking()
             .ToListAsync();
+
         return _mapper.Map<IEnumerable<CatalogForResultDto>>(catalogs);
-    }
+    } 
 
     public async Task<CatalogForResultDto> GetByIdAsync(long id)
     {

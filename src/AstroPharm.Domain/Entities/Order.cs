@@ -8,5 +8,5 @@ public class Order : Auditable
     public long TotalAmount { get; set; }
     public virtual User User { get; set; }
     public DateTime OrderDate { get; set; }
-    public ICollection<OrderDetail> OrderDetails { get; set; }
+    public virtual ICollection<OrderDetail> OrderDetails { get; set; }
 }

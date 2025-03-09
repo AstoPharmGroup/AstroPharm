@@ -1,4 +1,5 @@
 using AstroPharm.Api.Extensions;
+using AstroPharm.Api.Middlewares;
 using AstroPharm.Data.DbContexts;
 using AstroPharm.Service.Mappers;
 using Microsoft.EntityFrameworkCore;
@@ -12,10 +13,13 @@ namespace AstroPharm.Api
             var builder = WebApplication.CreateBuilder(args);
 
             // Connect Database
+            #region
             builder.Services.AddDbContext<AppDbContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")));
-
+                options.UseLazyLoadingProxies()
+               .UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+            #endregion
             // Add : CORS
+            #region
             builder.Services.AddCors(options =>
             {
                 options.AddPolicy("AllowAll",
@@ -23,6 +27,7 @@ namespace AstroPharm.Api
                                    .AllowAnyMethod()
                                    .AllowAnyHeader());
             });
+            #endregion
             // Add : Controller
             builder.Services.AddControllers();  
             builder.Services.AddEndpointsApiExplorer();
@@ -37,6 +42,7 @@ namespace AstroPharm.Api
             var app = builder.Build();
 
             // Use Middleware For Delete Method
+            #region
             app.Use(async (context, next) =>
             {
                 if (context.Request.Method == "DELETE")
@@ -47,14 +53,17 @@ namespace AstroPharm.Api
                 };
                 await next();
             });
-
+            #endregion
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-
+            // Static Middleware
+            app.UseMiddleware<ExceptionHandlerMiddleWare>();
+            
             app.UseCors();
+
             // Rasm lar yoki va hakazo yoki Loglarni yozish uchun Static Fayldan Foydalanish
             app.UseStaticFiles();
 

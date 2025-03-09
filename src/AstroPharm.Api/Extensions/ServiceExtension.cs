@@ -11,6 +11,7 @@ using AstroPharm.Service.Interfaces.Users;
 using AstroPharm.Service.Services.Medications;
 using AstroPharm.Service.Services.Users;
 using System.Runtime.CompilerServices;
+using AstroPharm.Service.Interfaces.Order;
 
 namespace AstroPharm.Api.Extensions;
 
@@ -21,9 +22,19 @@ public static class ServiceExtension
         // Shu yerda Repository lar va Service , Interface lar royxatdan otkazasiz
         services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
+        // FOlder Name : User
         services.AddScoped<IUserInterface, UserService>();
+
+        // Folder Name : Medication
         services.AddScoped<IMedicationInterface, MedicationService>();
+
+        // Folder Name : Catalog
         services.AddScoped<ICatalogInterface, CatalogService>();
+
+        // Fodler Name : Category
         services.AddScoped<ICategoryInterface, CategoryService>();
+
+        // Fodler Name : Order
+        services.AddScoped<IOrderInterface, OrderService>();
     }
 }

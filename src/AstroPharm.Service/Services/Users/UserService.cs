@@ -49,7 +49,7 @@ public class UserService : IUserInterface
     public async Task<IEnumerable<UserForResultDto>> RetrieveAllAsync()
     {
         var users = await repository.SelectAll()
-            .AsNoTracking()
+            //.AsNoTracking()
             .ToListAsync();
 
         return mapper.Map<IEnumerable<UserForResultDto>>(users);
