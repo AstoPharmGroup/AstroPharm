@@ -6,5 +6,4 @@ public class Catalog : Auditable
 {
     public string CatalogName { get; set; }
     public virtual ICollection<Category> Categories { get; set; }
-
 }

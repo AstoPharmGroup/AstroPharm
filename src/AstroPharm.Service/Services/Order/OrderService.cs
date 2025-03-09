@@ -10,63 +10,93 @@ public class OrderService : IOrderInterface
     private readonly IMapper _mapper;
     private readonly IRepository<User> _userRepository;
     private readonly IRepository<Order> _orderRepository;
-    private readonly IRepository<Medication> _medicationRepository;
+
 
     public OrderService(
-        IMapper mapper, 
+        IMapper mapper,
         IRepository<User> userRepository,
-        IRepository<Order> orderRepository,
-        IRepository<Medication> medicationRepository)
+        IRepository<Order> orderRepository
+        )
     {
         _mapper = mapper;
         _userRepository = userRepository;
         _orderRepository = orderRepository;
-        _medicationRepository = medicationRepository;
+
     }
 
     public async Task<OrderForResultDto> AddAsync(OrderForCreationDto dto)
     {
-        var order = _mapper.Map<Order>(dto);
-        order.CreatedAt = DateTime.UtcNow;
-        
-        var result = await _orderRepository.InsertAsync(order);
-        return _mapper.Map<OrderForResultDto>(result);
+        var user = await _userRepository.SelectByIdAsync(dto.UserId);
+
+        if (user is null)
+        {
+            throw new AstroPharmException(404, "User not found");
+        }
+        else
+        {
+            var order = _mapper.Map<Order>(dto);
+
+            order.CreatedAt = DateTime.UtcNow;
+
+            return _mapper.Map<OrderForResultDto>(await _orderRepository.InsertAsync(order));
+        }
     }
 
-    public async Task<IEnumerable<OrderForResultDto>> GetAllAsync()
+    public async Task<List<OrderForResultDto>> GetAllAsync()
     {
-        var orders =  _orderRepository.SelectAll();
-        return _mapper.Map<IEnumerable<OrderForResultDto>>(orders);
+        var orders = _orderRepository.SelectAll();
+        
+        return _mapper.Map<List<OrderForResultDto>>(orders);
     }
 
     public async Task<OrderForResultDto> GetByIdAsync(long id)
     {
         var order = await _orderRepository.SelectByIdAsync(id);
-        if (order == null)
+
+        if (order is null)
             throw new AstroPharmException(404, "Order not found");
-            
+
         return _mapper.Map<OrderForResultDto>(order);
     }
 
-    public async Task<OrderForResultDto> ModifyAsync(long id, OrderForUpdateDto dto)
-    {
-        var existingOrder = await _orderRepository.SelectByIdAsync(id);
-        if (existingOrder == null)
-            throw new AstroPharmException(404, "Order not found");
+public async Task<List<OrderForResultDto>> GetByUserIdAsync(long userId)
+{
+    var userOrders = _orderRepository.SelectAll().Where(x => x.UserId == userId).ToList();
 
-        _mapper.Map(dto, existingOrder);
-        existingOrder.UpdatedAt = DateTime.UtcNow;
-        
-        var result = await _orderRepository.UpdateAsync(existingOrder);
-        return _mapper.Map<OrderForResultDto>(result);
-    }
+    if (!userOrders.Any())
+        throw new AstroPharmException(404, "Orders not found for this user");
+
+    return _mapper.Map<List<OrderForResultDto>>(userOrders);
+}
+
+
+    public async Task<OrderForResultDto> ModifyAsync(long id, OrderForUpdateDto dto)
+{
+    var existingOrder = await _orderRepository.SelectByIdAsync(id);
+    if (existingOrder == null)
+        throw new AstroPharmException(404, "Order not found");
+
+    var userExists = await _userRepository.SelectByIdAsync(dto.UserId) != null;
+    if (!userExists)
+        throw new AstroPharmException(404, "User not found");
+
+    _mapper.Map(dto, existingOrder);
+    existingOrder.UpdatedAt = DateTime.UtcNow;
+
+    return _mapper.Map<OrderForResultDto>(await _orderRepository.UpdateAsync(existingOrder));
+}
+
 
     public async Task<bool> RemoveAsync(long id)
     {
         var order = await _orderRepository.SelectByIdAsync(id);
-        if (order == null)
-            throw new AstroPharmException(404, "Order not found");
+        if (order is not null)
+        {
 
-        return await _orderRepository.DeleteAsync(id);
+            return await _orderRepository.DeleteAsync(id);
+        }
+
+        throw new AstroPharmException(404, "Order not found");
+
     }
 }

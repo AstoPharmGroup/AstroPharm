@@ -8,7 +8,7 @@ namespace AstroPharm.Api.Controllers.Users;
 [ApiController]
 [Route("api/[controller]")]
 public class UsersController : BaseController
-{ 
+{
     private readonly IUserInterface _userService;
 
     public UsersController(IUserInterface userService)
