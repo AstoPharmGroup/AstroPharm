@@ -1,30 +1,30 @@
 ﻿using AstroPharm.Api.Helpers;
-using AstroPharm.Service.DTOs.Categories;
-using AstroPharm.Service.Interfaces.Categories;
+using AstroPharm.Service.DTOs.Banners;
+using AstroPharm.Service.Interfaces.Banners;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AstroPharm.Api.Controllers.Categories;
+namespace AstroPharm.Api.Controllers.Banners;
 
-public class CategoryController : BaseController
+public class BannerController : BaseController
 {
-    private readonly ICategoryInterface _CategoryService;
+    private readonly IBannerInterface _bannerService;
 
-    public CategoryController(ICategoryInterface CategoryService)
+    public BannerController(IBannerInterface bannerService)
     {
-        _CategoryService = CategoryService;
+        _bannerService = bannerService;
     }
 
     [HttpGet]
-
     public async Task<IActionResult> GetAllAsync()
     {
         return Ok(new Response
         {
             StatusCode = 200,
             Message = "OK",
-            Data = await _CategoryService.GetAllAsync()
+            Data = await _bannerService.GetAllAsync()
         });
     }
+
     [HttpGet("{id}")]
     public async Task<IActionResult> GetByIdAsync([FromRoute] long id)
     {
@@ -32,7 +32,7 @@ public class CategoryController : BaseController
         {
             StatusCode = 200,
             Message = "OK",
-            Data = await _CategoryService.GetByIdAsync(id)
+            Data = await _bannerService.GetByIdAsync(id)
         });
     }
 
@@ -43,28 +43,29 @@ public class CategoryController : BaseController
         {
             StatusCode = 200,
             Message = "OK",
-            Data = await _CategoryService.DeleteAsync(id)
+            Data = await _bannerService.DeleteAsync(id)
         });
     }
+
     [HttpPost]
-    public async Task<IActionResult> AddAsync([FromBody] CategoryForCreationDto Category)
+    public async Task<IActionResult> AddAsync([FromBody] BannerForCreationDto banner)
     {
         return Ok(new Response
         {
             StatusCode = 200,
             Message = "OK",
-            Data = await _CategoryService.AddAsync(Category)
+            Data = await _bannerService.AddAsync(banner)
         });
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateAsync([FromBody] CategoryForUpdateDto Category, [FromRoute] long id)
+    public async Task<IActionResult> UpdateAsync([FromBody] BannerForUpdateDto banner, [FromRoute] long id)
     {
         return Ok(new Response
         {
             StatusCode = 200,
             Message = "OK",
-            Data = await _CategoryService.ModifyAsync(id, Category)
+            Data = await _bannerService.ModifyAsync(id, banner)
         });
     }
 }

@@ -5,8 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AstroPharm.Api.Controllers.Users;
 
-[ApiController]
-[Route("api/[controller]")]
 public class UsersController : BaseController
 {
     private readonly IUserInterface _userService;
