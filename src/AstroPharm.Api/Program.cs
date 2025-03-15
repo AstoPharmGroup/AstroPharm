@@ -29,7 +29,7 @@ namespace AstroPharm.Api
             });
             #endregion
             // Add : Controller
-            builder.Services.AddControllers();  
+            builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
@@ -50,7 +50,8 @@ namespace AstroPharm.Api
                     context.Response.StatusCode = 405;
                     await context.Response.WriteAsync("This method is not allowed");
                     return;
-                };
+                }
+                ;
                 await next();
             });
             #endregion
@@ -61,7 +62,7 @@ namespace AstroPharm.Api
             }
             // Static Middleware
             app.UseMiddleware<ExceptionHandlerMiddleWare>();
-            
+            app.UseMiddleware<LoggingMiddleware>();
             app.UseCors();
 
             // Rasm lar yoki va hakazo yoki Loglarni yozish uchun Static Fayldan Foydalanish

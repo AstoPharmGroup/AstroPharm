@@ -71,7 +71,7 @@ public class UserService : IUserInterface
         if (user == null)
             throw new AstroPharmException(404, "User not found!");
 
-        validator.ValidateUser(mapper.Map<UserForCreationDto>(dto));
+        //validator.ValidateUser(mapper.Map<UserForUpdateDto>(dto));
         var modifiedUser = mapper.Map(dto, user);
         modifiedUser.UpdatedAt = DateTime.UtcNow;
         await repository.UpdateAsync(modifiedUser);

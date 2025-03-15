@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AstroPharm.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,6 @@ namespace AstroPharm.Service.DTOs.Categories;
 public class CategoryForUpdateDto
 {
     public long CatalogId { get; set; }
-    public string CategoryName { get; set; }
     public string Description { get; set; }
+    public string CategoryName { get; set; }
 }

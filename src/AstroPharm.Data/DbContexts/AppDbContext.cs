@@ -25,25 +25,55 @@ public class AppDbContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
 
-        // Folder : Catalog -> Category
+        // Catalog -> Category
         modelBuilder.Entity<Catalog>()
-          .HasMany(c => c.Categories) 
-          .WithOne(c => c.Catalog)     
-          .HasForeignKey(c => c.CatalogId) 
-          .OnDelete(DeleteBehavior.Cascade);
+            .HasMany(c => c.Categories)
+            .WithOne(c => c.Catalog)
+            .HasForeignKey(c => c.CatalogId)
+            .OnDelete(DeleteBehavior.Cascade);
 
-        // Folder : Banner -> Medication
+        // Banner -> Medication
         modelBuilder.Entity<Banner>()
-       .HasOne(b => b.Medication)
-       .WithMany()
-       .HasForeignKey(b => b.MedicationId)
-       .OnDelete(DeleteBehavior.Restrict); // Cascade delete ni o'chirish
-
-        modelBuilder.Entity<Banner>()
-            .HasOne(b => b.Category)
+            .HasOne(b => b.Medication)
             .WithMany()
-            .HasForeignKey(b => b.CategoryId)
-            .OnDelete(DeleteBehavior.Restrict); // Cascade delete ni o'chirish
+            .HasForeignKey(b => b.MedicationId)
+            .OnDelete(DeleteBehavior.SetNull);
+
+        //// Banner -> Category
+        //modelBuilder.Entity<Banner>()
+        //    .HasOne(b => b.Category)
+        //    .WithMany()
+        //    .HasForeignKey(b => b.CategoryId)
+        //    .OnDelete(DeleteBehavior.SetNull);
+
+        //// Medication -> Category
+        //modelBuilder.Entity<Medication>()
+        //    .HasOne(m => m.Category)
+        //    .WithMany(c => c.Medications)
+        //    .HasForeignKey(m => m.CategoryId)
+        //    .OnDelete(DeleteBehavior.Cascade);
+
+        //// WishList -> Medication
+        //modelBuilder.Entity<WishList>()
+        //    .HasOne(w => w.Medication)
+        //    .WithMany(m => m.WishLists)
+        //    .HasForeignKey(w => w.MedicationId)
+        //    .OnDelete(DeleteBehavior.Cascade);
+
+        //// CartItem -> Medication
+        //modelBuilder.Entity<CartItem>()
+        //    .HasOne(c => c.Medication)
+        //    .WithMany(m => m.CartItems)
+        //    .HasForeignKey(c => c.MedicationId)
+        //    .OnDelete(DeleteBehavior.Cascade);
+
+        //// OrderDetails -> Medication
+        //modelBuilder.Entity<OrderDetail>()
+        //    .HasOne(o => o.Medication)
+        //    .WithMany(m => m.OrderDetails)
+        //    .HasForeignKey(o => o.MedicationId)
+        //    .OnDelete(DeleteBehavior.Cascade);
+
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
