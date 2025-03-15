@@ -3,6 +3,7 @@ using AstroPharm.Service.DTOs.Catalogs;
 using AstroPharm.Service.DTOs.Categories;
 using AstroPharm.Service.DTOs.Medications;
 using AstroPharm.Service.DTOs.Users;
+using AstroPharm.Service.DTOs.Wishlists;
 using AutoMapper;
 
 namespace AstroPharm.Service.Mappers;
@@ -35,5 +36,9 @@ public class MappingProfile : Profile
         CreateMap<Order, OrderForCreationDto>().ReverseMap();
         CreateMap<Order, OrderForResultDto>().ReverseMap();
         CreateMap<Order, OrderForUpdateDto>().ReverseMap();
+
+        // Wishlist
+        CreateMap<WishList,WishlistForCreationDto>().ReverseMap();
+        CreateMap<WishList,WishlistForResultDto>().ReverseMap();
     }
 }

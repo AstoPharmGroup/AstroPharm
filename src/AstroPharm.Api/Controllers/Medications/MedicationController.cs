@@ -6,8 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AstroPharm.Api.Controllers.Medications
 {
-    [ApiController]
-    [Route("api/[controller]")]
+
     public class MedicationController : BaseController
     {
         private readonly IMedicationInterface _medicationService;

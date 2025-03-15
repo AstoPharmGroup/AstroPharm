@@ -5,8 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AstroPharm.Api.Controllers.Categories;
 
-[ApiController]
-[Route("api/[controller]")]
+
 public class CategoryController : BaseController
 {
     private readonly ICategoryInterface _CategoryService;

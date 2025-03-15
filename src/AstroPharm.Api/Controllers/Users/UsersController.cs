@@ -5,8 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AstroPharm.Api.Controllers.Users;
 
-[ApiController]
-[Route("api/[controller]")]
+
 public class UsersController : BaseController
 {
     private readonly IUserInterface _userService;
@@ -29,12 +28,8 @@ public class UsersController : BaseController
     [HttpGet("{id}")]
     public async Task<IActionResult> GetByIdAsync([FromRoute] long id)
     {
-        return Ok(new Response
-        {
-            StatusCode = 200,
-            Message = "OK",
-            Data = await _userService.RetrieveByIdAsync(id)
-        });
+        var user = await _userService.RetrieveByIdAsync(id);
+        return Ok(user);
     }
 
     [HttpDelete("{id}")]

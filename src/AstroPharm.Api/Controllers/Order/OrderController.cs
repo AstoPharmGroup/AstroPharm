@@ -5,8 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AstroPharm.Api.Controllers.Order
 {
-    [ApiController]
-    [Route("api/[controller]")]
     public class OrderController : BaseController
     {
         private readonly IOrderInterface _orderService;

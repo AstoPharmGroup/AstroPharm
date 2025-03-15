@@ -6,7 +6,7 @@ public class CategoryForResultDto
 {
     public long Id { get; set; }
     public long CatalogId { get; set; }
-    public string CategoryName { get; set; }
     public string Description { get; set; }
+    public string CategoryName { get; set; }
     public CatalogForResultDto Catalog { get; set; }
 }

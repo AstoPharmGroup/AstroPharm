@@ -5,8 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AstroPharm.Api.Controllers.Catalogs;
 
-[ApiController]
-[Route("api/[controller]")]
+
 public class CatalogController : BaseController
 {
     private readonly ICatalogInterface _CatalogService;
