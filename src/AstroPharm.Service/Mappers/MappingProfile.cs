@@ -5,6 +5,7 @@ using AstroPharm.Service.DTOs.Catalogs;
 using AstroPharm.Service.DTOs.Categories;
 using AstroPharm.Service.DTOs.Medications;
 using AstroPharm.Service.DTOs.Users;
+using AstroPharm.Service.DTOs.Wishlists;
 using AutoMapper;
 
 namespace AstroPharm.Service.Mappers;
@@ -38,6 +39,11 @@ public class MappingProfile : Profile
         CreateMap<Order, OrderForResultDto>().ReverseMap();
         CreateMap<Order, OrderForUpdateDto>().ReverseMap();
 
+<<<<<<< HEAD
+        // Wishlist
+        CreateMap<WishList,WishlistForCreationDto>().ReverseMap();
+        CreateMap<WishList,WishlistForResultDto>().ReverseMap();
+=======
         CreateMap<Banner, BannerForResultDto>().ReverseMap();
         CreateMap<BannerForCreationDto, Banner>().ReverseMap();
         CreateMap<BannerForUpdateDto, Banner>().ReverseMap();
@@ -49,5 +55,6 @@ public class MappingProfile : Profile
         CreateMap<Payment, PaymentResultDto>().ReverseMap();
         CreateMap<PaymentCreationDto, Payment>().ReverseMap();
         CreateMap<PaymentUpdateDto, Payment>().ReverseMap();
+>>>>>>> 74b95a1ef7b0530fd50629725f818910c07d5482
     }
 }

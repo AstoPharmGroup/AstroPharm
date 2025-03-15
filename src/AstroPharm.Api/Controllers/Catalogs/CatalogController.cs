@@ -5,6 +5,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AstroPharm.Api.Controllers.Catalogs;
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 74b95a1ef7b0530fd50629725f818910c07d5482
 public class CatalogController : BaseController
 {
     private readonly ICatalogInterface _CatalogService;

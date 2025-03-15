@@ -6,6 +6,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AstroPharm.Api.Controllers.Medications
 {
+<<<<<<< HEAD
+
+=======
+>>>>>>> 74b95a1ef7b0530fd50629725f818910c07d5482
     public class MedicationController : BaseController
     {
         private readonly IMedicationInterface _medicationService;
