@@ -1,5 +1,4 @@
-using AstroPharm.Domain.Entities;
-
+namespace AstroPharm.Service.Interfaces.Payments;
 public interface IPaymentInterface
 {
     Task<bool> RemoveAsync(long id);

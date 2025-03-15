@@ -62,7 +62,7 @@ namespace AstroPharm.Api
             }
             // Static Middleware
             app.UseMiddleware<ExceptionHandlerMiddleWare>();
-
+            app.UseMiddleware<LoggingMiddleware>();
             app.UseCors();
 
             // Rasm lar yoki va hakazo yoki Loglarni yozish uchun Static Fayldan Foydalanish

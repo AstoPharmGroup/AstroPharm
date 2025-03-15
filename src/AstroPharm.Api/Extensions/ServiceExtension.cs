@@ -16,6 +16,8 @@ using AstroPharm.Service.Interfaces.Banners;
 using AstroPharm.Service.Services.Banners;
 using AstroPharm.Service.Interfaces.CartItems;
 using AstroPharm.Service.Services.CartItems;
+using AstroPharm.Service.Interfaces.Payments;
+using AstroPharm.Service.Services.Payments;
 
 namespace AstroPharm.Api.Extensions;
 
@@ -46,5 +48,7 @@ public static class ServiceExtension
 
         // Fodler Name : Cart Item
         services.AddScoped<ICartItemInterface, CartItemService>();
+        // Payment
+        services.AddScoped<IPaymentInterface, PaymentService>();
     }
 }

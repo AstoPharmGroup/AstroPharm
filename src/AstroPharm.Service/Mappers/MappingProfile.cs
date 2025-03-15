@@ -45,5 +45,9 @@ public class MappingProfile : Profile
         CreateMap<CartItem, CartItemForResultDto>().ReverseMap();
         CreateMap<CartItemForCreationDto, CartItem>().ReverseMap();
         CreateMap<CartItemForUpdateDto, CartItem>().ReverseMap();
+
+        CreateMap<Payment, PaymentResultDto>().ReverseMap();
+        CreateMap<PaymentCreationDto, Payment>().ReverseMap();
+        CreateMap<PaymentUpdateDto, Payment>().ReverseMap();
     }
 }
