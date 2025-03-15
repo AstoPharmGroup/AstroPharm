@@ -2,8 +2,10 @@
 using AstroPharm.Data.IRepositories;
 using AstroPharm.Domain.Entities;
 using AstroPharm.Service.Exceptions;
+using AstroPharm.Service.Interfaces.Payments;
 using AutoMapper;
 
+namespace AstroPharm.Service.Services.Payments;
 public class PaymentService : IPaymentInterface
 {
     private readonly IMapper _mapper;
