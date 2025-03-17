@@ -5,10 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AstroPharm.Api.Controllers.Categories;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 74b95a1ef7b0530fd50629725f818910c07d5482
 public class CategoryController : BaseController
 {
     private readonly ICategoryInterface _CategoryService;
