@@ -17,6 +17,7 @@ public class AppDbContext : DbContext
     public DbSet<Category> Categories { get; set; }
     public DbSet<Medication> Medications { get; set; }
     public DbSet<OrderDetail> OrderDetails { get; set; }
+    public DbSet<RefreshToken> RefreshTokens { get; set; }
     // Bazadagi jadval nomlarini, ustunlarning uzunligi, turini o‘zgartirish
     // One-to-One, One-to-Many, Many-to-Many munosabatlarni aniqlash
     // Primary key, foreign key, unique constraintlarni belgilash
