@@ -26,19 +26,19 @@ public class AppDbContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
 
-        // Catalog -> Category
-        modelBuilder.Entity<Catalog>()
-            .HasMany(c => c.Categories)
-            .WithOne(c => c.Catalog)
-            .HasForeignKey(c => c.CatalogId)
-            .OnDelete(DeleteBehavior.Cascade);
+        // // Catalog -> Category
+        // modelBuilder.Entity<Catalog>()
+        //     .HasMany(c => c.Categories)
+        //     .WithOne(c => c.Catalog)
+        //     .HasForeignKey(c => c.CatalogId)
+        //     .OnDelete(DeleteBehavior.Cascade);
 
-        // Banner -> Medication
-        modelBuilder.Entity<Banner>()
-            .HasOne(b => b.Medication)
-            .WithMany()
-            .HasForeignKey(b => b.MedicationId)
-            .OnDelete(DeleteBehavior.SetNull);
+        // // Banner -> Medication
+        // modelBuilder.Entity<Banner>()
+        //     .HasOne(b => b.Medication)
+        //     .WithMany()
+        //     .HasForeignKey(b => b.MedicationId)
+        //     .OnDelete(DeleteBehavior.SetNull);
 
         //// Banner -> Category
         //modelBuilder.Entity<Banner>()

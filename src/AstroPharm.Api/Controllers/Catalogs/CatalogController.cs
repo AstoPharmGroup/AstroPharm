@@ -5,10 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AstroPharm.Api.Controllers.Catalogs;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 74b95a1ef7b0530fd50629725f818910c07d5482
 public class CatalogController : BaseController
 {
     private readonly ICatalogInterface _CatalogService;
@@ -19,7 +15,6 @@ public class CatalogController : BaseController
     }
 
     [HttpGet]
-
     public async Task<IActionResult> GetAllAsync()
     {
         return Ok(new Response
@@ -29,6 +24,7 @@ public class CatalogController : BaseController
             Data = await _CatalogService.GetAllAsync()
         });
     }
+
     [HttpGet("{id}")]
     public async Task<IActionResult> GetByIdAsync([FromRoute] long id)
     {
@@ -50,6 +46,7 @@ public class CatalogController : BaseController
             Data = await _CatalogService.DeleteAsync(id)
         });
     }
+
     [HttpPost]
     public async Task<IActionResult> AddAsync([FromBody] CatalogForCreationDto Catalog)
     {

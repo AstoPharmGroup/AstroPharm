@@ -6,6 +6,8 @@ using AstroPharm.Domain.Entities;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
+namespace AstroPharm.Service.Services.Token;
+
 public class TokenService : ITokenService
 {
     private readonly IConfiguration configuration;
