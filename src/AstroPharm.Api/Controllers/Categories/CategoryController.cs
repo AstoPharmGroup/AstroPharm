@@ -15,7 +15,6 @@ public class CategoryController : BaseController
     }
 
     [HttpGet]
-
     public async Task<IActionResult> GetAllAsync()
     {
         return Ok(new Response
@@ -25,6 +24,7 @@ public class CategoryController : BaseController
             Data = await _CategoryService.GetAllAsync()
         });
     }
+
     [HttpGet("{id}")]
     public async Task<IActionResult> GetByIdAsync([FromRoute] long id)
     {
@@ -46,6 +46,7 @@ public class CategoryController : BaseController
             Data = await _CategoryService.DeleteAsync(id)
         });
     }
+
     [HttpPost]
     public async Task<IActionResult> AddAsync([FromBody] CategoryForCreationDto Category)
     {

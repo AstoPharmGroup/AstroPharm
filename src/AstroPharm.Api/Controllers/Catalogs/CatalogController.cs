@@ -15,7 +15,6 @@ public class CatalogController : BaseController
     }
 
     [HttpGet]
-
     public async Task<IActionResult> GetAllAsync()
     {
         return Ok(new Response
@@ -25,6 +24,7 @@ public class CatalogController : BaseController
             Data = await _CatalogService.GetAllAsync()
         });
     }
+
     [HttpGet("{id}")]
     public async Task<IActionResult> GetByIdAsync([FromRoute] long id)
     {
@@ -46,6 +46,7 @@ public class CatalogController : BaseController
             Data = await _CatalogService.DeleteAsync(id)
         });
     }
+
     [HttpPost]
     public async Task<IActionResult> AddAsync([FromBody] CatalogForCreationDto Catalog)
     {
