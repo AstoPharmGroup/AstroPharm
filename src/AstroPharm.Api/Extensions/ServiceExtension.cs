@@ -18,6 +18,7 @@ using AstroPharm.Service.Interfaces.CartItems;
 using AstroPharm.Service.Services.CartItems;
 using AstroPharm.Service.Interfaces.Payments;
 using AstroPharm.Service.Services.Payments;
+using AstroPharm.Service.Services.Token;
 
 namespace AstroPharm.Api.Extensions;
 
@@ -50,5 +51,9 @@ public static class ServiceExtension
         services.AddScoped<ICartItemInterface, CartItemService>();
         // Payment
         services.AddScoped<IPaymentInterface, PaymentService>();
+        // Authorization
+        services.AddScoped<IAuthService, AuthService>();
+        // Token
+        services.AddScoped<ITokenService, TokenService>();
     }
 }

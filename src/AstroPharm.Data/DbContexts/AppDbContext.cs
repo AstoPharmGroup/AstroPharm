@@ -17,6 +17,7 @@ public class AppDbContext : DbContext
     public DbSet<Category> Categories { get; set; }
     public DbSet<Medication> Medications { get; set; }
     public DbSet<OrderDetail> OrderDetails { get; set; }
+    public DbSet<RefreshToken> RefreshTokens { get; set; }
     // Bazadagi jadval nomlarini, ustunlarning uzunligi, turini o‘zgartirish
     // One-to-One, One-to-Many, Many-to-Many munosabatlarni aniqlash
     // Primary key, foreign key, unique constraintlarni belgilash
@@ -25,19 +26,19 @@ public class AppDbContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
 
-        // Catalog -> Category
-        modelBuilder.Entity<Catalog>()
-            .HasMany(c => c.Categories)
-            .WithOne(c => c.Catalog)
-            .HasForeignKey(c => c.CatalogId)
-            .OnDelete(DeleteBehavior.Cascade);
+        // // Catalog -> Category
+        // modelBuilder.Entity<Catalog>()
+        //     .HasMany(c => c.Categories)
+        //     .WithOne(c => c.Catalog)
+        //     .HasForeignKey(c => c.CatalogId)
+        //     .OnDelete(DeleteBehavior.Cascade);
 
-        // Banner -> Medication
-        modelBuilder.Entity<Banner>()
-            .HasOne(b => b.Medication)
-            .WithMany()
-            .HasForeignKey(b => b.MedicationId)
-            .OnDelete(DeleteBehavior.SetNull);
+        // // Banner -> Medication
+        // modelBuilder.Entity<Banner>()
+        //     .HasOne(b => b.Medication)
+        //     .WithMany()
+        //     .HasForeignKey(b => b.MedicationId)
+        //     .OnDelete(DeleteBehavior.SetNull);
 
         //// Banner -> Category
         //modelBuilder.Entity<Banner>()
