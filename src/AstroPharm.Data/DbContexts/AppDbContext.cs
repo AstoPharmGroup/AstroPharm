@@ -1,5 +1,6 @@
 ﻿using AstroPharm.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 namespace AstroPharm.Data.DbContexts;
 
@@ -7,25 +8,26 @@ public class AppDbContext : DbContext
 {
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
-    public DbSet<User> Users { get; set; }
-    public DbSet<Order> Orders { get; set; }
-    public DbSet<Banner> Banners { get; set; }
-    public DbSet<Payment> Payments { get; set; }
-    public DbSet<Catalog> Catalogs { get; set; }
-    public DbSet<CartItem> CartItems { get; set; }
-    public DbSet<WishList> WishLists { get; set; }
-    public DbSet<Category> Categories { get; set; }
-    public DbSet<Medication> Medications { get; set; }
-    public DbSet<OrderDetail> OrderDetails { get; set; }
-    public DbSet<RefreshToken> RefreshTokens { get; set; }
-    // Bazadagi jadval nomlarini, ustunlarning uzunligi, turini o‘zgartirish
-    // One-to-One, One-to-Many, Many-to-Many munosabatlarni aniqlash
-    // Primary key, foreign key, unique constraintlarni belgilash
-    // uchun foydalanamiz va u bilan biz Seed Data larni qoshamiz OnModelCreating bilan.
+    #region
+    //public DbSet<User> Users { get; set; }
+    //public DbSet<Order> Orders { get; set; }
+    //public DbSet<Banner> Banners { get; set; }
+    //public DbSet<Payment> Payments { get; set; }
+    //public DbSet<Catalog> Catalogs { get; set; }
+    //public DbSet<CartItem> CartItems { get; set; }
+    //public DbSet<WishList> WishLists { get; set; }
+    //public DbSet<Category> Categories { get; set; }
+    //public DbSet<Medication> Medications { get; set; }
+    //public DbSet<OrderDetail> OrderDetails { get; set; }
+    //public DbSet<RefreshToken> RefreshTokens { get; set; }
+    #endregion
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+        // Hamma konfiguratsiyalarni avtomatik yuklash
+        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
+        #region boglanishlar tugadi
         // // Catalog -> Category
         // modelBuilder.Entity<Catalog>()
         //     .HasMany(c => c.Categories)
@@ -74,7 +76,7 @@ public class AppDbContext : DbContext
         //    .WithMany(m => m.OrderDetails)
         //    .HasForeignKey(o => o.MedicationId)
         //    .OnDelete(DeleteBehavior.Cascade);
-
+        #endregion
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

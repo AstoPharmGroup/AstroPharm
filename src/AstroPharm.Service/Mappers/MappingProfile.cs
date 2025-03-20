@@ -1,4 +1,5 @@
 ﻿using AstroPharm.Domain.Entities;
+using AstroPharm.Domain.Entities.Users;
 using AstroPharm.Service.DTOs.Banners;
 using AstroPharm.Service.DTOs.CartItems;
 using AstroPharm.Service.DTOs.Catalogs;

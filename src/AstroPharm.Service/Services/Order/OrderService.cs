@@ -3,7 +3,8 @@ using AstroPharm.Service.Exceptions;
 using AstroPharm.Service.Mappers;
 using AutoMapper;
 using AstroPharm.Data.IRepositories;
-using AstroPharm.Domain.Entities;
+using AstroPharm.Domain.Entities.Users;
+using AstroPharm.Domain.Entities.Orders;
 
 public class OrderService : IOrderInterface
 {
@@ -51,10 +52,8 @@ public class OrderService : IOrderInterface
 
     public async Task<OrderForResultDto> GetByIdAsync(long id)
     {
-        var order = await _orderRepository.SelectByIdAsync(id);
-
-        if (order is null)
-            throw new AstroPharmException(404, "Order not found");
+        var order = await _orderRepository.SelectByIdAsync(id)
+            ?? throw new AstroPharmException(404, "Order is not found");
 
         return _mapper.Map<OrderForResultDto>(order);
     }

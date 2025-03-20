@@ -1,4 +1,4 @@
-using AstroPharm.Domain.Entities;
+using AstroPharm.Domain.Entities.Users;
 
 public interface ITokenService
 {

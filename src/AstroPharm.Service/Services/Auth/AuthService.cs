@@ -1,6 +1,6 @@
 
 using AstroPharm.Data.IRepositories;
-using AstroPharm.Domain.Entities;
+using AstroPharm.Domain.Entities.Users;
 
 public class AuthService : IAuthService
 {
