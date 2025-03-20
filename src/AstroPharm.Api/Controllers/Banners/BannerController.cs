@@ -48,7 +48,7 @@ public class BannerController : BaseController
     }
 
     [HttpPost]
-    public async Task<IActionResult> AddAsync([FromBody] BannerForCreationDto banner)
+    public async Task<IActionResult> AddAsync([FromForm] BannerForCreationDto banner)
     {
         return Ok(new Response
         {
@@ -59,7 +59,7 @@ public class BannerController : BaseController
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateAsync([FromBody] BannerForUpdateDto banner, [FromRoute] long id)
+    public async Task<IActionResult> UpdateAsync([FromForm] BannerForUpdateDto banner, [FromRoute] long id)
     {
         return Ok(new Response
         {

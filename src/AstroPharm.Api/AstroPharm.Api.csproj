@@ -19,4 +19,8 @@
     <ProjectReference Include="..\AstroPharm.Service\AstroPharm.Service.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
 </Project>

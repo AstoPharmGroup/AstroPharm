@@ -1,4 +1,5 @@
 ﻿using AstroPharm.Domain.Commons;
+using AstroPharm.Domain.Entities.Pharmacy;
 
 namespace AstroPharm.Domain.Entities;
 

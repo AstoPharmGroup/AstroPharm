@@ -18,6 +18,12 @@ using AstroPharm.Service.Interfaces.CartItems;
 using AstroPharm.Service.Services.CartItems;
 using AstroPharm.Service.Interfaces.Payments;
 using AstroPharm.Service.Services.Payments;
+using AstroPharm.Service.Interfaces.PharmacyStocks;
+using AstroPharm.Service.Interfaces.PharmacyBranchs;
+using AstroPharm.Service.Interfaces.Deliveries;
+using AstroPharm.Service.Services.Deliveries;
+using AstroPharm.Service.Interfaces.Couriers;
+using AstroPharm.Service.Services.Couriers;
 
 namespace AstroPharm.Api.Extensions;
 
@@ -50,5 +56,14 @@ public static class ServiceExtension
         services.AddScoped<ICartItemInterface, CartItemService>();
         // Payment
         services.AddScoped<IPaymentInterface, PaymentService>();
+
+        services.AddScoped<IPharmacyStockInterface, PharmacyStockService>();
+
+        services.AddScoped<IPharmacyBranchInterface, PharmacyBranchService>();
+
+        services.AddScoped<IDeliveryInterface, DeliveryService>();
+
+        services.AddScoped<ICourierInterface, CourierService>();
+
     }
 }

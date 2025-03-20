@@ -1,7 +1,7 @@
 ﻿using AstroPharm.Domain.Commons;
 using AstroPharm.Domain.Enums;
 
-namespace AstroPharm.Domain.Entities;
+namespace AstroPharm.Domain.Entities.Pharmacy;
 
 public class Medication : Auditable
 {

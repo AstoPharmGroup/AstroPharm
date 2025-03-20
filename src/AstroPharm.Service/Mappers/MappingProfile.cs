@@ -1,11 +1,17 @@
 ﻿using AstroPharm.Domain.Entities;
+using AstroPharm.Domain.Entities.Delivery;
+using AstroPharm.Domain.Entities.Pharmacy;
 using AstroPharm.Service.DTOs.Banners;
 using AstroPharm.Service.DTOs.CartItems;
 using AstroPharm.Service.DTOs.Catalogs;
 using AstroPharm.Service.DTOs.Categories;
+using AstroPharm.Service.DTOs.Couriers;
+using AstroPharm.Service.DTOs.Deliveries;
 using AstroPharm.Service.DTOs.Medications;
+using AstroPharm.Service.DTOs.PharmacyBranchs;
+using AstroPharm.Service.DTOs.PharmacyStocks;
 using AstroPharm.Service.DTOs.Users;
-using AstroPharm.Service.DTOs.Wishlists;
+using AstroPharm.Service.DTOs.WhishLists;
 using AutoMapper;
 
 namespace AstroPharm.Service.Mappers;
@@ -23,7 +29,7 @@ public class MappingProfile : Profile
         CreateMap<Medication, MedicationForResultDto>().ReverseMap();
         CreateMap<MedicationForCreationDto, Medication>().ReverseMap();
         CreateMap<MedicationForUpdateDto, Medication>().ReverseMap();
-        
+
         //Catalog DTOs
         CreateMap<Catalog, CatalogForResultDto>().ReverseMap();
         CreateMap<CatalogForCreationDto, Catalog>().ReverseMap();
@@ -39,11 +45,12 @@ public class MappingProfile : Profile
         CreateMap<Order, OrderForResultDto>().ReverseMap();
         CreateMap<Order, OrderForUpdateDto>().ReverseMap();
 
-<<<<<<< HEAD
-        // Wishlist
-        CreateMap<WishList,WishlistForCreationDto>().ReverseMap();
-        CreateMap<WishList,WishlistForResultDto>().ReverseMap();
-=======
+
+        CreateMap<WishList, WishListForCreationDto>().ReverseMap();
+        CreateMap<WishList, WishListForResultDto>().ReverseMap();
+        CreateMap<WishList, WishListForUpdateDto>().ReverseMap();
+
+
         CreateMap<Banner, BannerForResultDto>().ReverseMap();
         CreateMap<BannerForCreationDto, Banner>().ReverseMap();
         CreateMap<BannerForUpdateDto, Banner>().ReverseMap();
@@ -55,6 +62,23 @@ public class MappingProfile : Profile
         CreateMap<Payment, PaymentResultDto>().ReverseMap();
         CreateMap<PaymentCreationDto, Payment>().ReverseMap();
         CreateMap<PaymentUpdateDto, Payment>().ReverseMap();
->>>>>>> 74b95a1ef7b0530fd50629725f818910c07d5482
+
+        CreateMap<Courier, CourierForResultDto>().ReverseMap();
+        CreateMap<CourierForCreationDto, Courier>().ReverseMap();
+        CreateMap<CourierForUpdateDto, Courier>().ReverseMap();
+
+        CreateMap<Delivery, DeliveryForResultDto>().ReverseMap();
+        CreateMap<DeliveryForCreationDto, Delivery>().ReverseMap();
+        CreateMap<DeliveryForUpdateDto, Delivery>().ReverseMap();
+
+        CreateMap<PharmacyStock, PharmacyStockForCreationDto>().ReverseMap();
+        CreateMap<PharmacyStock, PharmacyStockForUpdateDto>().ReverseMap();
+        CreateMap<PharmacyStock, PharmacyStockForResult>().ReverseMap();
+
+        CreateMap<PharmacyBranch, PharmacyBranchForCreationDto>().ReverseMap();
+        CreateMap<PharmacyBranchForResultDto, PharmacyBranch>().ReverseMap();
+        CreateMap<PharmacyBranchForResultDto, PharmacyBranch>().ReverseMap();
+
+
     }
 }

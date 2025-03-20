@@ -1,10 +1,12 @@
 ﻿using AstroPharm.Data.IRepositories;
-using AstroPharm.Domain.Entities;
+using AstroPharm.Domain.Entities.Pharmacy;
 using AstroPharm.Service.DTOs.Medications;
 using AstroPharm.Service.Exceptions;
 using AstroPharm.Service.Interfaces.Categories;
 using AstroPharm.Service.Interfaces.Medications;
 using AutoMapper;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 
 namespace AstroPharm.Service.Services.Medications
@@ -14,15 +16,38 @@ namespace AstroPharm.Service.Services.Medications
         private readonly IMapper mapper;
         private readonly IRepository<Medication> repository;
         private readonly ICategoryInterface categoryInterface;
+        private readonly IWebHostEnvironment _environment;
 
         public MedicationService(
             IMapper mapper,
-            IRepository<Medication> repository, 
-            ICategoryInterface category)
+            IRepository<Medication> repository,
+            ICategoryInterface category,
+            IWebHostEnvironment environment)
         {
             this.mapper = mapper;
             this.repository = repository;
             categoryInterface = category;
+            _environment = environment;
+        }
+        public async Task<MedicationForResultDto> UploadImage(IFormFile file)
+        {
+            if (file == null || file.Length == 0)
+                throw new AstroPharmException(400, "Error while uploading image!");
+
+
+            var medicationFolder = Path.Combine(_environment.WebRootPath, "medications");
+            Directory.CreateDirectory(medicationFolder);
+
+            var fileName = $"{Guid.NewGuid()}{Path.GetExtension(file.FileName)}";
+            var filePath = Path.Combine(medicationFolder, fileName);
+
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await file.CopyToAsync(stream);
+            }
+
+            var fileUrl = $"/medications/{fileName}";
+            return new MedicationForResultDto { Image = fileUrl };
         }
 
         public async Task<MedicationForResultDto> AddAsync(MedicationForCreationDto dto)
@@ -34,12 +59,20 @@ namespace AstroPharm.Service.Services.Medications
             var medication = await repository.SelectAll()
                 .Where(x => x.MedicationName == dto.MedicationName)
                 .FirstOrDefaultAsync();
-            if(medication != null)
+            if (medication != null)
                 throw new AstroPharmException(409, "This medication already exists");
 
-            var mapped = mapper.Map<Medication>(dto);
-            await repository.InsertAsync(mapped);
+            string imageUrl = null;
+            if (dto.File != null)
+            {
+                var uploadedImage = await UploadImage(dto.File);
+                imageUrl = uploadedImage.Image;
+            }
 
+            var mapped = mapper.Map<Medication>(dto);
+            mapped.Image = imageUrl;
+
+            await repository.InsertAsync(mapped);
             return mapper.Map<MedicationForResultDto>(mapped);
         }
 
@@ -81,9 +114,17 @@ namespace AstroPharm.Service.Services.Medications
             if (category == null)
                 throw new AstroPharmException(404, "Categpry not found!");
 
-            mapper.Map(dto, medication);
-            await repository.UpdateAsync(medication);
+            string imageUrl = null;
+            if (dto.File != null)
+            {
+                var uploadedImage = await UploadImage(dto.File);
+                imageUrl = uploadedImage.Image;
+            }
 
+            var mapped = mapper.Map(dto, medication);
+            mapped.Image = imageUrl;
+
+            await repository.UpdateAsync(medication);
             return mapper.Map<MedicationForResultDto>(medication);
         }
     }

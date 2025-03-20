@@ -1,5 +1,6 @@
 ﻿using AstroPharm.Domain.Entities;
 using AstroPharm.Domain.Enums;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace AstroPharm.Service.DTOs.Medications
 {
     public class MedicationForUpdateDto
     {
-        public string Image { get; set; }
+        public IFormFile File { get; set; }
         public decimal Price { get; set; }
         public long CategoryId { get; set; }
         public string Description { get; set; }
