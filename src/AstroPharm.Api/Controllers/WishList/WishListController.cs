@@ -1,31 +1,30 @@
-﻿using AstroPharm.Api.Helpers;
-using AstroPharm.Service.DTOs.Categories;
-using AstroPharm.Service.Interfaces.Categories;
+using AstroPharm.Api.Helpers;
+using AstroPharm.Service.DTOs.Wishlists;
+using AstroPharm.Service.Interfaces.Wishlists;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AstroPharm.Api.Controllers.Categories;
+namespace AstroPharm.Api.Controllers.WishList;
 
-
-public class CategoryController : BaseController
+public class WishListController : BaseController
 {
-    private readonly ICategoryInterface _CategoryService;
+    private readonly IWishlistService _wishListService;
 
-    public CategoryController(ICategoryInterface CategoryService)
+    public WishListController(IWishlistService wishListService)
     {
-        _CategoryService = CategoryService;
+        _wishListService = wishListService;
     }
 
     [HttpGet]
-
     public async Task<IActionResult> GetAllAsync()
     {
         return Ok(new Response
         {
             StatusCode = 200,
             Message = "OK",
-            Data = await _CategoryService.GetAllAsync()
+            Data = await _wishListService.RetrieveAllAsync()
         });
     }
+
     [HttpGet("{id}")]
     public async Task<IActionResult> GetByIdAsync([FromRoute] long id)
     {
@@ -33,7 +32,7 @@ public class CategoryController : BaseController
         {
             StatusCode = 200,
             Message = "OK",
-            Data = await _CategoryService.GetByIdAsync(id)
+            Data = await _wishListService.RetrieveByIdAsync(id)
         });
     }
 
@@ -44,28 +43,29 @@ public class CategoryController : BaseController
         {
             StatusCode = 200,
             Message = "OK",
-            Data = await _CategoryService.DeleteAsync(id)
+            Data = await _wishListService.RemoveAsync(id)
         });
     }
+
     [HttpPost]
-    public async Task<IActionResult> AddAsync([FromBody] CategoryForCreationDto Category)
+    public async Task<IActionResult> AddAsync([FromBody] WishlistForCreationDto wishlist)
     {
         return Ok(new Response
         {
             StatusCode = 200,
             Message = "OK",
-            Data = await _CategoryService.AddAsync(Category)
+            Data = await _wishListService.AddAsync(wishlist)
         });
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateAsync([FromBody] CategoryForUpdateDto Category, [FromRoute] long id)
+    public async Task<IActionResult> UpdateAsync([FromBody] WishlistForUpdateDto wishlist, [FromRoute] long id)
     {
         return Ok(new Response
         {
             StatusCode = 200,
             Message = "OK",
-            Data = await _CategoryService.ModifyAsync(id, Category)
+            Data = await _wishListService.ModifyAsync(id, wishlist)
         });
     }
 }

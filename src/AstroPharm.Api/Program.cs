@@ -16,7 +16,7 @@ namespace AstroPharm.Api
             #region
             builder.Services.AddDbContext<AppDbContext>(options =>
                 options.UseLazyLoadingProxies()
-               .UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+               .UseNpgsql(builder.Configuration.GetConnectionString("Npgsql")));
             #endregion
             // Add : CORS
             #region
