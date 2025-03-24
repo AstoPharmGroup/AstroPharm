@@ -14,7 +14,7 @@ public class CartItemForResultDto
     public long Id { get; set; }
     public int Count { get; set; }
     public long UserId { get; set; }
-    public virtual UserForResultDto User { get; set; }
+    // public virtual UserForResultDto User { get; set; }
     public long MedicationId { get; set; }
     public virtual MedicationForResultDto Medication { get; set; }
 }

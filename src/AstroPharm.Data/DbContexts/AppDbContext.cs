@@ -9,17 +9,17 @@ public class AppDbContext : DbContext
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
     #region
-    //public DbSet<User> Users { get; set; }
-    //public DbSet<Order> Orders { get; set; }
-    //public DbSet<Banner> Banners { get; set; }
-    //public DbSet<Payment> Payments { get; set; }
-    //public DbSet<Catalog> Catalogs { get; set; }
-    //public DbSet<CartItem> CartItems { get; set; }
-    //public DbSet<WishList> WishLists { get; set; }
-    //public DbSet<Category> Categories { get; set; }
-    //public DbSet<Medication> Medications { get; set; }
-    //public DbSet<OrderDetail> OrderDetails { get; set; }
-    //public DbSet<RefreshToken> RefreshTokens { get; set; }
+    public DbSet<User> Users { get; set; }
+    public DbSet<Order> Orders { get; set; }
+    public DbSet<Banner> Banners { get; set; }
+    public DbSet<Payment> Payments { get; set; }
+    public DbSet<Catalog> Catalogs { get; set; }
+    public DbSet<CartItem> CartItems { get; set; }
+    public DbSet<WishList> WishLists { get; set; }
+    public DbSet<Category> Categories { get; set; }
+    public DbSet<Medication> Medications { get; set; }
+    public DbSet<OrderDetail> OrderDetails { get; set; }
+    public DbSet<RefreshToken> RefreshTokens { get; set; }
     #endregion
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

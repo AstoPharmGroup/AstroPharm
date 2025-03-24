@@ -10,6 +10,6 @@ public class Order : Auditable
     public long DeliveryId { get; set; }
 
     public virtual User User { get; set; }
-    public virtual Delivery Delivery { get; set; }
+    // public virtual Delivery Delivery { get; set; }
     public virtual ICollection<OrderDetail> OrderDetails { get; set; }
 }

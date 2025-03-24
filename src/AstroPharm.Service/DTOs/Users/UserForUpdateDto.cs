@@ -10,5 +10,6 @@ public class UserForUpdateDto
     public string Password { get; set; }
     public string Address { get; set; }
     public string PhoneNumber { get; set; }
+    public long LanguageId { get; set; }
     public Role Role { get; set; }
 }

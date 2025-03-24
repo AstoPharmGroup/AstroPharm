@@ -1,6 +1,6 @@
 
 using AstroPharm.Data.IRepositories;
-using AstroPharm.Domain.Entities.Products;
+using AstroPharm.Domain.Entities;
 using AstroPharm.Service.Exceptions;
 using AstroPharm.Service.Interfaces.Payments;
 using AutoMapper;
