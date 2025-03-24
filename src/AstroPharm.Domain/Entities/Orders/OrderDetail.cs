@@ -12,5 +12,5 @@ public class OrderDetail : Auditable
     public long MedicationId { get; set; }
     public virtual Medication Medication { get; set; }
     public long PaymentId { get; set; }
-    public virtual PaymentForResultDto Payment { get; set; }
+    public virtual Payment Payment { get; set; }
 }

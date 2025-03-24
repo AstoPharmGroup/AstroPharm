@@ -9,9 +9,9 @@ namespace AstroPharm.Service.Services.Payments;
 public class PaymentService : IPaymentInterface
 {
     private readonly IMapper _mapper;
-    private readonly IRepository<PaymentForResultDto> _paymentRepository;
+    private readonly IRepository<Payment> _paymentRepository;
 
-    public PaymentService(IMapper mapper, IRepository<PaymentForResultDto> paymentRepository)
+    public PaymentService(IMapper mapper, IRepository<Payment> paymentRepository)
     {
         _mapper = mapper;
         _paymentRepository = paymentRepository;
@@ -19,7 +19,7 @@ public class PaymentService : IPaymentInterface
 
     public async Task<PaymentResultDto> AddAsync(PaymentCreationDto dto)
     {
-        var payment = _mapper.Map<PaymentForResultDto>(dto);
+        var payment = _mapper.Map<Payment>(dto);
 
         payment.CreatedAt = DateTime.UtcNow;
 

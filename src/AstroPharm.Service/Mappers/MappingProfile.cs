@@ -64,8 +64,8 @@ public class MappingProfile : Profile
         CreateMap<LanguageForUpdateDto, Language>().ReverseMap();
 
         // Payment
-        CreateMap<PaymentForResultDto, PaymentResultDto>().ReverseMap();
-        CreateMap<PaymentCreationDto, PaymentForResultDto>().ReverseMap();
-        CreateMap<PaymentUpdateDto, PaymentForResultDto>().ReverseMap();
+        CreateMap<Payment, PaymentResultDto>().ReverseMap();
+        CreateMap<PaymentCreationDto, Payment>().ReverseMap();
+        CreateMap<PaymentUpdateDto, Payment>().ReverseMap();
     }
 }

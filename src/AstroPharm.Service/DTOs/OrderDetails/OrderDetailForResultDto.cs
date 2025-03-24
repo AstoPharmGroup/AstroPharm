@@ -19,6 +19,6 @@ namespace AstroPharm.Service.DTOs.OrderDetails
         public long MedicationId { get; set; }
         public virtual MedicationForResultDto Medication { get; set; }
         public long PaymentId { get; set; }
-        public virtual PaymentForResultDto Payment { get; set; }
+        public virtual PaymentResultDto Payment { get; set; }
     }
 }
