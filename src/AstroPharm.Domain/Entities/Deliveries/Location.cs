@@ -1,12 +1,14 @@
-﻿using System;
+﻿using AstroPharm.Domain.Commons;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AstroPharm.Domain.Entities
+namespace AstroPharm.Domain.Entities;
+
+public class Location : Auditable
 {
-    class Location
-    {
-    }
+    public double LoLatitude { get; set; }
+    public double Longitude { get; set; }
 }
