@@ -4,16 +4,18 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace AstroPharm.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class UpdateCatalogColumnTypes : Migration
+    public partial class SeedData : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Catalogs",
+                name: "Catalog",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
@@ -24,11 +26,11 @@ namespace AstroPharm.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Catalogs", x => x.Id);
+                    table.PrimaryKey("PK_Catalog", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Payments",
+                name: "Payment",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
@@ -42,11 +44,11 @@ namespace AstroPharm.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Payments", x => x.Id);
+                    table.PrimaryKey("PK_Payment", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Users",
+                name: "User",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
@@ -63,11 +65,11 @@ namespace AstroPharm.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Users", x => x.Id);
+                    table.PrimaryKey("PK_User", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Categories",
+                name: "Category",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
@@ -80,17 +82,17 @@ namespace AstroPharm.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Categories", x => x.Id);
+                    table.PrimaryKey("PK_Category", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Categories_Catalogs_CatalogId",
+                        name: "FK_Category_Catalog_CatalogId",
                         column: x => x.CatalogId,
-                        principalTable: "Catalogs",
+                        principalTable: "Catalog",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Orders",
+                name: "Order",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
@@ -103,17 +105,17 @@ namespace AstroPharm.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Orders", x => x.Id);
+                    table.PrimaryKey("PK_Order", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Orders_Users_UserId",
+                        name: "FK_Order_User_UserId",
                         column: x => x.UserId,
-                        principalTable: "Users",
+                        principalTable: "User",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "RefreshTokens",
+                name: "RefreshToken",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
@@ -126,17 +128,17 @@ namespace AstroPharm.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RefreshTokens", x => x.Id);
+                    table.PrimaryKey("PK_RefreshToken", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_RefreshTokens_Users_UserId",
+                        name: "FK_RefreshToken_User_UserId",
                         column: x => x.UserId,
-                        principalTable: "Users",
+                        principalTable: "User",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Medications",
+                name: "Medication",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
@@ -153,17 +155,17 @@ namespace AstroPharm.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Medications", x => x.Id);
+                    table.PrimaryKey("PK_Medication", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Medications_Categories_CategoryId",
+                        name: "FK_Medication_Category_CategoryId",
                         column: x => x.CategoryId,
-                        principalTable: "Categories",
+                        principalTable: "Category",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Banners",
+                name: "Banner",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
@@ -178,23 +180,23 @@ namespace AstroPharm.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Banners", x => x.Id);
+                    table.PrimaryKey("PK_Banner", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Banners_Categories_CategoryId",
+                        name: "FK_Banner_Category_CategoryId",
                         column: x => x.CategoryId,
-                        principalTable: "Categories",
+                        principalTable: "Category",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Banners_Medications_MedicationId",
+                        name: "FK_Banner_Medication_MedicationId",
                         column: x => x.MedicationId,
-                        principalTable: "Medications",
+                        principalTable: "Medication",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "CartItems",
+                name: "CartItem",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
@@ -207,23 +209,23 @@ namespace AstroPharm.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CartItems", x => x.Id);
+                    table.PrimaryKey("PK_CartItem", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_CartItems_Medications_MedicationId",
+                        name: "FK_CartItem_Medication_MedicationId",
                         column: x => x.MedicationId,
-                        principalTable: "Medications",
+                        principalTable: "Medication",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_CartItems_Users_UserId",
+                        name: "FK_CartItem_User_UserId",
                         column: x => x.UserId,
-                        principalTable: "Users",
+                        principalTable: "User",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "OrderDetails",
+                name: "OrderDetail",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
@@ -240,34 +242,34 @@ namespace AstroPharm.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_OrderDetails", x => x.Id);
+                    table.PrimaryKey("PK_OrderDetail", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_OrderDetails_Medications_MedicationId",
+                        name: "FK_OrderDetail_Medication_MedicationId",
                         column: x => x.MedicationId,
-                        principalTable: "Medications",
+                        principalTable: "Medication",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_OrderDetails_Orders_OrderId",
+                        name: "FK_OrderDetail_Order_OrderId",
                         column: x => x.OrderId,
-                        principalTable: "Orders",
+                        principalTable: "Order",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_OrderDetails_Payments_PaymentId",
+                        name: "FK_OrderDetail_Payment_PaymentId",
                         column: x => x.PaymentId,
-                        principalTable: "Payments",
+                        principalTable: "Payment",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_OrderDetails_Users_UserId",
+                        name: "FK_OrderDetail_User_UserId",
                         column: x => x.UserId,
-                        principalTable: "Users",
+                        principalTable: "User",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
-                name: "WishLists",
+                name: "WishList",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
@@ -279,89 +281,163 @@ namespace AstroPharm.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_WishLists", x => x.Id);
+                    table.PrimaryKey("PK_WishList", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_WishLists_Medications_MedicationId",
+                        name: "FK_WishList_Medication_MedicationId",
                         column: x => x.MedicationId,
-                        principalTable: "Medications",
+                        principalTable: "Medication",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_WishLists_Users_UserId",
+                        name: "FK_WishList_User_UserId",
                         column: x => x.UserId,
-                        principalTable: "Users",
+                        principalTable: "User",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.InsertData(
+                table: "Catalog",
+                columns: new[] { "Id", "CatalogName", "CreatedAt", "UpdatedAt" },
+                values: new object[] { 1L, "Pharmaceuticals", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+
+            migrationBuilder.InsertData(
+                table: "Order",
+                columns: new[] { "Id", "CreatedAt", "OrderDate", "TotalAmount", "UpdatedAt", "UserId" },
+                values: new object[] { 1L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 3, 24, 7, 53, 12, 826, DateTimeKind.Utc).AddTicks(2890), 30L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1L });
+
+            migrationBuilder.InsertData(
+                table: "Payment",
+                columns: new[] { "Id", "Amount", "CreatedAt", "PaymentDate", "PaymentMethod", "PaymentStatus", "UpdatedAt" },
+                values: new object[,]
+                {
+                    { 1L, 30m, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 3, 24, 7, 53, 12, 826, DateTimeKind.Utc).AddTicks(2910), 1, 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 2L, 20m, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 3, 24, 7, 53, 12, 826, DateTimeKind.Utc).AddTicks(2920), 2, 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 3L, 15m, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 3, 24, 7, 53, 12, 826, DateTimeKind.Utc).AddTicks(2920), 1, 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 4L, 40m, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 3, 24, 7, 53, 12, 826, DateTimeKind.Utc).AddTicks(2920), 1, 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 5L, 50m, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 3, 24, 7, 53, 12, 826, DateTimeKind.Utc).AddTicks(2920), 2, 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                });
+
+            migrationBuilder.InsertData(
+                table: "User",
+                columns: new[] { "Id", "Address", "CreatedAt", "Email", "FirstName", "LastName", "Password", "PhoneNumber", "Role", "UpdatedAt" },
+                values: new object[,]
+                {
+                    { 2L, "456 Avenue", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "bob@example.com", "Bob", "Smith", "1234", "9876543210", 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 3L, "789 Road", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "charlie@example.com", "Charlie", "Brown", "1234", "1112223333", 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 4L, "101 Highway", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "david@example.com", "David", "Johnson", "1234", "4445556666", 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 5L, "202 Blvd", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "emma@example.com", "Emma", "Wilson", "1234", "7778889999", 3, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 6L, "123 Street", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "alice@example.com", "Alice", "Doe", "1234", "1234567890", 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Category",
+                columns: new[] { "Id", "CatalogId", "CategoryName", "CreatedAt", "Description", "UpdatedAt" },
+                values: new object[] { 1L, 1L, "Pain Relief", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Medications for pain relief", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+
+            migrationBuilder.InsertData(
+                table: "Order",
+                columns: new[] { "Id", "CreatedAt", "OrderDate", "TotalAmount", "UpdatedAt", "UserId" },
+                values: new object[,]
+                {
+                    { 2L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 3, 24, 7, 53, 12, 826, DateTimeKind.Utc).AddTicks(2890), 20L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2L },
+                    { 3L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 3, 24, 7, 53, 12, 826, DateTimeKind.Utc).AddTicks(2890), 15L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 3L },
+                    { 4L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 3, 24, 7, 53, 12, 826, DateTimeKind.Utc).AddTicks(2890), 40L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 4L },
+                    { 5L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 3, 24, 7, 53, 12, 826, DateTimeKind.Utc).AddTicks(2890), 50L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 5L }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Medication",
+                columns: new[] { "Id", "CategoryId", "CreatedAt", "Description", "ExpiredDate", "Image", "MedicationName", "Price", "Status", "UpdatedAt" },
+                values: new object[,]
+                {
+                    { 1L, 1L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Pain reliever", new DateTime(2027, 3, 24, 7, 53, 12, 826, DateTimeKind.Utc).AddTicks(2850), "paracetamol.jpg", "Paracetamol", 5.99m, 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 2L, 1L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Anti-inflammatory", new DateTime(2027, 3, 24, 7, 53, 12, 826, DateTimeKind.Utc).AddTicks(2860), "ibuprofen.jpg", "Ibuprofen", 7.49m, 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 3L, 1L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Blood thinner", new DateTime(2027, 3, 24, 7, 53, 12, 826, DateTimeKind.Utc).AddTicks(2870), "aspirin.jpg", "Aspirin", 4.99m, 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 4L, 1L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Antibiotic", new DateTime(2027, 3, 24, 7, 53, 12, 826, DateTimeKind.Utc).AddTicks(2870), "amoxicillin.jpg", "Amoxicillin", 12.99m, 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 5L, 1L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Cough suppressant", new DateTime(2027, 3, 24, 7, 53, 12, 826, DateTimeKind.Utc).AddTicks(2870), "coughsyrup.jpg", "Cough Syrup", 6.49m, 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                });
+
+            migrationBuilder.InsertData(
+                table: "OrderDetail",
+                columns: new[] { "Id", "CreatedAt", "Discount", "MedicationId", "OrderId", "PaymentId", "Quantity", "TotalAmount", "UpdatedAt", "UserId" },
+                values: new object[,]
+                {
+                    { 1L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0m, 1L, 1L, 1L, 2L, 12.00m, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
+                    { 2L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0m, 2L, 2L, 2L, 1L, 7.49m, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
+                    { 3L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0m, 3L, 3L, 3L, 3L, 15.00m, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
+                    { 4L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0m, 4L, 4L, 4L, 1L, 12.99m, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
+                    { 5L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0m, 5L, 5L, 5L, 4L, 25.96m, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null }
+                });
+
             migrationBuilder.CreateIndex(
-                name: "IX_Banners_CategoryId",
-                table: "Banners",
+                name: "IX_Banner_CategoryId",
+                table: "Banner",
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Banners_MedicationId",
-                table: "Banners",
+                name: "IX_Banner_MedicationId",
+                table: "Banner",
                 column: "MedicationId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CartItems_MedicationId",
-                table: "CartItems",
+                name: "IX_CartItem_MedicationId",
+                table: "CartItem",
                 column: "MedicationId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CartItems_UserId",
-                table: "CartItems",
+                name: "IX_CartItem_UserId",
+                table: "CartItem",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Categories_CatalogId",
-                table: "Categories",
+                name: "IX_Category_CatalogId",
+                table: "Category",
                 column: "CatalogId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Medications_CategoryId",
-                table: "Medications",
+                name: "IX_Medication_CategoryId",
+                table: "Medication",
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrderDetails_MedicationId",
-                table: "OrderDetails",
+                name: "IX_Order_UserId",
+                table: "Order",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OrderDetail_MedicationId",
+                table: "OrderDetail",
                 column: "MedicationId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrderDetails_OrderId",
-                table: "OrderDetails",
+                name: "IX_OrderDetail_OrderId",
+                table: "OrderDetail",
                 column: "OrderId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrderDetails_PaymentId",
-                table: "OrderDetails",
+                name: "IX_OrderDetail_PaymentId",
+                table: "OrderDetail",
                 column: "PaymentId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrderDetails_UserId",
-                table: "OrderDetails",
+                name: "IX_OrderDetail_UserId",
+                table: "OrderDetail",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Orders_UserId",
-                table: "Orders",
+                name: "IX_RefreshToken_UserId",
+                table: "RefreshToken",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RefreshTokens_UserId",
-                table: "RefreshTokens",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_WishLists_MedicationId",
-                table: "WishLists",
+                name: "IX_WishList_MedicationId",
+                table: "WishList",
                 column: "MedicationId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_WishLists_UserId",
-                table: "WishLists",
+                name: "IX_WishList_UserId",
+                table: "WishList",
                 column: "UserId");
         }
 
@@ -369,37 +445,37 @@ namespace AstroPharm.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Banners");
+                name: "Banner");
 
             migrationBuilder.DropTable(
-                name: "CartItems");
+                name: "CartItem");
 
             migrationBuilder.DropTable(
-                name: "OrderDetails");
+                name: "OrderDetail");
 
             migrationBuilder.DropTable(
-                name: "RefreshTokens");
+                name: "RefreshToken");
 
             migrationBuilder.DropTable(
-                name: "WishLists");
+                name: "WishList");
 
             migrationBuilder.DropTable(
-                name: "Orders");
+                name: "Order");
 
             migrationBuilder.DropTable(
-                name: "Payments");
+                name: "Payment");
 
             migrationBuilder.DropTable(
-                name: "Medications");
+                name: "Medication");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "User");
 
             migrationBuilder.DropTable(
-                name: "Categories");
+                name: "Category");
 
             migrationBuilder.DropTable(
-                name: "Catalogs");
+                name: "Catalog");
         }
     }
 }

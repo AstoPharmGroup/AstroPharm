@@ -1,10 +1,8 @@
-using AstroPharm.Service.Interfaces.Order;
-using AstroPharm.Service.Exceptions;
-using AstroPharm.Service.Mappers;
 using AutoMapper;
+using AstroPharm.Domain.Entities;
 using AstroPharm.Data.IRepositories;
-using AstroPharm.Domain.Entities.Users;
-using AstroPharm.Domain.Entities.Orders;
+using AstroPharm.Service.Exceptions;
+using AstroPharm.Service.Interfaces.Order;
 
 public class OrderService : IOrderInterface
 {
@@ -27,28 +25,20 @@ public class OrderService : IOrderInterface
 
     public async Task<OrderForResultDto> AddAsync(OrderForCreationDto dto)
     {
-        var user = await _userRepository.SelectByIdAsync(dto.UserId);
+        var user = await _userRepository.SelectByIdAsync(dto.UserId)
+            ?? throw new AstroPharmException(404, "User not found");
 
-        if (user is null)
-        {
-            throw new AstroPharmException(404, "User not found");
-        }
-        else
-        {
+        
             var order = _mapper.Map<Order>(dto);
 
             order.CreatedAt = DateTime.UtcNow;
 
             return _mapper.Map<OrderForResultDto>(await _orderRepository.InsertAsync(order));
-        }
+        
     }
 
-    public async Task<List<OrderForResultDto>> GetAllAsync()
-    {
-        var orders = _orderRepository.SelectAll();
-        
-        return _mapper.Map<List<OrderForResultDto>>(orders);
-    }
+    public async Task<List<OrderForResultDto>> GetAllAsync() => _mapper.Map<List<OrderForResultDto>>(_orderRepository.SelectAll());
+    
 
     public async Task<OrderForResultDto> GetByIdAsync(long id)
     {

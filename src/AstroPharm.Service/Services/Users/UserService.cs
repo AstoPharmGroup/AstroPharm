@@ -1,5 +1,5 @@
 ﻿using AstroPharm.Data.IRepositories;
-using AstroPharm.Domain.Entities.Users;
+using AstroPharm.Domain.Entities;
 using AstroPharm.Service.DTOs.Users;
 using AstroPharm.Service.Exceptions;
 using AstroPharm.Service.Interfaces.Users;

@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace AstroPharm.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250319055516_UpdateCatalogColumnTypes")]
-    partial class UpdateCatalogColumnTypes
+    [Migration("20250324075313_SeedData")]
+    partial class SeedData
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -66,7 +66,7 @@ namespace AstroPharm.Data.Migrations
 
                     b.HasIndex("MedicationId");
 
-                    b.ToTable("Banners");
+                    b.ToTable("Banner");
                 });
 
             modelBuilder.Entity("AstroPharm.Domain.Entities.CartItem", b =>
@@ -98,7 +98,7 @@ namespace AstroPharm.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("CartItems");
+                    b.ToTable("CartItem");
                 });
 
             modelBuilder.Entity("AstroPharm.Domain.Entities.Catalog", b =>
@@ -121,7 +121,16 @@ namespace AstroPharm.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Catalogs");
+                    b.ToTable("Catalog");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            CatalogName = "Pharmaceuticals",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
                 });
 
             modelBuilder.Entity("AstroPharm.Domain.Entities.Category", b =>
@@ -153,7 +162,18 @@ namespace AstroPharm.Data.Migrations
 
                     b.HasIndex("CatalogId");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Category");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            CatalogId = 1L,
+                            CategoryName = "Pain Relief",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Medications for pain relief",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
                 });
 
             modelBuilder.Entity("AstroPharm.Domain.Entities.Medication", b =>
@@ -198,7 +218,74 @@ namespace AstroPharm.Data.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Medications");
+                    b.ToTable("Medication");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            CategoryId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Pain reliever",
+                            ExpiredDate = new DateTime(2027, 3, 24, 7, 53, 12, 826, DateTimeKind.Utc).AddTicks(2850),
+                            Image = "paracetamol.jpg",
+                            MedicationName = "Paracetamol",
+                            Price = 5.99m,
+                            Status = 1,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            CategoryId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Anti-inflammatory",
+                            ExpiredDate = new DateTime(2027, 3, 24, 7, 53, 12, 826, DateTimeKind.Utc).AddTicks(2860),
+                            Image = "ibuprofen.jpg",
+                            MedicationName = "Ibuprofen",
+                            Price = 7.49m,
+                            Status = 1,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            CategoryId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Blood thinner",
+                            ExpiredDate = new DateTime(2027, 3, 24, 7, 53, 12, 826, DateTimeKind.Utc).AddTicks(2870),
+                            Image = "aspirin.jpg",
+                            MedicationName = "Aspirin",
+                            Price = 4.99m,
+                            Status = 1,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            CategoryId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Antibiotic",
+                            ExpiredDate = new DateTime(2027, 3, 24, 7, 53, 12, 826, DateTimeKind.Utc).AddTicks(2870),
+                            Image = "amoxicillin.jpg",
+                            MedicationName = "Amoxicillin",
+                            Price = 12.99m,
+                            Status = 1,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 5L,
+                            CategoryId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Cough suppressant",
+                            ExpiredDate = new DateTime(2027, 3, 24, 7, 53, 12, 826, DateTimeKind.Utc).AddTicks(2870),
+                            Image = "coughsyrup.jpg",
+                            MedicationName = "Cough Syrup",
+                            Price = 6.49m,
+                            Status = 1,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
                 });
 
             modelBuilder.Entity("AstroPharm.Domain.Entities.Order", b =>
@@ -228,7 +315,54 @@ namespace AstroPharm.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Order");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            OrderDate = new DateTime(2025, 3, 24, 7, 53, 12, 826, DateTimeKind.Utc).AddTicks(2890),
+                            TotalAmount = 30L,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = 1L
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            OrderDate = new DateTime(2025, 3, 24, 7, 53, 12, 826, DateTimeKind.Utc).AddTicks(2890),
+                            TotalAmount = 20L,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = 2L
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            OrderDate = new DateTime(2025, 3, 24, 7, 53, 12, 826, DateTimeKind.Utc).AddTicks(2890),
+                            TotalAmount = 15L,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = 3L
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            OrderDate = new DateTime(2025, 3, 24, 7, 53, 12, 826, DateTimeKind.Utc).AddTicks(2890),
+                            TotalAmount = 40L,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = 4L
+                        },
+                        new
+                        {
+                            Id = 5L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            OrderDate = new DateTime(2025, 3, 24, 7, 53, 12, 826, DateTimeKind.Utc).AddTicks(2890),
+                            TotalAmount = 50L,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = 5L
+                        });
                 });
 
             modelBuilder.Entity("AstroPharm.Domain.Entities.OrderDetail", b =>
@@ -276,7 +410,69 @@ namespace AstroPharm.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("OrderDetails");
+                    b.ToTable("OrderDetail");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Discount = 0m,
+                            MedicationId = 1L,
+                            OrderId = 1L,
+                            PaymentId = 1L,
+                            Quantity = 2L,
+                            TotalAmount = 12.00m,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Discount = 0m,
+                            MedicationId = 2L,
+                            OrderId = 2L,
+                            PaymentId = 2L,
+                            Quantity = 1L,
+                            TotalAmount = 7.49m,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Discount = 0m,
+                            MedicationId = 3L,
+                            OrderId = 3L,
+                            PaymentId = 3L,
+                            Quantity = 3L,
+                            TotalAmount = 15.00m,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Discount = 0m,
+                            MedicationId = 4L,
+                            OrderId = 4L,
+                            PaymentId = 4L,
+                            Quantity = 1L,
+                            TotalAmount = 12.99m,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 5L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Discount = 0m,
+                            MedicationId = 5L,
+                            OrderId = 5L,
+                            PaymentId = 5L,
+                            Quantity = 4L,
+                            TotalAmount = 25.96m,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
                 });
 
             modelBuilder.Entity("AstroPharm.Domain.Entities.Payment", b =>
@@ -307,7 +503,59 @@ namespace AstroPharm.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Payments");
+                    b.ToTable("Payment");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            Amount = 30m,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            PaymentDate = new DateTime(2025, 3, 24, 7, 53, 12, 826, DateTimeKind.Utc).AddTicks(2910),
+                            PaymentMethod = 1,
+                            PaymentStatus = 1,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            Amount = 20m,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            PaymentDate = new DateTime(2025, 3, 24, 7, 53, 12, 826, DateTimeKind.Utc).AddTicks(2920),
+                            PaymentMethod = 2,
+                            PaymentStatus = 1,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            Amount = 15m,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            PaymentDate = new DateTime(2025, 3, 24, 7, 53, 12, 826, DateTimeKind.Utc).AddTicks(2920),
+                            PaymentMethod = 1,
+                            PaymentStatus = 1,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            Amount = 40m,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            PaymentDate = new DateTime(2025, 3, 24, 7, 53, 12, 826, DateTimeKind.Utc).AddTicks(2920),
+                            PaymentMethod = 1,
+                            PaymentStatus = 1,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 5L,
+                            Amount = 50m,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            PaymentDate = new DateTime(2025, 3, 24, 7, 53, 12, 826, DateTimeKind.Utc).AddTicks(2920),
+                            PaymentMethod = 2,
+                            PaymentStatus = 1,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
                 });
 
             modelBuilder.Entity("AstroPharm.Domain.Entities.User", b =>
@@ -353,7 +601,74 @@ namespace AstroPharm.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("User");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 6L,
+                            Address = "123 Street",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "alice@example.com",
+                            FirstName = "Alice",
+                            LastName = "Doe",
+                            Password = "1234",
+                            PhoneNumber = "1234567890",
+                            Role = 1,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            Address = "456 Avenue",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "bob@example.com",
+                            FirstName = "Bob",
+                            LastName = "Smith",
+                            Password = "1234",
+                            PhoneNumber = "9876543210",
+                            Role = 1,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            Address = "789 Road",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "charlie@example.com",
+                            FirstName = "Charlie",
+                            LastName = "Brown",
+                            Password = "1234",
+                            PhoneNumber = "1112223333",
+                            Role = 2,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            Address = "101 Highway",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "david@example.com",
+                            FirstName = "David",
+                            LastName = "Johnson",
+                            Password = "1234",
+                            PhoneNumber = "4445556666",
+                            Role = 2,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 5L,
+                            Address = "202 Blvd",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "emma@example.com",
+                            FirstName = "Emma",
+                            LastName = "Wilson",
+                            Password = "1234",
+                            PhoneNumber = "7778889999",
+                            Role = 3,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
                 });
 
             modelBuilder.Entity("AstroPharm.Domain.Entities.WishList", b =>
@@ -382,7 +697,7 @@ namespace AstroPharm.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("WishLists");
+                    b.ToTable("WishList");
                 });
 
             modelBuilder.Entity("RefreshToken", b =>
@@ -413,7 +728,7 @@ namespace AstroPharm.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("RefreshTokens");
+                    b.ToTable("RefreshToken");
                 });
 
             modelBuilder.Entity("AstroPharm.Domain.Entities.Banner", b =>

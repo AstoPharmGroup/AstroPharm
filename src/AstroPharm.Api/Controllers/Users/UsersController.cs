@@ -16,7 +16,7 @@ public class UsersController : BaseController
     }
 
     [HttpGet]
-    [Authorize]
+
     public async Task<IActionResult> GetAllAsync()
     {
         return Ok(new Response
