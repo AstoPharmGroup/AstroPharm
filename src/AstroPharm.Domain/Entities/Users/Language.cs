@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AstroPharm.Domain.Commons;
 
-namespace AstroPharm.Domain.Entities
+namespace AstroPharm.Domain.Entities.Users;
+
+public class Language : Auditable
 {
-    class Language
-    {
-    }
+    public string LanguageName {get;set;}
 }

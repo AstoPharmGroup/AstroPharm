@@ -1,4 +1,7 @@
 ﻿using AstroPharm.Domain.Entities;
+using AstroPharm.Domain.Entities.Orders;
+using AstroPharm.Domain.Entities.Products;
+using AstroPharm.Domain.Entities.SubCategories;
 using AstroPharm.Domain.Entities.Users;
 using AstroPharm.Service.DTOs.Banners;
 using AstroPharm.Service.DTOs.CartItems;
