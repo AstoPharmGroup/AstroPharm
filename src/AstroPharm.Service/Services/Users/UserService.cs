@@ -1,5 +1,5 @@
 ﻿using AstroPharm.Data.IRepositories;
-using AstroPharm.Domain.Entities;
+using AstroPharm.Domain.Entities.Users;
 using AstroPharm.Service.DTOs.Users;
 using AstroPharm.Service.Exceptions;
 using AstroPharm.Service.Interfaces.Users;
@@ -49,7 +49,6 @@ public class UserService : IUserInterface
     public async Task<IEnumerable<UserForResultDto>> RetrieveAllAsync()
     {
         var users = await repository.SelectAll()
-            //.AsNoTracking()
             .ToListAsync();
 
         return mapper.Map<IEnumerable<UserForResultDto>>(users);

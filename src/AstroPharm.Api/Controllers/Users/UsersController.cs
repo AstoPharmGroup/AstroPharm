@@ -1,14 +1,11 @@
 ﻿using AstroPharm.Api.Helpers;
 using AstroPharm.Service.DTOs.Users;
 using AstroPharm.Service.Interfaces.Users;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AstroPharm.Api.Controllers.Users;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 74b95a1ef7b0530fd50629725f818910c07d5482
 public class UsersController : BaseController
 {
     private readonly IUserInterface _userService;
@@ -19,6 +16,7 @@ public class UsersController : BaseController
     }
 
     [HttpGet]
+    [Authorize]
     public async Task<IActionResult> GetAllAsync()
     {
         return Ok(new Response
@@ -28,6 +26,7 @@ public class UsersController : BaseController
             Data = await _userService.RetrieveAllAsync()
         });
     }
+
     [HttpGet("{id}")]
     public async Task<IActionResult> GetByIdAsync([FromRoute] long id)
     {
@@ -45,6 +44,7 @@ public class UsersController : BaseController
             Data = await _userService.RemoveAsync(id)
         });
     }
+
     [HttpPost]
     public async Task<IActionResult> AddAsync([FromBody] UserForCreationDto user)
     {

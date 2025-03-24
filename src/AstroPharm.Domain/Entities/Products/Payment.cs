@@ -1,8 +1,8 @@
-﻿
-using AstroPharm.Domain.Commons;
+﻿using AstroPharm.Domain.Commons;
+using AstroPharm.Domain.Entities.Orders;
 using AstroPharm.Domain.Enums;
 
-namespace AstroPharm.Domain.Entities;
+namespace AstroPharm.Domain.Entities.Products;
 
 public class Payment : Auditable
 {

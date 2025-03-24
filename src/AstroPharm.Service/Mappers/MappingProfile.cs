@@ -1,4 +1,8 @@
 ﻿using AstroPharm.Domain.Entities;
+using AstroPharm.Domain.Entities.Orders;
+using AstroPharm.Domain.Entities.Products;
+using AstroPharm.Domain.Entities.SubCategories;
+using AstroPharm.Domain.Entities.Users;
 using AstroPharm.Service.DTOs.Banners;
 using AstroPharm.Service.DTOs.CartItems;
 using AstroPharm.Service.DTOs.Catalogs;
@@ -39,22 +43,23 @@ public class MappingProfile : Profile
         CreateMap<Order, OrderForResultDto>().ReverseMap();
         CreateMap<Order, OrderForUpdateDto>().ReverseMap();
 
-<<<<<<< HEAD
         // Wishlist
         CreateMap<WishList,WishlistForCreationDto>().ReverseMap();
         CreateMap<WishList,WishlistForResultDto>().ReverseMap();
-=======
+
+        // Banner
         CreateMap<Banner, BannerForResultDto>().ReverseMap();
         CreateMap<BannerForCreationDto, Banner>().ReverseMap();
         CreateMap<BannerForUpdateDto, Banner>().ReverseMap();
 
+        // CartItem
         CreateMap<CartItem, CartItemForResultDto>().ReverseMap();
         CreateMap<CartItemForCreationDto, CartItem>().ReverseMap();
         CreateMap<CartItemForUpdateDto, CartItem>().ReverseMap();
 
+        // Payment
         CreateMap<Payment, PaymentResultDto>().ReverseMap();
         CreateMap<PaymentCreationDto, Payment>().ReverseMap();
         CreateMap<PaymentUpdateDto, Payment>().ReverseMap();
->>>>>>> 74b95a1ef7b0530fd50629725f818910c07d5482
     }
 }

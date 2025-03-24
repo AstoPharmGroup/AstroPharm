@@ -17,12 +17,8 @@ public class BannerController : BaseController
     [HttpGet]
     public async Task<IActionResult> GetAllAsync()
     {
-        return Ok(new Response
-        {
-            StatusCode = 200,
-            Message = "OK",
-            Data = await _bannerService.GetAllAsync()
-        });
+        var banner = await _bannerService.GetAllAsync();
+        return Ok(banner);
     }
 
     [HttpGet("{id}")]

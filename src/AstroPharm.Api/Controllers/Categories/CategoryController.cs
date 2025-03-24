@@ -5,10 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AstroPharm.Api.Controllers.Categories;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 74b95a1ef7b0530fd50629725f818910c07d5482
 public class CategoryController : BaseController
 {
     private readonly ICategoryInterface _CategoryService;
@@ -19,7 +15,6 @@ public class CategoryController : BaseController
     }
 
     [HttpGet]
-
     public async Task<IActionResult> GetAllAsync()
     {
         return Ok(new Response
@@ -29,6 +24,7 @@ public class CategoryController : BaseController
             Data = await _CategoryService.GetAllAsync()
         });
     }
+
     [HttpGet("{id}")]
     public async Task<IActionResult> GetByIdAsync([FromRoute] long id)
     {
@@ -50,6 +46,7 @@ public class CategoryController : BaseController
             Data = await _CategoryService.DeleteAsync(id)
         });
     }
+
     [HttpPost]
     public async Task<IActionResult> AddAsync([FromBody] CategoryForCreationDto Category)
     {

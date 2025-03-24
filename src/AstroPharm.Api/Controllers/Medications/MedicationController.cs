@@ -6,10 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AstroPharm.Api.Controllers.Medications
 {
-<<<<<<< HEAD
-
-=======
->>>>>>> 74b95a1ef7b0530fd50629725f818910c07d5482
     public class MedicationController : BaseController
     {
         private readonly IMedicationInterface _medicationService;
@@ -20,7 +16,6 @@ namespace AstroPharm.Api.Controllers.Medications
         }
 
         [HttpGet]
-
         public async Task<IActionResult> GetAllAsync()
         {
             return Ok(new Response
@@ -30,6 +25,7 @@ namespace AstroPharm.Api.Controllers.Medications
                 Data = await _medicationService.GetAllAsync()
             });
         }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetByIdAsync([FromRoute] long id)
         {
@@ -51,6 +47,7 @@ namespace AstroPharm.Api.Controllers.Medications
                 Data = await _medicationService.DeleteAsync(id)
             });
         }
+
         [HttpPost]
         public async Task<IActionResult> AddAsync([FromBody] MedicationForCreationDto medication)
         {
