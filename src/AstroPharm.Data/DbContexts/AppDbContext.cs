@@ -12,8 +12,9 @@ public class AppDbContext : DbContext
     public DbSet<User> Users { get; set; }
     public DbSet<Order> Orders { get; set; }
     public DbSet<Banner> Banners { get; set; }
-    public DbSet<Payment> Payments { get; set; }
+    public DbSet<PaymentForResultDto> Payments { get; set; }
     public DbSet<Catalog> Catalogs { get; set; }
+    public DbSet<Language> Languages { get; set; }
     public DbSet<CartItem> CartItems { get; set; }
     public DbSet<WishList> WishLists { get; set; }
     public DbSet<Category> Categories { get; set; }
@@ -35,19 +36,25 @@ public class AppDbContext : DbContext
         //     .HasForeignKey(c => c.CatalogId)
         //     .OnDelete(DeleteBehavior.Cascade);
 
-        // // Banner -> Medication
-        // modelBuilder.Entity<Banner>()
-        //     .HasOne(b => b.Medication)
-        //     .WithMany()
-        //     .HasForeignKey(b => b.MedicationId)
-        //     .OnDelete(DeleteBehavior.SetNull);
+            modelBuilder.Entity<Banner>()
+        .HasOne(b => b.Category)
+        .WithMany()
+        .HasForeignKey(b => b.CategoryId)
+        .OnDelete(DeleteBehavior.Restrict);
+
+        // Banner -> Medication
+        //modelBuilder.Entity<Banner>()
+        //    .HasOne(b => b.Medication)
+        //    .WithMany()
+        //    .HasForeignKey(b => b.MedicationId)
+        //    .OnDelete(DeleteBehavior.SetNull);
 
         //// Banner -> Category
         //modelBuilder.Entity<Banner>()
         //    .HasOne(b => b.Category)
         //    .WithMany()
         //    .HasForeignKey(b => b.CategoryId)
-        //    .OnDelete(DeleteBehavior.SetNull);
+        //    .OnDelete(DeleteBehavior.NoAction);
 
         //// Medication -> Category
         //modelBuilder.Entity<Medication>()

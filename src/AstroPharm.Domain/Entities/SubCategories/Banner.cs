@@ -9,6 +9,6 @@ public class Banner : Auditable
     public string Image { get; set; }
     public long CategoryId { get; set; }
     public virtual Category Category { get; set; }
-    public long MedicationId { get; set; }
+    public long? MedicationId { get; set; }
     public virtual Medication Medication { get; set; }
 }

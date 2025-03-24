@@ -4,7 +4,7 @@ using AstroPharm.Domain.Enums;
 
 namespace AstroPharm.Domain.Entities;
 
-public class Payment : Auditable
+public class PaymentForResultDto : Auditable
 {
     public decimal Amount { get; set; }
     public DateTime PaymentDate { get; set; }

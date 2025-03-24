@@ -1,15 +1,14 @@
-﻿using AstroPharm.Domain.Commons;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AstroPharm.Domain.Entities
+namespace AstroPharm.Service.DTOs.Languages
 {
-    public class Language : Auditable
+    public class LanguageForUpdateDto
     {
         public string LanguageName { get; set; }
+
     }
 }
-    
