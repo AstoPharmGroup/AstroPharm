@@ -2,6 +2,7 @@
 using AstroPharm.Service.DTOs.Medications;
 using AstroPharm.Service.DTOs.Users;
 using AstroPharm.Service.Interfaces.Medications;
+using DemoProject.Domain.Configurations.Pagination;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AstroPharm.Api.Controllers.Medications
@@ -16,13 +17,13 @@ namespace AstroPharm.Api.Controllers.Medications
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllAsync()
+        public async Task<IActionResult> GetAllAsync([FromQuery] PaginationParams @params)
         {
             return Ok(new Response
             {
                 StatusCode = 200,
                 Message = "OK",
-                Data = await _medicationService.GetAllAsync()
+                Data = await _medicationService.GetAllAsync(@params)
             });
         }
 
