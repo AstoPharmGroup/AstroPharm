@@ -5,6 +5,8 @@ using AstroPharm.Service.Exceptions;
 using AstroPharm.Service.Interfaces.Catalogs;
 using AstroPharm.Service.Interfaces.Categories;
 using AutoMapper;
+using DemoProject.Domain.Configurations;
+using DemoProject.Domain.Configurations.Pagination;
 using Microsoft.EntityFrameworkCore;
 
 namespace AstroPharm.Service.Services.Categories;
@@ -54,10 +56,11 @@ public class CategoryService : ICategoryInterface
 
     }
 
-    public async Task<IEnumerable<CategoryForResultDto>> GetAllAsync()
+    public async Task<IEnumerable<CategoryForResultDto>> GetAllAsync(PaginationParams @params)
     {
         var categories = await _categoryRepository.SelectAll()
-            //.AsNoTracking()
+            .AsNoTracking()
+            .ToPagedList(@params)
             .ToListAsync();
         return _mapper.Map<IEnumerable<CategoryForResultDto>>(categories);
     }

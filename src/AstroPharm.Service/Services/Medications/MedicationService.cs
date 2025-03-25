@@ -5,6 +5,8 @@ using AstroPharm.Service.Exceptions;
 using AstroPharm.Service.Interfaces.Categories;
 using AstroPharm.Service.Interfaces.Medications;
 using AutoMapper;
+using DemoProject.Domain.Configurations;
+using DemoProject.Domain.Configurations.Pagination;
 using Microsoft.EntityFrameworkCore;
 
 namespace AstroPharm.Service.Services.Medications
@@ -53,10 +55,11 @@ namespace AstroPharm.Service.Services.Medications
             return true;
         }
 
-        public async Task<IEnumerable<MedicationForResultDto>> GetAllAsync()
+        public async Task<IEnumerable<MedicationForResultDto>> GetAllAsync(PaginationParams @params)
         {
             var medications = await repository.SelectAll()
-                //.AsNoTracking()
+                .AsNoTracking() 
+                .ToPagedList(@params)
                 .ToListAsync();
 
             return mapper.Map<IEnumerable<MedicationForResultDto>>(medications);
