@@ -1,10 +1,18 @@
-﻿using AstroPharm.Domain.Commons;
+using AstroPharm.Domain.Commons;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace AstroPharm.Domain.Entities.Deliveries;
-
-public class Branch : Auditable
+namespace AstroPharm.Domain.Entities
 {
-    public string BranchName { get; set; }
-    public long LocationId { get; set; }
-    public Location Location { get; set; }
+    public class Branch : Auditable
+    {
+       public string BranchName { get; set; }
+       public long LocationId { get; set; }
+
+        //referance
+       public virtual Location Location { get; set; }
+    }
 }

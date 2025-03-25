@@ -19,7 +19,7 @@ namespace AstroPharm.Api
 
             // Connect Database
             builder.Services.AddDbContext<AppDbContext>(options =>
-                    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultDbConnection")));
+                    options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")));
 
             // Add CORS
             builder.Services.AddCors(options =>

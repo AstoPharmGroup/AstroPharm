@@ -1,6 +1,7 @@
 ﻿using AstroPharm.Api.Helpers;
 using AstroPharm.Service.DTOs.Categories;
 using AstroPharm.Service.Interfaces.Categories;
+using DemoProject.Domain.Configurations.Pagination;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AstroPharm.Api.Controllers.Categories;
@@ -15,13 +16,13 @@ public class CategoryController : BaseController
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetAllAsync()
+    public async Task<IActionResult> GetAllAsync([FromQuery] PaginationParams @params)
     {
         return Ok(new Response
         {
             StatusCode = 200,
             Message = "OK",
-            Data = await _CategoryService.GetAllAsync()
+            Data = await _CategoryService.GetAllAsync(@params)
         });
     }
 

@@ -1,7 +1,15 @@
-﻿namespace AstroPharm.Service.DTOs.Wishlists;
+﻿using AstroPharm.Domain.Entities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-public class WishlistForCreationDto
+namespace AstroPharm.Service.DTOs.WhishLists
 {
-    public long UserId { get; set; }
-    public long MedicationId { get; set; }
+    public class WishListForCreationDto
+    {
+        public long UserId { get; set; }
+        public long MedicationId { get; set; }
+    }
 }

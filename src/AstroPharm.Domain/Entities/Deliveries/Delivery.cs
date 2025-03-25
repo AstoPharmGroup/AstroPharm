@@ -1,17 +1,22 @@
-﻿using AstroPharm.Domain.Entities.Orders;
-using AstroPharm.Domain.Entities.Users;
+using AstroPharm.Domain.Commons;
+using AstroPharm.Domain.Enums;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace AstroPharm.Domain.Entities.Deliveries;
+namespace AstroPharm.Domain.Entities;
 
-public class Delivery
+public class Delivery : Auditable
 {
     public long OrderId { get; set; }
-    public long UserId { get; set; } // ROle Curier
+    public long CourierId { get;set; }
+    public DeliveryStatus Status { get; set; }
     public DateTime ActualDeliveryDate { get; set; }
     public DateTime EstimatedDeliveryDate { get; set; }
 
-     // Realation
-    public Order Order { get; set; }
-    public User User { get; set; }
+    public virtual Order Order { get; set; }
+    public virtual User Courier { get; set; }
 
 }

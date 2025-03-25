@@ -3,8 +3,7 @@ using AstroPharm.Service.Exceptions;
 using AstroPharm.Service.Mappers;
 using AutoMapper;
 using AstroPharm.Data.IRepositories;
-using AstroPharm.Domain.Entities.Users;
-using AstroPharm.Domain.Entities.Orders;
+using AstroPharm.Domain.Entities;
 
 public class OrderService : IOrderInterface
 {
@@ -27,20 +26,13 @@ public class OrderService : IOrderInterface
 
     public async Task<OrderForResultDto> AddAsync(OrderForCreationDto dto)
     {
-        var user = await _userRepository.SelectByIdAsync(dto.UserId);
-
-        if (user is null)
-        {
-            throw new AstroPharmException(404, "User not found");
-        }
-        else
-        {
+      
             var order = _mapper.Map<Order>(dto);
 
             order.CreatedAt = DateTime.UtcNow;
 
             return _mapper.Map<OrderForResultDto>(await _orderRepository.InsertAsync(order));
-        }
+        
     }
 
     public async Task<List<OrderForResultDto>> GetAllAsync()
@@ -71,13 +63,8 @@ public async Task<List<OrderForResultDto>> GetByUserIdAsync(long userId)
 
     public async Task<OrderForResultDto> ModifyAsync(long id, OrderForUpdateDto dto)
 {
-    var existingOrder = await _orderRepository.SelectByIdAsync(id);
-    if (existingOrder == null)
-        throw new AstroPharmException(404, "Order not found");
-
-    var userExists = await _userRepository.SelectByIdAsync(dto.UserId) != null;
-    if (!userExists)
-        throw new AstroPharmException(404, "User not found");
+    var existingOrder = await _orderRepository.SelectByIdAsync(id)
+        ?? throw new AstroPharmException(404, "Order not found");
 
     _mapper.Map(dto, existingOrder);
     existingOrder.UpdatedAt = DateTime.UtcNow;

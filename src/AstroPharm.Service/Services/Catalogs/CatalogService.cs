@@ -1,5 +1,5 @@
 ﻿using AstroPharm.Data.IRepositories;
-using AstroPharm.Domain.Entities.SubCategories;
+using AstroPharm.Domain.Entities;
 using AstroPharm.Service.DTOs.Catalogs;
 using AstroPharm.Service.Exceptions;
 using AstroPharm.Service.Interfaces.Catalogs;
