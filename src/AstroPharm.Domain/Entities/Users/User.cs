@@ -1,4 +1,4 @@
-﻿using AstroPharm.Domain.Commons;
+using AstroPharm.Domain.Commons;
 using AstroPharm.Domain.Enums;
 using System.Security.Principal;
 

@@ -1,6 +1,7 @@
 ﻿using AstroPharm.Domain.Commons;
+using AstroPharm.Domain.Entities.Products;
 
-namespace AstroPharm.Domain.Entities;
+namespace AstroPharm.Domain.Entities.Users;
 
 public class CartItem : Auditable
 {

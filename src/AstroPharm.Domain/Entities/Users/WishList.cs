@@ -1,4 +1,6 @@
 ﻿using AstroPharm.Domain.Commons;
+using AstroPharm.Domain.Entities.Products;
+using AstroPharm.Domain.Entities.Users;
 
 namespace AstroPharm.Domain.Entities;
 
