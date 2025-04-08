@@ -41,14 +41,18 @@ public class UsersController : BaseController
     [HttpGet("{id}")]
     public async Task<IActionResult> GetByIdAsync([FromRoute] long id)
     {
-        //var userRole = User.FindFirst(ClaimTypes.Role)?.Value;
+        var userRole = User.FindFirst(ClaimTypes.Role)?.Value;
+        var userId = User.FindFirst("Id")?.Value;
 
-        //if (userRole == null || (userRole != "Admin" && userRole != "SuperAdmin"))
-        //{
+        if(userId == id.ToString())
+        {
+            // user allowed to use this method
+        }
+        else if (userRole == null || (userRole != "Admin" && userRole != "SuperAdmin"))
+        {
 
-        //    return Unauthorized(new { message = $"{userRole} ,You are not allowed to use this method!" });
-        //}
-
+            return Unauthorized(new { message = $"{userId},{userRole} ,You are not allowed to use this method!" });
+        }
         var user = await _userService.RetrieveByIdAsync(id);
         return Ok(user);
     }
