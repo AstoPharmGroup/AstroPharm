@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AstroPharm.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250324110018_test3")]
-    partial class test3
+    [Migration("20250408093202_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,139 +27,6 @@ namespace AstroPharm.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("AstroPharm.Domain.Entities.Banner", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
-
-                    b.Property<long>("CategoryId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("CategoryId1")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Image")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long?>("MedicationId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
-
-                    b.HasIndex("CategoryId1");
-
-                    b.HasIndex("MedicationId");
-
-                    b.ToTable("Banners");
-                });
-
-            modelBuilder.Entity("AstroPharm.Domain.Entities.CartItem", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
-
-                    b.Property<int>("Count")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long>("MedicationId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long>("UserId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MedicationId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("CartItems");
-                });
-
-            modelBuilder.Entity("AstroPharm.Domain.Entities.Catalog", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
-
-                    b.Property<string>("CatalogName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Catalogs");
-                });
-
-            modelBuilder.Entity("AstroPharm.Domain.Entities.Category", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
-
-                    b.Property<long>("CatalogId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("CategoryName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CatalogId");
-
-                    b.ToTable("Categories");
-                });
 
             modelBuilder.Entity("AstroPharm.Domain.Entities.Language", b =>
                 {
@@ -184,52 +51,7 @@ namespace AstroPharm.Data.Migrations
                     b.ToTable("Languages");
                 });
 
-            modelBuilder.Entity("AstroPharm.Domain.Entities.Medication", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
-
-                    b.Property<long>("CategoryId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("ExpiredDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Image")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MedicationName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
-
-                    b.ToTable("Medications");
-                });
-
-            modelBuilder.Entity("AstroPharm.Domain.Entities.Order", b =>
+            modelBuilder.Entity("AstroPharm.Domain.Entities.Orders.Order", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -259,7 +81,7 @@ namespace AstroPharm.Data.Migrations
                     b.ToTable("Orders");
                 });
 
-            modelBuilder.Entity("AstroPharm.Domain.Entities.OrderDetail", b =>
+            modelBuilder.Entity("AstroPharm.Domain.Entities.Orders.OrderDetail", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -307,7 +129,52 @@ namespace AstroPharm.Data.Migrations
                     b.ToTable("OrderDetails");
                 });
 
-            modelBuilder.Entity("AstroPharm.Domain.Entities.Payment", b =>
+            modelBuilder.Entity("AstroPharm.Domain.Entities.Products.Medication", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<long>("CategoryId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ExpiredDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MedicationName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("Medications");
+                });
+
+            modelBuilder.Entity("AstroPharm.Domain.Entities.Products.Payment", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -336,6 +203,107 @@ namespace AstroPharm.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Payments");
+                });
+
+            modelBuilder.Entity("AstroPharm.Domain.Entities.SubCategories.Banner", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<long>("CategoryId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("CategoryId1")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long?>("MedicationId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.HasIndex("CategoryId1");
+
+                    b.HasIndex("MedicationId");
+
+                    b.ToTable("Banners");
+                });
+
+            modelBuilder.Entity("AstroPharm.Domain.Entities.SubCategories.Catalog", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<string>("CatalogName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Catalogs");
+                });
+
+            modelBuilder.Entity("AstroPharm.Domain.Entities.SubCategories.Category", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<long>("CatalogId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("CategoryName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CatalogId");
+
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("AstroPharm.Domain.Entities.User", b =>
@@ -381,6 +349,38 @@ namespace AstroPharm.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("AstroPharm.Domain.Entities.Users.CartItem", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long>("MedicationId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MedicationId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("CartItems");
                 });
 
             modelBuilder.Entity("AstroPharm.Domain.Entities.WishList", b =>
@@ -443,69 +443,7 @@ namespace AstroPharm.Data.Migrations
                     b.ToTable("RefreshTokens");
                 });
 
-            modelBuilder.Entity("AstroPharm.Domain.Entities.Banner", b =>
-                {
-                    b.HasOne("AstroPharm.Domain.Entities.Category", "Category")
-                        .WithMany()
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("AstroPharm.Domain.Entities.Category", null)
-                        .WithMany("Banners")
-                        .HasForeignKey("CategoryId1");
-
-                    b.HasOne("AstroPharm.Domain.Entities.Medication", "Medication")
-                        .WithMany()
-                        .HasForeignKey("MedicationId");
-
-                    b.Navigation("Category");
-
-                    b.Navigation("Medication");
-                });
-
-            modelBuilder.Entity("AstroPharm.Domain.Entities.CartItem", b =>
-                {
-                    b.HasOne("AstroPharm.Domain.Entities.Medication", "Medication")
-                        .WithMany("CartItems")
-                        .HasForeignKey("MedicationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("AstroPharm.Domain.Entities.User", "User")
-                        .WithMany("CartItemList")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Medication");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("AstroPharm.Domain.Entities.Category", b =>
-                {
-                    b.HasOne("AstroPharm.Domain.Entities.Catalog", "Catalog")
-                        .WithMany("Categories")
-                        .HasForeignKey("CatalogId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Catalog");
-                });
-
-            modelBuilder.Entity("AstroPharm.Domain.Entities.Medication", b =>
-                {
-                    b.HasOne("AstroPharm.Domain.Entities.Category", "Category")
-                        .WithMany("Medications")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Category");
-                });
-
-            modelBuilder.Entity("AstroPharm.Domain.Entities.Order", b =>
+            modelBuilder.Entity("AstroPharm.Domain.Entities.Orders.Order", b =>
                 {
                     b.HasOne("AstroPharm.Domain.Entities.User", "User")
                         .WithMany()
@@ -516,21 +454,21 @@ namespace AstroPharm.Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("AstroPharm.Domain.Entities.OrderDetail", b =>
+            modelBuilder.Entity("AstroPharm.Domain.Entities.Orders.OrderDetail", b =>
                 {
-                    b.HasOne("AstroPharm.Domain.Entities.Medication", "Medication")
+                    b.HasOne("AstroPharm.Domain.Entities.Products.Medication", "Medication")
                         .WithMany("OrderDetails")
                         .HasForeignKey("MedicationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("AstroPharm.Domain.Entities.Order", "Order")
+                    b.HasOne("AstroPharm.Domain.Entities.Orders.Order", "Order")
                         .WithMany("OrderDetails")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("AstroPharm.Domain.Entities.Payment", "Payment")
+                    b.HasOne("AstroPharm.Domain.Entities.Products.Payment", "Payment")
                         .WithMany()
                         .HasForeignKey("PaymentId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -547,9 +485,71 @@ namespace AstroPharm.Data.Migrations
                     b.Navigation("Payment");
                 });
 
+            modelBuilder.Entity("AstroPharm.Domain.Entities.Products.Medication", b =>
+                {
+                    b.HasOne("AstroPharm.Domain.Entities.SubCategories.Category", "Category")
+                        .WithMany("Medications")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("AstroPharm.Domain.Entities.SubCategories.Banner", b =>
+                {
+                    b.HasOne("AstroPharm.Domain.Entities.SubCategories.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("AstroPharm.Domain.Entities.SubCategories.Category", null)
+                        .WithMany("Banners")
+                        .HasForeignKey("CategoryId1");
+
+                    b.HasOne("AstroPharm.Domain.Entities.Products.Medication", "Medication")
+                        .WithMany()
+                        .HasForeignKey("MedicationId");
+
+                    b.Navigation("Category");
+
+                    b.Navigation("Medication");
+                });
+
+            modelBuilder.Entity("AstroPharm.Domain.Entities.SubCategories.Category", b =>
+                {
+                    b.HasOne("AstroPharm.Domain.Entities.SubCategories.Catalog", "Catalog")
+                        .WithMany("Categories")
+                        .HasForeignKey("CatalogId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Catalog");
+                });
+
+            modelBuilder.Entity("AstroPharm.Domain.Entities.Users.CartItem", b =>
+                {
+                    b.HasOne("AstroPharm.Domain.Entities.Products.Medication", "Medication")
+                        .WithMany("CartItems")
+                        .HasForeignKey("MedicationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AstroPharm.Domain.Entities.User", "User")
+                        .WithMany("CartItemList")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Medication");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("AstroPharm.Domain.Entities.WishList", b =>
                 {
-                    b.HasOne("AstroPharm.Domain.Entities.Medication", "Medication")
+                    b.HasOne("AstroPharm.Domain.Entities.Products.Medication", "Medication")
                         .WithMany("WishLists")
                         .HasForeignKey("MedicationId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -577,19 +577,12 @@ namespace AstroPharm.Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("AstroPharm.Domain.Entities.Catalog", b =>
+            modelBuilder.Entity("AstroPharm.Domain.Entities.Orders.Order", b =>
                 {
-                    b.Navigation("Categories");
+                    b.Navigation("OrderDetails");
                 });
 
-            modelBuilder.Entity("AstroPharm.Domain.Entities.Category", b =>
-                {
-                    b.Navigation("Banners");
-
-                    b.Navigation("Medications");
-                });
-
-            modelBuilder.Entity("AstroPharm.Domain.Entities.Medication", b =>
+            modelBuilder.Entity("AstroPharm.Domain.Entities.Products.Medication", b =>
                 {
                     b.Navigation("CartItems");
 
@@ -598,9 +591,16 @@ namespace AstroPharm.Data.Migrations
                     b.Navigation("WishLists");
                 });
 
-            modelBuilder.Entity("AstroPharm.Domain.Entities.Order", b =>
+            modelBuilder.Entity("AstroPharm.Domain.Entities.SubCategories.Catalog", b =>
                 {
-                    b.Navigation("OrderDetails");
+                    b.Navigation("Categories");
+                });
+
+            modelBuilder.Entity("AstroPharm.Domain.Entities.SubCategories.Category", b =>
+                {
+                    b.Navigation("Banners");
+
+                    b.Navigation("Medications");
                 });
 
             modelBuilder.Entity("AstroPharm.Domain.Entities.User", b =>

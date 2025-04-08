@@ -8,6 +8,7 @@ using AstroPharm.Service.Exceptions;
 using AstroPharm.Service.Interfaces.OrderDetails;
 using AstroPharm.Service.DTOs.OrderDetails;
 using Microsoft.EntityFrameworkCore;
+using AstroPharm.Domain.Entities.Orders;
 public class OrderDetailService : IOrderDetailInterface
 {
     private readonly IMapper mapper;

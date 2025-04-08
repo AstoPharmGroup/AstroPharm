@@ -25,6 +25,18 @@ public class CatalogController : BaseController
         });
     }
 
+    [HttpGet("get-categories/{catalogName}")]
+    public async Task<IActionResult> GetCategoriesByCatalogId([FromRoute] string catalogName)
+    {
+        var result = await _CatalogService.GetCategoriesByCatalogName(catalogName);
+
+        return Ok(new Response
+        {
+            StatusCode = 200,
+            Message = "Ok",
+            Data = result
+        });
+    }
     [HttpGet("{id}")]
     public async Task<IActionResult> GetByIdAsync([FromRoute] long id)
     {

@@ -6,6 +6,7 @@ using AstroPharm.Service.Interfaces.Banners;
 using AstroPharm.Service.Interfaces.CartItems;
 using AstroPharm.Service.Interfaces.Catalogs;
 using AstroPharm.Service.Interfaces.Categories;
+using AstroPharm.Service.Interfaces.Emails;
 using AstroPharm.Service.Interfaces.Medications;
 using AstroPharm.Service.Interfaces.Order;
 using AstroPharm.Service.Interfaces.OrderDetails;
@@ -16,6 +17,7 @@ using AstroPharm.Service.Services.Banners;
 using AstroPharm.Service.Services.CartItems;
 using AstroPharm.Service.Services.Catalogs;
 using AstroPharm.Service.Services.Categories;
+using AstroPharm.Service.Services.Emails;
 using AstroPharm.Service.Services.Medications;
 using AstroPharm.Service.Services.Payments;
 using AstroPharm.Service.Services.Token;
@@ -63,6 +65,8 @@ public static class ServiceExtension
         services.AddScoped<ITokenService, TokenService>();
 
         services.AddScoped<ILanguageInterface, LanguageService>();
+
+        services.AddScoped<IEmailService, EmailService>();
     }
 
 }

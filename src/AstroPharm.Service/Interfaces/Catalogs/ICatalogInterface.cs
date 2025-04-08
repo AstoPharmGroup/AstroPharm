@@ -1,4 +1,5 @@
 ﻿using AstroPharm.Service.DTOs.Catalogs;
+using AstroPharm.Service.DTOs.Categories;
 using AstroPharm.Service.DTOs.Medications;
 using System;
 using System.Collections.Generic;
@@ -15,4 +16,6 @@ public interface ICatalogInterface
     Task<IEnumerable<CatalogForResultDto>> GetAllAsync();
     Task<CatalogForResultDto> AddAsync(CatalogForCreationDto dto);
     Task<CatalogForResultDto> ModifyAsync(long id, CatalogForUpdateDto dto);
+    Task<List<CategoryForResultDto>> GetCategoriesByCatalogName(string catalogName);
+
 }

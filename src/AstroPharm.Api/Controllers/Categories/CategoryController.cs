@@ -69,4 +69,16 @@ public class CategoryController : BaseController
             Data = await _CategoryService.ModifyAsync(id, Category)
         });
     }
+
+    [HttpGet("search")]
+    public async Task<IActionResult> SearchAsync(string searchTerm)
+    {
+        return Ok(new Response
+        {
+            StatusCode = 200,
+            Message = "OK",
+            Data = await _CategoryService.SearchAsync(searchTerm)
+        });
+
+    }
 }

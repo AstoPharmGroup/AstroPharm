@@ -1,8 +1,10 @@
 using System.Reflection;
+using System.Security.Claims;
 using System.Text;
 using AstroPharm.Api.Extensions;
 using AstroPharm.Api.Middlewares;
 using AstroPharm.Data.DbContexts;
+using AstroPharm.Domain.Entities;
 using AstroPharm.Service.Mappers;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -47,7 +49,8 @@ namespace AstroPharm.Api
                     ValidIssuer = builder.Configuration["Jwt:Issuer"],
                     ValidAudience = builder.Configuration["JWT:Audience"],
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"])),
-                    ClockSkew = TimeSpan.Zero
+                    ClockSkew = TimeSpan.Zero,
+                    RoleClaimType = ClaimTypes.Role
                 };
             });
 

@@ -1,4 +1,5 @@
 using AstroPharm.Domain.Commons;
+using AstroPharm.Domain.Entities;
 using AstroPharm.Domain.Entities.Users;
 
 public class RefreshToken : Auditable

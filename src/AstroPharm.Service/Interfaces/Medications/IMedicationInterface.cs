@@ -10,5 +10,6 @@ namespace AstroPharm.Service.Interfaces.Medications
         Task<IEnumerable<MedicationForResultDto>> GetAllAsync(PaginationParams @params);
         Task<MedicationForResultDto> AddAsync(MedicationForCreationDto dto);
         Task<MedicationForResultDto> ModifyAsync(long id, MedicationForUpdateDto dto);
+        Task<List<MedicationForResultDto>> SearchAsync(string searchTerm);
     }
 }

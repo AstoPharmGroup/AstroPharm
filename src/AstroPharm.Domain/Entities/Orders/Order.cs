@@ -13,4 +13,4 @@ public class Order : Auditable
     public virtual User User { get; set; }
     // public virtual Delivery Delivery { get; set; }
     public virtual ICollection<OrderDetail> OrderDetails { get; set; }
-}
+}   

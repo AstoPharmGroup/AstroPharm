@@ -1,4 +1,6 @@
 using AstroPharm.Domain.Commons;
+using AstroPharm.Domain.Entities.Orders;
+using AstroPharm.Domain.Entities.Users;
 using AstroPharm.Domain.Enums;
 using System.Security.Principal;
 

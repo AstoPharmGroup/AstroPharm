@@ -4,6 +4,7 @@ using AstroPharm.Service.Mappers;
 using AutoMapper;
 using AstroPharm.Data.IRepositories;
 using AstroPharm.Domain.Entities;
+using AstroPharm.Domain.Entities.Orders;
 
 public class OrderService : IOrderInterface
 {
