@@ -111,8 +111,8 @@ public class AppDbContext : DbContext
         // 4. User
         modelBuilder.Entity<User>().HasData(
             new User { Id = 1, Role = Role.User, Email = "john.doe@example.com", FirstName = "John", LastName = "Doe", LanguageId = 1, Password = "hashedpassword1", PhoneNumber = "+998901234567", CreatedAt = DateTime.Parse("2025-04-02") },
-            new User { Id = 2, Role = Role.Admin, Email = "ali.courier@example.com", FirstName = "Ali", LastName = "Smith", LanguageId = 2, Password = "hashedpassword2", PhoneNumber = "+998901234568", CreatedAt = DateTime.Parse("2025-04-02") },
-            new User { Id = 3, Role = Role.SuperAdmin, Email = "admin@example.com", FirstName = "Admin", LastName = "User", LanguageId = 1, Password = "hashedpassword3", PhoneNumber = "+998901234569", CreatedAt = DateTime.Parse("2025-04-02") }
+            new User { Id = 2, Role = Role.Admin, Email = "admin@example.com", FirstName = "Admin", LastName = "User", LanguageId = 2, Password = "hashedpassword2", PhoneNumber = "+998901234568", CreatedAt = DateTime.Parse("2025-04-02") },
+            new User { Id = 3, Role = Role.SuperAdmin, Email = "superadmin@example.com", FirstName = "SuperAdmin", LastName = "User", LanguageId = 1, Password = "hashedpassword3", PhoneNumber = "+998901234569", CreatedAt = DateTime.Parse("2025-04-02") }
         );
 
         // 5. UserRole (optional, since Role is also in User)

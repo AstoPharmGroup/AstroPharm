@@ -3,6 +3,7 @@ using AstroPharm.Service.DTOs.Categories;
 using AstroPharm.Service.Interfaces.Categories;
 using DemoProject.Domain.Configurations.Pagination;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace AstroPharm.Api.Controllers.Categories;
 
@@ -40,6 +41,14 @@ public class CategoryController : BaseController
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteAsync([FromRoute] long id)
     {
+        var userRole = User.FindFirst(ClaimTypes.Role)?.Value;
+
+        if (userRole == null || (userRole != "Admin" && userRole != "SuperAdmin"))
+        {
+
+            return Unauthorized(new { message = $"{userRole} ,You are not allowed to use this method!" });
+        }
+
         return Ok(new Response
         {
             StatusCode = 200,
@@ -51,6 +60,14 @@ public class CategoryController : BaseController
     [HttpPost]
     public async Task<IActionResult> AddAsync([FromBody] CategoryForCreationDto Category)
     {
+        var userRole = User.FindFirst(ClaimTypes.Role)?.Value;
+
+        if (userRole == null || (userRole != "Admin" && userRole != "SuperAdmin"))
+        {
+
+            return Unauthorized(new { message = $"{userRole} ,You are not allowed to use this method!" });
+        }
+
         return Ok(new Response
         {
             StatusCode = 200,
@@ -62,6 +79,14 @@ public class CategoryController : BaseController
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateAsync([FromBody] CategoryForUpdateDto Category, [FromRoute] long id)
     {
+        var userRole = User.FindFirst(ClaimTypes.Role)?.Value;
+
+        if (userRole == null || (userRole != "Admin" && userRole != "SuperAdmin"))
+        {
+
+            return Unauthorized(new { message = $"{userRole} ,You are not allowed to use this method!" });
+        }
+
         return Ok(new Response
         {
             StatusCode = 200,

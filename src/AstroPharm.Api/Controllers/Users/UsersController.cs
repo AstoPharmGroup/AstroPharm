@@ -22,6 +22,14 @@ public class UsersController : BaseController
     [Authorize]
     public async Task<IActionResult> GetAllAsync()
     {
+        var userRole = User.FindFirst(ClaimTypes.Role)?.Value;
+
+        if (userRole == null || (userRole != "Admin" && userRole != "SuperAdmin"))
+        {
+
+            return Unauthorized(new { message = $"{userRole} ,You are not allowed to use this method!" });
+        }
+
         return Ok(new Response
         {
             StatusCode = 200,
@@ -33,6 +41,14 @@ public class UsersController : BaseController
     [HttpGet("{id}")]
     public async Task<IActionResult> GetByIdAsync([FromRoute] long id)
     {
+        //var userRole = User.FindFirst(ClaimTypes.Role)?.Value;
+
+        //if (userRole == null || (userRole != "Admin" && userRole != "SuperAdmin"))
+        //{
+
+        //    return Unauthorized(new { message = $"{userRole} ,You are not allowed to use this method!" });
+        //}
+
         var user = await _userService.RetrieveByIdAsync(id);
         return Ok(user);
     }
@@ -51,6 +67,14 @@ public class UsersController : BaseController
     [HttpPost]
     public async Task<IActionResult> AddAsync([FromBody] UserForCreationDto user)
     {
+        var userRole = User.FindFirst(ClaimTypes.Role)?.Value;
+
+        if (userRole == null || (userRole != "Admin" && userRole != "SuperAdmin"))
+        {
+
+            return Unauthorized(new { message = $"{userRole} ,You are not allowed to use this method!" });
+        }
+
         return Ok(new Response
         {
             StatusCode = 200,
@@ -62,6 +86,14 @@ public class UsersController : BaseController
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateAsync([FromBody] UserForUpdateDto user, [FromRoute] long id)
     {
+        var userRole = User.FindFirst(ClaimTypes.Role)?.Value;
+
+        if (userRole == null || (userRole != "Admin" && userRole != "SuperAdmin"))
+        {
+
+            return Unauthorized(new { message = $"{userRole} ,You are not allowed to use this method!" });
+        }
+
         return Ok(new Response
         {
             StatusCode = 200,
