@@ -1,10 +1,13 @@
 ﻿using AstroPharm.Data.IRepositories;
-using AstroPharm.Domain.Entities;
+using AstroPharm.Domain.Entities.Products;
 using AstroPharm.Service.DTOs.Medications;
 using AstroPharm.Service.Exceptions;
 using AstroPharm.Service.Interfaces.Categories;
 using AstroPharm.Service.Interfaces.Medications;
 using AutoMapper;
+using DemoProject.Domain.Configurations;
+using DemoProject.Domain.Configurations.Pagination;
+using FuzzySharp;
 using Microsoft.EntityFrameworkCore;
 
 namespace AstroPharm.Service.Services.Medications
@@ -17,7 +20,7 @@ namespace AstroPharm.Service.Services.Medications
 
         public MedicationService(
             IMapper mapper,
-            IRepository<Medication> repository, 
+            IRepository<Medication> repository,
             ICategoryInterface category)
         {
             this.mapper = mapper;
@@ -34,7 +37,7 @@ namespace AstroPharm.Service.Services.Medications
             var medication = await repository.SelectAll()
                 .Where(x => x.MedicationName == dto.MedicationName)
                 .FirstOrDefaultAsync();
-            if(medication != null)
+            if (medication != null)
                 throw new AstroPharmException(409, "This medication already exists");
 
             var mapped = mapper.Map<Medication>(dto);
@@ -53,10 +56,11 @@ namespace AstroPharm.Service.Services.Medications
             return true;
         }
 
-        public async Task<IEnumerable<MedicationForResultDto>> GetAllAsync()
+        public async Task<IEnumerable<MedicationForResultDto>> GetAllAsync(PaginationParams @params)
         {
             var medications = await repository.SelectAll()
-                //.AsNoTracking()
+                .AsNoTracking()
+                .ToPagedList(@params)
                 .ToListAsync();
 
             return mapper.Map<IEnumerable<MedicationForResultDto>>(medications);
@@ -86,5 +90,25 @@ namespace AstroPharm.Service.Services.Medications
 
             return mapper.Map<MedicationForResultDto>(medication);
         }
+
+        public async Task<List<MedicationForResultDto>> SearchAsync(string searchTerm)
+        {
+            var medications = await repository.SelectAll().ToListAsync();
+
+            
+
+            var fuzzyResults = medications
+                  .Select(medication => new
+                  {
+                      Medication = medication,
+                      Score = Fuzz.PartialRatio(medication.MedicationName.ToLower(), searchTerm.ToLower())  // You can use different fuzzy matching scores here
+                  })
+                  .Where(result => result.Score >= 80) 
+                  .OrderByDescending(result => result.Score)
+                  .ToList();
+
+            return mapper.Map<List<MedicationForResultDto>>(fuzzyResults.Select(m => m.Medication).ToList());
+        }
+
     }
 }

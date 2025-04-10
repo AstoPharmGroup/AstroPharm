@@ -1,11 +1,18 @@
-﻿using AstroPharm.Domain.Entities;
+using AstroPharm.Domain.Entities;
+using AstroPharm.Domain.Entities.Orders;
+using AstroPharm.Domain.Entities.Products;
+using AstroPharm.Domain.Entities.SubCategories;
+using AstroPharm.Domain.Entities.Users;
 using AstroPharm.Service.DTOs.Banners;
 using AstroPharm.Service.DTOs.CartItems;
 using AstroPharm.Service.DTOs.Catalogs;
 using AstroPharm.Service.DTOs.Categories;
+using AstroPharm.Service.DTOs.Languages;
 using AstroPharm.Service.DTOs.Medications;
+using AstroPharm.Service.DTOs.OrderDetails;
+using AstroPharm.Service.DTOs.UserRoles;
 using AstroPharm.Service.DTOs.Users;
-using AstroPharm.Service.DTOs.Wishlists;
+using AstroPharm.Service.DTOs.WhishLists;
 using AutoMapper;
 
 namespace AstroPharm.Service.Mappers;
@@ -23,7 +30,7 @@ public class MappingProfile : Profile
         CreateMap<Medication, MedicationForResultDto>().ReverseMap();
         CreateMap<MedicationForCreationDto, Medication>().ReverseMap();
         CreateMap<MedicationForUpdateDto, Medication>().ReverseMap();
-        
+
         //Catalog DTOs
         CreateMap<Catalog, CatalogForResultDto>().ReverseMap();
         CreateMap<CatalogForCreationDto, Catalog>().ReverseMap();
@@ -38,23 +45,37 @@ public class MappingProfile : Profile
         CreateMap<Order, OrderForCreationDto>().ReverseMap();
         CreateMap<Order, OrderForResultDto>().ReverseMap();
         CreateMap<Order, OrderForUpdateDto>().ReverseMap();
+        //OrderDetail DTOs
+        CreateMap<OrderDetail, OrderDetailForCreationDto>().ReverseMap();
+        CreateMap<OrderDetail, OrderDetailForResultDto>().ReverseMap();
+        CreateMap<OrderDetail, OrderDetailForUpdateDto>().ReverseMap();
 
-<<<<<<< HEAD
         // Wishlist
-        CreateMap<WishList,WishlistForCreationDto>().ReverseMap();
-        CreateMap<WishList,WishlistForResultDto>().ReverseMap();
-=======
+        CreateMap<WishList, WishListForCreationDto>().ReverseMap();
+        CreateMap<WishList, WishListForResultDto>().ReverseMap();
+        CreateMap<WishList, WishListForUpdateDto>().ReverseMap();
+
+        // Banner
         CreateMap<Banner, BannerForResultDto>().ReverseMap();
         CreateMap<BannerForCreationDto, Banner>().ReverseMap();
         CreateMap<BannerForUpdateDto, Banner>().ReverseMap();
 
+        // CartItem
         CreateMap<CartItem, CartItemForResultDto>().ReverseMap();
         CreateMap<CartItemForCreationDto, CartItem>().ReverseMap();
         CreateMap<CartItemForUpdateDto, CartItem>().ReverseMap();
 
+        CreateMap<LanguageForCreationDto, Language>().ReverseMap();
+        CreateMap<LanguageForUpdateDto, Language>().ReverseMap();
+
+        // Payment
         CreateMap<Payment, PaymentResultDto>().ReverseMap();
         CreateMap<PaymentCreationDto, Payment>().ReverseMap();
         CreateMap<PaymentUpdateDto, Payment>().ReverseMap();
->>>>>>> 74b95a1ef7b0530fd50629725f818910c07d5482
+
+        // userRole
+        CreateMap<UserRole, UserRoleForCreationDto>().ReverseMap();
+        CreateMap<UserRole, UserRoleForUpdateDto>().ReverseMap();
+        CreateMap<UserRole, UserForResultDto>().ReverseMap();
     }
 }

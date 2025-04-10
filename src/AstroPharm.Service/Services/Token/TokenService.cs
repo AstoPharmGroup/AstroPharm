@@ -1,0 +1,56 @@
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Security.Cryptography;
+using System.Text;
+using AstroPharm.Domain.Entities;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+
+namespace AstroPharm.Service.Services.Token;
+
+public class TokenService : ITokenService
+{
+    private readonly IConfiguration configuration;
+    public TokenService(IConfiguration configuration)
+    {
+        this.configuration = configuration;
+    }
+
+    public string GenerateRefreshToken()
+    {
+        var randomNumber = new byte[64];
+            using (var rng = RandomNumberGenerator.Create())
+            {
+                rng.GetBytes(randomNumber);
+            }
+            return Convert.ToBase64String(randomNumber); // Tasodifiy 64-bayt uzunlikdagi refresh token
+    }
+
+    public string GenerateToken(User user)
+    {
+        var tokenHandler = new JwtSecurityTokenHandler();
+        var tokenKey = Encoding.UTF8.GetBytes(configuration["JWT:Key"]);
+
+        var roleClaim = new Claim(ClaimTypes.Role, user.Role.ToString());
+
+        var tokenDescriptor = new SecurityTokenDescriptor
+        {
+            Subject = new ClaimsIdentity(new Claim[]
+            {
+                 new Claim("Id", user.Id.ToString()),
+                 new Claim("Email",user.Email),
+                 roleClaim
+            }),
+            Audience = configuration["JWT:Audience"],
+            Issuer = configuration["JWT:Issuer"],
+            IssuedAt = DateTime.UtcNow,
+            Expires = DateTime.UtcNow.AddSeconds(double.Parse(configuration["JWT:Expire"])),
+            SigningCredentials = new SigningCredentials(
+                new SymmetricSecurityKey(tokenKey), SecurityAlgorithms.HmacSha256Signature)
+        };
+
+        var token = tokenHandler.CreateToken(tokenDescriptor);
+        return tokenHandler.WriteToken(token);
+    }
+
+}

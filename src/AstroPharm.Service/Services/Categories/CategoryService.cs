@@ -1,10 +1,15 @@
 ﻿using AstroPharm.Data.IRepositories;
-using AstroPharm.Domain.Entities;
+using AstroPharm.Data.Repositories;
+using AstroPharm.Domain.Entities.SubCategories;
 using AstroPharm.Service.DTOs.Categories;
+using AstroPharm.Service.DTOs.Medications;
 using AstroPharm.Service.Exceptions;
 using AstroPharm.Service.Interfaces.Catalogs;
 using AstroPharm.Service.Interfaces.Categories;
 using AutoMapper;
+using DemoProject.Domain.Configurations;
+using DemoProject.Domain.Configurations.Pagination;
+using FuzzySharp;
 using Microsoft.EntityFrameworkCore;
 
 namespace AstroPharm.Service.Services.Categories;
@@ -16,7 +21,7 @@ public class CategoryService : ICategoryInterface
     private readonly IRepository<Category> _categoryRepository;
 
     public CategoryService(IRepository<Category> CategoryRepository,
-        IMapper mapper, 
+        IMapper mapper,
         ICatalogInterface catalogInterface)
     {
         _mapper = mapper;
@@ -34,7 +39,7 @@ public class CategoryService : ICategoryInterface
             .Where(x => x.CategoryName == dto.CategoryName)
             .FirstOrDefaultAsync();
 
-        if (Category != null )
+        if (Category != null)
             throw new AstroPharmException(409, "This Category already exists");
 
         var mapped = _mapper.Map<Category>(dto);
@@ -54,10 +59,11 @@ public class CategoryService : ICategoryInterface
 
     }
 
-    public async Task<IEnumerable<CategoryForResultDto>> GetAllAsync()
+    public async Task<IEnumerable<CategoryForResultDto>> GetAllAsync(PaginationParams @params)
     {
         var categories = await _categoryRepository.SelectAll()
-            //.AsNoTracking()
+            .AsNoTracking()
+            .ToPagedList(@params)
             .ToListAsync();
         return _mapper.Map<IEnumerable<CategoryForResultDto>>(categories);
     }
@@ -85,5 +91,23 @@ public class CategoryService : ICategoryInterface
         await _categoryRepository.UpdateAsync(mapped);
 
         return _mapper.Map<CategoryForResultDto>(mapped);
+    }
+
+    public async Task<List<MedicationForResultDto>> SearchAsync(string searchTerm)
+    {
+        var category = await _categoryRepository.SelectAll().FirstOrDefaultAsync(c => c.CategoryName == searchTerm);
+
+        //var fuzzyResults = categories
+        //    .Select(category => new
+        //    {
+        //        Category = category,
+        //        Score = Fuzz.PartialRatio(category.CategoryName.ToLower(), searchTerm.ToLower())
+        //    })
+        //    .Where(result => result.Score >= 80)
+        //    .OrderByDescending(result => result.Score)
+        //    .ToList();
+        var medications = category.Medications;
+        return _mapper.Map<List<MedicationForResultDto>>(medications);
+
     }
 }

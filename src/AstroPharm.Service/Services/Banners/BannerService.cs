@@ -1,12 +1,10 @@
 ﻿using AstroPharm.Data.IRepositories;
-using AstroPharm.Domain.Entities;
+using AstroPharm.Domain.Entities.SubCategories;
 using AstroPharm.Service.DTOs.Banners;
 using AstroPharm.Service.Exceptions;
 using AstroPharm.Service.Interfaces.Banners;
 using AstroPharm.Service.Interfaces.Categories;
 using AstroPharm.Service.Interfaces.Medications;
-using AstroPharm.Service.Services.Categories;
-using AstroPharm.Service.Services.Medications;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 

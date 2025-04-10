@@ -1,5 +1,6 @@
 ﻿using AstroPharm.Data.IRepositories;
 using AstroPharm.Domain.Entities;
+using AstroPharm.Domain.Entities.Users;
 using AstroPharm.Service.DTOs.CartItems;
 using AstroPharm.Service.Exceptions;
 using AstroPharm.Service.Interfaces.CartItems;
@@ -14,24 +15,21 @@ public class CartItemService : ICartItemInterface
 {
     private readonly IRepository<CartItem> repository;
     private readonly IMapper mapper;
-    private readonly IUserInterface userService;
+    // private readonly IUserInterface userService;
     private readonly IMedicationInterface medicationService;
 
-    public CartItemService(IMedicationInterface medicationService, IUserInterface userService, IMapper mapper, IRepository<CartItem> repository)
+    public CartItemService(IMedicationInterface medicationService, IMapper mapper, IRepository<CartItem> repository)
     {
-        this.medicationService = medicationService;
-        this.userService = userService;
         this.mapper = mapper;
         this.repository = repository;
+        this.medicationService = medicationService;
     }
 
     public async Task<CartItemForResultDto> AddAsync(CartItemForCreationDto dto)
     {
-        var user = await userService.RetrieveByIdAsync(dto.UserId);
-        var medication = await medicationService.GetByIdAsync(dto.MedicationId);
-
-        if (user == null || medication == null)
-            throw new AstroPharmException(404, "User or Medication not found");
+        // var user = await userService.RetrieveByIdAsync(dto.UserId);
+        var medication = await medicationService.GetByIdAsync(dto.MedicationId)??
+            throw new AstroPharmException(404, "Medication not found");
 
         var existingCartItem = await repository.SelectAll()
             .Where(c => c.UserId == dto.UserId && c.MedicationId == dto.MedicationId)
