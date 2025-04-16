@@ -102,7 +102,8 @@ namespace AstroPharm.Api
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-
+            app.UseSwagger();
+            app.UseSwaggerUI();
             app.UseMiddleware<ExceptionHandlerMiddleWare>();
             app.UseMiddleware<LoggingMiddleware>();
             
