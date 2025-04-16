@@ -1,8 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
-using System.Diagnostics;
-using System.Net.Http;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 
 public class LoggingMiddleware
 {

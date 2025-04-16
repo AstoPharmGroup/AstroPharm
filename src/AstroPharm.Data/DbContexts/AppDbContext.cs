@@ -90,7 +90,7 @@ public class AppDbContext : DbContext
         //    .OnDelete(DeleteBehavior.Cascade);
         #endregion
 
-        #region
+        #region SeedData
         modelBuilder.Entity<Language>().HasData(
             new Language { Id = 1, LanguageName = "English", CreatedAt = DateTime.Parse("2025-04-01") },
             new Language { Id = 2, LanguageName = "Uzbek", CreatedAt = DateTime.Parse("2025-04-01") }

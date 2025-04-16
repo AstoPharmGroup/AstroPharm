@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AstroPharm.Data", "src\Astr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AstroPharm.Service", "src\AstroPharm.Service\AstroPharm.Service.csproj", "{F855F4E0-A1BE-43D0-A8F3-A4BA544AF617}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{FF1CCEC9-F49B-4104-8ACA-CBB5B0B96335}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +39,10 @@ Global
 		{F855F4E0-A1BE-43D0-A8F3-A4BA544AF617}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F855F4E0-A1BE-43D0-A8F3-A4BA544AF617}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F855F4E0-A1BE-43D0-A8F3-A4BA544AF617}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF1CCEC9-F49B-4104-8ACA-CBB5B0B96335}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF1CCEC9-F49B-4104-8ACA-CBB5B0B96335}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF1CCEC9-F49B-4104-8ACA-CBB5B0B96335}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF1CCEC9-F49B-4104-8ACA-CBB5B0B96335}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,5 +52,9 @@ Global
 		{598007A3-D79C-4395-A87A-569590D251B1} = {97111CDF-AF78-4A34-AAE0-03656B4F6D37}
 		{A7DD9FF0-A948-440B-9052-38FD75ADF60B} = {97111CDF-AF78-4A34-AAE0-03656B4F6D37}
 		{F855F4E0-A1BE-43D0-A8F3-A4BA544AF617} = {97111CDF-AF78-4A34-AAE0-03656B4F6D37}
+		{FF1CCEC9-F49B-4104-8ACA-CBB5B0B96335} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {18F63E6C-9362-4A72-B610-25D6EBED89E2}
 	EndGlobalSection
 EndGlobal

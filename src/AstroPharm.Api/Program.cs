@@ -61,7 +61,7 @@ namespace AstroPharm.Api
             // Configure Swagger
             builder.Services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Learn.Api", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "AstroPharm.Api", Version = "v1" });
                 var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
 
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
@@ -88,24 +88,20 @@ namespace AstroPharm.Api
                 });
             });
 
-            // Add Custom Services
             builder.Services.AddCustomService();
 
-            // Add AutoMapper
             builder.Services.AddAutoMapper(typeof(MappingProfile));
 
             var app = builder.Build();
 
-            // Configure middleware pipeline
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+            app.UseSwagger();
+            app.UseSwaggerUI();
 
-            app.UseMiddleware<ExceptionHandlerMiddleWare>();
-            app.UseMiddleware<LoggingMiddleware>();
-            
             app.UseCors("AllowAll");
             app.UseStaticFiles();
             app.UseHttpsRedirection();
@@ -113,9 +109,14 @@ namespace AstroPharm.Api
             app.UseAuthentication();
             app.UseAuthorization();
 
+            app.UseMiddleware<RefreshTokenValidationMiddleware>();
+            app.UseMiddleware<ExceptionHandlerMiddleWare>();
+            app.UseMiddleware<LoggingMiddleware>();
+
             app.MapControllers();
 
             app.Run();
+
         }
     }
 }

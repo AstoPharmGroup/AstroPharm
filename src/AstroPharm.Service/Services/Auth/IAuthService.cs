@@ -1,4 +1,5 @@
 public interface IAuthService
     {
-        Task<LoginResultDto> AuthentificateAsync(LoginDto dto);
+        Task<LoginResultDto> AuthenticateAsync(LoginDto dto);
+        Task LogoutAsync(long userId);
     }
