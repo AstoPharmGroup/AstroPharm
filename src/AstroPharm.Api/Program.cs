@@ -61,7 +61,7 @@ namespace AstroPharm.Api
             // Configure Swagger
             builder.Services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Learn.Api", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "AstroPharm.Api", Version = "v1" });
                 var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
 
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
