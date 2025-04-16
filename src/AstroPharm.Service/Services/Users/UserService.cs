@@ -1,18 +1,22 @@
 ﻿using AstroPharm.Data.IRepositories;
 using AstroPharm.Domain.Entities;
+using AstroPharm.Domain.Entities.Orders;
+using AstroPharm.Domain.Entities.Users;
+using AstroPharm.Service.DTOs.OrderDetails;
+using AstroPharm.Service.DTOs.UserRoles;
 using AstroPharm.Service.DTOs.Users;
 using AstroPharm.Service.Exceptions;
 using AstroPharm.Service.Interfaces.Users;
 using AstroPharm.Service.Validators;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using System.Text.RegularExpressions;
 
 namespace AstroPharm.Service.Services.Users;
 
 public class UserService : IUserInterface
 {
     private readonly IRepository<User> repository;
+    private readonly IRepository<Order> orderRepository;
     private readonly IMapper mapper;
     private readonly UserValidator validator;
     public UserService(IRepository<User> repository, IMapper mapper)
@@ -21,6 +25,24 @@ public class UserService : IUserInterface
         this.mapper = mapper;
         validator = new UserValidator();
     }
+    public async Task<UserRoleForResultDto> AssignRoleToUser(UserRoleForCreationDto dto)
+    {
+        var user = await repository.SelectByIdAsync(dto.UserId);
+        if (user == null)
+            throw new AstroPharmException(404, "User not found");
+
+        user.Role = dto.Role;
+
+        await repository.UpdateAsync(user);
+
+        return new UserRoleForResultDto
+        {
+            UserId = user.Id,
+            User = mapper.Map<UserForResultDto>(user),
+            Role = user.Role
+        }; 
+    }
+
 
     public async Task<UserForResultDto> AddAsync(UserForCreationDto dto)
     {
@@ -33,7 +55,7 @@ public class UserService : IUserInterface
         newUser.CreatedAt = DateTime.UtcNow;
         await repository.InsertAsync(newUser);
 
-        return mapper.Map<UserForResultDto>(newUser); 
+        return mapper.Map<UserForResultDto>(newUser);
     }
 
     public async Task<bool> RemoveAsync(long id)
@@ -77,4 +99,16 @@ public class UserService : IUserInterface
 
         return mapper.Map<UserForResultDto>(modifiedUser);
     }
+
+    public async Task<string> ForgotPassword(string email)
+    {
+        var user = await repository.SelectAll().FirstOrDefaultAsync(x => x.Email == email);
+        if (user == null)
+        {
+            throw new AstroPharmException(404,"No user found with this email.");
+        }
+
+        return user.Password;
+    }
+
 }

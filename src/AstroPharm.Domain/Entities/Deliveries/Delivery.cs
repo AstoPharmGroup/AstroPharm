@@ -1,4 +1,5 @@
 using AstroPharm.Domain.Commons;
+using AstroPharm.Domain.Entities.Orders;
 using AstroPharm.Domain.Enums;
 using System;
 using System.Collections.Generic;

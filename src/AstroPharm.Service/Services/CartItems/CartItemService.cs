@@ -1,5 +1,6 @@
 ﻿using AstroPharm.Data.IRepositories;
 using AstroPharm.Domain.Entities;
+using AstroPharm.Domain.Entities.Users;
 using AstroPharm.Service.DTOs.CartItems;
 using AstroPharm.Service.Exceptions;
 using AstroPharm.Service.Interfaces.CartItems;

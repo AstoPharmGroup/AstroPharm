@@ -1,4 +1,8 @@
 using AstroPharm.Domain.Entities;
+using AstroPharm.Domain.Entities.Orders;
+using AstroPharm.Domain.Entities.Products;
+using AstroPharm.Domain.Entities.SubCategories;
+using AstroPharm.Domain.Entities.Users;
 using AstroPharm.Service.DTOs.Banners;
 using AstroPharm.Service.DTOs.CartItems;
 using AstroPharm.Service.DTOs.Catalogs;
@@ -6,6 +10,7 @@ using AstroPharm.Service.DTOs.Categories;
 using AstroPharm.Service.DTOs.Languages;
 using AstroPharm.Service.DTOs.Medications;
 using AstroPharm.Service.DTOs.OrderDetails;
+using AstroPharm.Service.DTOs.UserRoles;
 using AstroPharm.Service.DTOs.Users;
 using AstroPharm.Service.DTOs.WhishLists;
 using AutoMapper;
@@ -67,5 +72,10 @@ public class MappingProfile : Profile
         CreateMap<Payment, PaymentResultDto>().ReverseMap();
         CreateMap<PaymentCreationDto, Payment>().ReverseMap();
         CreateMap<PaymentUpdateDto, Payment>().ReverseMap();
+
+        // userRole
+        CreateMap<UserRole, UserRoleForCreationDto>().ReverseMap();
+        CreateMap<UserRole, UserRoleForUpdateDto>().ReverseMap();
+        CreateMap<UserRole, UserForResultDto>().ReverseMap();
     }
 }

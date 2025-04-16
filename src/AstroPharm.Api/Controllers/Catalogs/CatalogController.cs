@@ -2,6 +2,7 @@
 using AstroPharm.Service.DTOs.Catalogs;
 using AstroPharm.Service.Interfaces.Catalogs;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace AstroPharm.Api.Controllers.Catalogs;
 
@@ -25,6 +26,18 @@ public class CatalogController : BaseController
         });
     }
 
+    [HttpGet("get-categories/{catalogName}")]
+    public async Task<IActionResult> GetCategoriesByCatalogName([FromRoute] string catalogName)
+    {
+        var result = await _CatalogService.GetCategoriesByCatalogName(catalogName);
+
+        return Ok(new Response
+        {
+            StatusCode = 200,
+            Message = "Ok",
+            Data = result
+        });
+    }
     [HttpGet("{id}")]
     public async Task<IActionResult> GetByIdAsync([FromRoute] long id)
     {
@@ -39,6 +52,14 @@ public class CatalogController : BaseController
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteAsync([FromRoute] long id)
     {
+        var userRole = User.FindFirst(ClaimTypes.Role)?.Value;
+
+        if (userRole == null || (userRole != "Admin" && userRole != "SuperAdmin"))
+        {
+
+            return Unauthorized(new { message = $"{userRole} ,You are not allowed to use this method!" });
+        }
+
         return Ok(new Response
         {
             StatusCode = 200,
@@ -50,6 +71,14 @@ public class CatalogController : BaseController
     [HttpPost]
     public async Task<IActionResult> AddAsync([FromBody] CatalogForCreationDto Catalog)
     {
+        var userRole = User.FindFirst(ClaimTypes.Role)?.Value;
+
+        if (userRole == null || (userRole != "Admin" && userRole != "SuperAdmin"))
+        {
+
+            return Unauthorized(new { message = $"{userRole} ,You are not allowed to use this method!" });
+        }
+
         return Ok(new Response
         {
             StatusCode = 200,
@@ -61,6 +90,14 @@ public class CatalogController : BaseController
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateAsync([FromBody] CatalogForUpdateDto Catalog, [FromRoute] long id)
     {
+        var userRole = User.FindFirst(ClaimTypes.Role)?.Value;
+
+        if (userRole == null || (userRole != "Admin" && userRole != "SuperAdmin"))
+        {
+
+            return Unauthorized(new { message = $"{userRole} ,You are not allowed to use this method!" });
+        }
+
         return Ok(new Response
         {
             StatusCode = 200,

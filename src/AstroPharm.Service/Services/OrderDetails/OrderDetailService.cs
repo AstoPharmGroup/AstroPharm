@@ -8,6 +8,7 @@ using AstroPharm.Service.Exceptions;
 using AstroPharm.Service.Interfaces.OrderDetails;
 using AstroPharm.Service.DTOs.OrderDetails;
 using Microsoft.EntityFrameworkCore;
+using AstroPharm.Domain.Entities.Orders;
 public class OrderDetailService : IOrderDetailInterface
 {
     private readonly IMapper mapper;
@@ -25,7 +26,6 @@ public class OrderDetailService : IOrderDetailInterface
         this.medicationService = medicationService;
     }
 
-
     public async Task<OrderDetailForResultDto> AddAsync(OrderDetailForCreationDto dto)
     {
         var order = await orderService.GetByIdAsync(dto.OrderId)
@@ -35,9 +35,20 @@ public class OrderDetailService : IOrderDetailInterface
         var payment = await paymentService.GetByIdAsync(dto.PaymentId)
             ?? throw new AstroPharmException(404, "Payment not found");
 
-        var orderDetail = await repository.InsertAsync(mapper.Map<OrderDetail>(dto));
+        decimal totalPriceBeforeDiscount = med.Price * dto.Quantity;
+        decimal discountAmount = totalPriceBeforeDiscount * (dto.Discount / 100);
+        decimal totalAmount = totalPriceBeforeDiscount - discountAmount;
+
+
+        var orderDetail = mapper.Map<OrderDetail>(dto);
+        orderDetail.TotalAmount = totalAmount; 
+
+        var insertedOrderDetail = await repository.InsertAsync(orderDetail);
+
         return mapper.Map<OrderDetailForResultDto>(orderDetail);
     }
+
+
     public async Task<IEnumerable<OrderDetailForResultDto>> GetAllAsync()
     {
         var orderDetails = await repository.SelectAll().ToListAsync();
