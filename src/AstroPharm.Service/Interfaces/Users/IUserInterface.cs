@@ -12,5 +12,6 @@ public interface IUserInterface
     Task<IEnumerable<UserForResultDto>> RetrieveAllAsync();
     Task<UserForResultDto> AddAsync(UserForCreationDto dto);
     Task<UserForResultDto> ModifyAsync(long id, UserForUpdateDto dto);
+    Task<string> ForgotPassword(string email);
 
 }

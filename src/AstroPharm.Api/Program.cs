@@ -23,6 +23,7 @@ namespace AstroPharm.Api
             builder.Services.AddDbContext<AppDbContext>(options =>
                     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+
             // Add CORS
             builder.Services.AddCors(options =>
             {
@@ -88,15 +89,12 @@ namespace AstroPharm.Api
                 });
             });
 
-            // Add Custom Services
             builder.Services.AddCustomService();
 
-            // Add AutoMapper
             builder.Services.AddAutoMapper(typeof(MappingProfile));
 
             var app = builder.Build();
 
-            // Configure middleware pipeline
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
@@ -114,9 +112,14 @@ namespace AstroPharm.Api
             app.UseAuthentication();
             app.UseAuthorization();
 
+            app.UseMiddleware<RefreshTokenValidationMiddleware>();
+            app.UseMiddleware<ExceptionHandlerMiddleWare>();
+            app.UseMiddleware<LoggingMiddleware>();
+
             app.MapControllers();
 
             app.Run();
+
         }
     }
 }

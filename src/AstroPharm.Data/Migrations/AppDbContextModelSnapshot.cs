@@ -626,10 +626,10 @@ namespace AstroPharm.Data.Migrations
                         {
                             Id = 2L,
                             CreatedAt = new DateTime(2025, 4, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "ali.courier@example.com",
-                            FirstName = "Ali",
+                            Email = "admin@example.com",
+                            FirstName = "Admin",
                             LanguageId = 2L,
-                            LastName = "Smith",
+                            LastName = "User",
                             Password = "hashedpassword2",
                             PhoneNumber = "+998901234568",
                             Role = 3,
@@ -639,8 +639,8 @@ namespace AstroPharm.Data.Migrations
                         {
                             Id = 3L,
                             CreatedAt = new DateTime(2025, 4, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "admin@example.com",
-                            FirstName = "Admin",
+                            Email = "superadmin@example.com",
+                            FirstName = "SuperAdmin",
                             LanguageId = 1L,
                             LastName = "User",
                             Password = "hashedpassword3",
@@ -763,6 +763,9 @@ namespace AstroPharm.Data.Migrations
                     b.Property<DateTime>("ExpiryDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool>("IsRevoked")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Token")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -785,6 +788,7 @@ namespace AstroPharm.Data.Migrations
                             Id = 1L,
                             CreatedAt = new DateTime(2025, 4, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ExpiryDate = new DateTime(2025, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsRevoked = false,
                             Token = "token123",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserId = 1L
@@ -794,6 +798,7 @@ namespace AstroPharm.Data.Migrations
                             Id = 2L,
                             CreatedAt = new DateTime(2025, 4, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ExpiryDate = new DateTime(2025, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsRevoked = false,
                             Token = "token456",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserId = 2L

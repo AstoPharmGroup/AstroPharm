@@ -67,6 +67,7 @@ public static class ServiceExtension
         services.AddScoped<ILanguageInterface, LanguageService>();
 
         services.AddScoped<IEmailService, EmailService>();
+
     }
 
 }

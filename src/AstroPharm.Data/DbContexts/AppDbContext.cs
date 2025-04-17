@@ -30,8 +30,8 @@ public class AppDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-        // Hamma konfiguratsiyalarni avtomatik yuklash
-        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+        //// Hamma konfiguratsiyalarni avtomatik yuklash
+        //modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
         #region boglanishlar tugadi
         // // Catalog -> Category
@@ -90,7 +90,7 @@ public class AppDbContext : DbContext
         //    .OnDelete(DeleteBehavior.Cascade);
         #endregion
 
-        #region
+        #region SeedData
         modelBuilder.Entity<Language>().HasData(
             new Language { Id = 1, LanguageName = "English", CreatedAt = DateTime.Parse("2025-04-01") },
             new Language { Id = 2, LanguageName = "Uzbek", CreatedAt = DateTime.Parse("2025-04-01") }

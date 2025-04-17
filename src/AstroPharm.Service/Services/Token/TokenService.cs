@@ -23,7 +23,7 @@ public class TokenService : ITokenService
             {
                 rng.GetBytes(randomNumber);
             }
-            return Convert.ToBase64String(randomNumber); // Tasodifiy 64-bayt uzunlikdagi refresh token
+            return Convert.ToBase64String(randomNumber); 
     }
 
     public string GenerateToken(User user)

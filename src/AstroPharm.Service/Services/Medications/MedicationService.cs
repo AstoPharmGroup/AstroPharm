@@ -101,7 +101,7 @@ namespace AstroPharm.Service.Services.Medications
                   .Select(medication => new
                   {
                       Medication = medication,
-                      Score = Fuzz.PartialRatio(medication.MedicationName.ToLower(), searchTerm.ToLower())  // You can use different fuzzy matching scores here
+                      Score = Fuzz.PartialRatio(medication.MedicationName.ToLower(), searchTerm.ToLower())  
                   })
                   .Where(result => result.Score >= 80) 
                   .OrderByDescending(result => result.Score)

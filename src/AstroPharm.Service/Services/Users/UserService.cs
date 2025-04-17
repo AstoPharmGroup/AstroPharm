@@ -97,4 +97,16 @@ public class UserService : IUserInterface
 
         return mapper.Map<UserForResultDto>(modifiedUser);
     }
+
+    public async Task<string> ForgotPassword(string email)
+    {
+        var user = await repository.SelectAll().FirstOrDefaultAsync(x => x.Email == email);
+        if (user == null)
+        {
+            throw new AstroPharmException(404,"No user found with this email.");
+        }
+
+        return user.Password;
+    }
+
 }
