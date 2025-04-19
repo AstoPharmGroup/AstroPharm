@@ -1,8 +1,6 @@
 ﻿using AstroPharm.Data.IRepositories;
 using AstroPharm.Domain.Entities;
 using AstroPharm.Domain.Entities.Orders;
-using AstroPharm.Domain.Entities.Users;
-using AstroPharm.Service.DTOs.OrderDetails;
 using AstroPharm.Service.DTOs.UserRoles;
 using AstroPharm.Service.DTOs.Users;
 using AstroPharm.Service.Exceptions;
