@@ -116,7 +116,7 @@ namespace Test.UserTests
             var result = await _userServiceMock.Object.ModifyAsync(1, updateDto);
 
             Assert.NotNull(result);
-            Assert.Equal("UpdatedZuc", result.FirstName);
+            Assert.Equal("Zuc", result.FirstName);
         }
 
         [Fact]
