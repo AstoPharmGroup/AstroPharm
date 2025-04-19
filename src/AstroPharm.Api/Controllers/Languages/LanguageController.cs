@@ -32,13 +32,7 @@ namespace AstroPharm.API.Controllers
         [HttpPost]
         public async Task<ActionResult<Language>> CreateLanguage([FromBody] LanguageForCreationDto dto)
         {
-            var userRole = User.FindFirst(ClaimTypes.Role)?.Value;
-
-            if (userRole == null || (userRole != "Admin" && userRole != "SuperAdmin"))
-            {
-
-                return Unauthorized(new { message = $"{userRole} ,You are not allowed to use this method!" });
-            }
+            
 
             var createdLanguage = await _languageService.AddAsync(dto);
             return CreatedAtAction(nameof(GetLanguage), new { id = createdLanguage.Id }, createdLanguage);
@@ -47,13 +41,7 @@ namespace AstroPharm.API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateLanguage(long id, [FromBody] LanguageForUpdateDto dto)
         {
-            var userRole = User.FindFirst(ClaimTypes.Role)?.Value;
-
-            if (userRole == null || (userRole != "Admin" && userRole != "SuperAdmin"))
-            {
-
-                return Unauthorized(new { message = $"{userRole} ,You are not allowed to use this method!" });
-            }
+            
 
             var updatedLanguage = await _languageService.ModifyAsync(id, dto);
             return Ok(updatedLanguage);
@@ -62,14 +50,7 @@ namespace AstroPharm.API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteLanguage(long id)
         {
-            var userRole = User.FindFirst(ClaimTypes.Role)?.Value;
-
-            if (userRole == null || (userRole != "Admin" && userRole != "SuperAdmin"))
-            {
-
-                return Unauthorized(new { message = $"{userRole} ,You are not allowed to use this method!" });
-            }
-
+           
             var result = await _languageService.DeleteAsync(id);
             return result ? NoContent() : NotFound();
         }

@@ -29,13 +29,13 @@ namespace AstroPharm.Api.Controllers.CartItems
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAsync([FromRoute] long id)
         {
-            var userRole = User.FindFirst(ClaimTypes.Role)?.Value;
+            //var userRole = User.FindFirst(ClaimTypes.Role)?.Value;
 
-            if (userRole == null || (userRole != "Admin" && userRole != "SuperAdmin"))
-            {
+            //if (userRole == null || (userRole != "Admin" && userRole != "SuperAdmin"))
+            //{
 
-                return Unauthorized(new { message = $"{userRole} ,You are not allowed to use this method!" });
-            }
+            //    return Unauthorized(new { message = $"{userRole} ,You are not allowed to use this method!" });
+            //}
 
 
             return Ok(new Response

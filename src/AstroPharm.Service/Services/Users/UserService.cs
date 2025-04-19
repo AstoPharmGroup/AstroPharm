@@ -51,6 +51,7 @@ public class UserService : IUserInterface
         validator.ValidateUser(dto);
         var newUser = mapper.Map<User>(dto);
         newUser.CreatedAt = DateTime.UtcNow;
+        newUser.Role = Domain.Enums.Role.User;
         await repository.InsertAsync(newUser);
 
         return mapper.Map<UserForResultDto>(newUser);

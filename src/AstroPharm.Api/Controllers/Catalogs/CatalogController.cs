@@ -52,13 +52,7 @@ public class CatalogController : BaseController
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteAsync([FromRoute] long id)
     {
-        var userRole = User.FindFirst(ClaimTypes.Role)?.Value;
-
-        if (userRole == null || (userRole != "Admin" && userRole != "SuperAdmin"))
-        {
-
-            return Unauthorized(new { message = $"{userRole} ,You are not allowed to use this method!" });
-        }
+       
 
         return Ok(new Response
         {
@@ -71,13 +65,6 @@ public class CatalogController : BaseController
     [HttpPost]
     public async Task<IActionResult> AddAsync([FromBody] CatalogForCreationDto Catalog)
     {
-        var userRole = User.FindFirst(ClaimTypes.Role)?.Value;
-
-        if (userRole == null || (userRole != "Admin" && userRole != "SuperAdmin"))
-        {
-
-            return Unauthorized(new { message = $"{userRole} ,You are not allowed to use this method!" });
-        }
 
         return Ok(new Response
         {
@@ -90,13 +77,6 @@ public class CatalogController : BaseController
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateAsync([FromBody] CatalogForUpdateDto Catalog, [FromRoute] long id)
     {
-        var userRole = User.FindFirst(ClaimTypes.Role)?.Value;
-
-        if (userRole == null || (userRole != "Admin" && userRole != "SuperAdmin"))
-        {
-
-            return Unauthorized(new { message = $"{userRole} ,You are not allowed to use this method!" });
-        }
 
         return Ok(new Response
         {

@@ -19,7 +19,7 @@ public class OrderDetailController : BaseController
         return Ok(new Response
         {
             StatusCode = 200,
-            Message = "All Orders",
+            Message = "All Orders Details",
             Data = await orderDetailService.GetAllAsync()
         });
     }

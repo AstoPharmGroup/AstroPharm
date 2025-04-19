@@ -31,7 +31,7 @@ public class TokenService : ITokenService
         var tokenHandler = new JwtSecurityTokenHandler();
         var tokenKey = Encoding.UTF8.GetBytes(configuration["JWT:Key"]);
 
-        var roleClaim = new Claim(ClaimTypes.Role, user.Role.ToString());
+        var roleClaim = new Claim(ClaimTypes.Role, user.Role.ToString());   
 
         var tokenDescriptor = new SecurityTokenDescriptor
         {

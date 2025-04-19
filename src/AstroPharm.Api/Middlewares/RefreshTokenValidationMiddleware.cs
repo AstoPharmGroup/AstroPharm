@@ -11,7 +11,7 @@ public class RefreshTokenValidationMiddleware
 
     public async Task InvokeAsync(HttpContext context, IRepository<RefreshToken> refreshTokenRepository)
     {
-        if (context.Request.Path.StartsWithSegments("/api/auth/Authentificate"))
+        if (context.Request.Path.StartsWithSegments("/api/auth/Authentificate") || context.Request.Path.StartsWithSegments("/api/Users/Add"))
         {
             await _next(context); 
             return;

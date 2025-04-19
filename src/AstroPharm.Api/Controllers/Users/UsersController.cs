@@ -38,28 +38,9 @@ public class UsersController : BaseController
     }
 
     [HttpGet]
-    [Authorize]
+    //[Authorize]
     public async Task<IActionResult> GetAllAsync()
     {
-
-
-        var userRole = User.FindFirst(ClaimTypes.Role)?.Value;
-        var userId =Convert.ToInt64(User.FindFirst("Id")?.Value);
-
-        if (userRole == null || (userRole != "Admin" && userRole != "SuperAdmin"))
-        {
-
-            return Unauthorized(new { message = $"{userRole} ,You are not allowed to use this method!" });
-        }
-        //var refreshTokens = _refreshTokenRepository
-        //    .SelectAll()
-        //    .Where(u => u.UserId == userId);
-
-        //if (!refreshTokens.Any(u => !u.IsRevoked))
-        //{
-        //    Console.WriteLine("logout working");
-        //    return Unauthorized("Logout success");
-        //}
 
         return Ok(new Response
         {
@@ -72,20 +53,6 @@ public class UsersController : BaseController
     [HttpGet("{id}")]
     public async Task<IActionResult> GetByIdAsync([FromRoute] long id)
     {
-        var userRole = User.FindFirst(ClaimTypes.Role)?.Value;
-        var userId = User.FindFirst("Id")?.Value;
-
-
-
-        if(userId == id.ToString())
-        {
-            // user allowed to use this method
-        }
-        else if (userRole == null || (userRole != "Admin" && userRole != "SuperAdmin"))
-        {
-
-            return Unauthorized(new { message = $"{userId},{userRole} ,You are not allowed to use this method!" });
-        }
         var user = await _userService.RetrieveByIdAsync(id);
         return Ok(user);
     }
@@ -104,13 +71,6 @@ public class UsersController : BaseController
     [HttpPost]
     public async Task<IActionResult> AddAsync([FromBody] UserForCreationDto user)
     {
-        var userRole = User.FindFirst(ClaimTypes.Role)?.Value;
-
-        if (userRole == null || (userRole != "Admin" && userRole != "SuperAdmin"))
-        {
-
-            return Unauthorized(new { message = $"{userRole} ,You are not allowed to use this method!" });
-        }
 
         return Ok(new Response
         {
@@ -123,13 +83,6 @@ public class UsersController : BaseController
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateAsync([FromBody] UserForUpdateDto user, [FromRoute] long id)
     {
-        var userRole = User.FindFirst(ClaimTypes.Role)?.Value;
-
-        if (userRole == null || (userRole != "Admin" && userRole != "SuperAdmin"))
-        {
-
-            return Unauthorized(new { message = $"{userRole} ,You are not allowed to use this method!" });
-        }
 
         return Ok(new Response
         {
@@ -141,23 +94,9 @@ public class UsersController : BaseController
 
 
     [HttpPost("assign-role")]
-    [Authorize]
+    //[Authorize]
     public async Task<IActionResult> AssignRole([FromBody] UserRoleForCreationDto dto)
     {
-
-        var userRole = User.FindFirst(ClaimTypes.Role)?.Value;
-
-        if (userRole == null || (userRole != "Admin" && userRole != "SuperAdmin"))
-        {
-
-            return Unauthorized(new { message = $"{userRole} ,You are not allowed to use this method!" });
-        }
-
-        if ((dto.Role == Domain.Enums.Role.Admin || dto.Role == Domain.Enums.Role.SuperAdmin) && userRole != "SuperAdmin")
-        {
-            return Unauthorized(new { message = $"User with role '{userRole}' is not allowed to do this action. Only SuperAdmins can do this action." });
-        }
-
 
         var result = await _userService.AssignRoleToUser(dto);
         return Ok(new Response

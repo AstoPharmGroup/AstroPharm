@@ -38,13 +38,32 @@ public class BannerService : IBannerInterface
         var medicationExist = await _medicationService.GetByIdAsync(dto.MedicationId);
 
         if (categoryExist == null || medicationExist == null)
-            throw new AstroPharmException(404, "Medication or Category with this id doesnt exist");
+            throw new AstroPharmException(404, "Medication or Category with this id doesn't exist");
 
         var mapped = _mapper.Map<Banner>(dto);
+
+        if (dto.Image != null)
+        {
+            var folderPath = Path.Combine("wwwroot", "banner");
+            if (!Directory.Exists(folderPath))
+                Directory.CreateDirectory(folderPath);
+
+            var fileName = Guid.NewGuid().ToString("N") + Path.GetExtension(dto.Image.FileName);
+            var filePath = Path.Combine(folderPath, fileName);
+
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await dto.Image.CopyToAsync(stream);
+            }
+
+            mapped.Image = Path.Combine("banner", fileName);
+        }
+
         await _bannerRepository.InsertAsync(mapped);
 
         return _mapper.Map<BannerForResultDto>(mapped);
     }
+
 
     public async Task<bool> DeleteAsync(long id)
     {
@@ -81,11 +100,37 @@ public class BannerService : IBannerInterface
         var medicationExist = await _medicationService.GetByIdAsync(dto.MedicationId);
 
         if (categoryExist == null || medicationExist == null)
-            throw new AstroPharmException(404, "Medication or Category with this id doesnt exist");
+            throw new AstroPharmException(404, "Medication or Category with this id doesn't exist");
 
-        var mapped = _mapper.Map(dto, banner);
-        await _bannerRepository.UpdateAsync(mapped);
+        _mapper.Map(dto, banner);
 
-        return _mapper.Map<BannerForResultDto>(mapped);
+        if (dto.Image != null)
+        {
+            var folderPath = Path.Combine("wwwroot", "banner");
+            if (!Directory.Exists(folderPath))
+                Directory.CreateDirectory(folderPath);
+
+            if (!string.IsNullOrEmpty(banner.Image))
+            {
+                var oldPath = Path.Combine("wwwroot", banner.Image);
+                if (File.Exists(oldPath))
+                    File.Delete(oldPath);
+            }
+
+            var fileName = Guid.NewGuid().ToString("N") + Path.GetExtension(dto.Image.FileName);
+            var filePath = Path.Combine(folderPath, fileName);
+
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await dto.Image.CopyToAsync(stream);
+            }
+
+            banner.Image = Path.Combine("banner", fileName); 
+        }
+
+        await _bannerRepository.UpdateAsync(banner);
+
+        return _mapper.Map<BannerForResultDto>(banner);
     }
+
 }
