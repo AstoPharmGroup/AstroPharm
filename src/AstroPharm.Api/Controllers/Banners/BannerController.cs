@@ -58,7 +58,7 @@ namespace AstroPharm.Api.Controllers.Banners
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateAsync([FromBody] BannerForUpdateDto banner, [FromRoute] long id)
+        public async Task<IActionResult> UpdateAsync([FromForm] BannerForUpdateDto banner, [FromRoute] long id)
         {
             return Ok(new Response
             {
