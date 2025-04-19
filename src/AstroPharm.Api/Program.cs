@@ -19,11 +19,10 @@ namespace AstroPharm.Api
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Connect Database
             builder.Services.AddDbContext<AppDbContext>(options =>
                     options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")));
 
-            // Add CORS
+            
             builder.Services.AddCors(options =>
             {
                 options.AddPolicy("AllowAll",
@@ -32,7 +31,7 @@ namespace AstroPharm.Api
                                    .AllowAnyHeader());
             });
 
-            // Add Authentication
+
             builder.Services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -54,7 +53,7 @@ namespace AstroPharm.Api
                 };
             });
 
-            // Add Controllers and API Explorer
+
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
 
@@ -109,7 +108,7 @@ namespace AstroPharm.Api
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseMiddleware<RefreshTokenValidationMiddleware>();
+            //app.UseMiddleware<RefreshTokenValidationMiddleware>();
             app.UseMiddleware<ExceptionHandlerMiddleWare>();
             app.UseMiddleware<LoggingMiddleware>();
 

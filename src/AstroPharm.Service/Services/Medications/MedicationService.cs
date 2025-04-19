@@ -32,7 +32,7 @@ namespace AstroPharm.Service.Services.Medications
         {
             var category = await categoryInterface.GetByIdAsync(dto.CategoryId);
             if (category == null)
-                throw new AstroPharmException(404, "Categpry not found!");
+                throw new AstroPharmException(404, "Category not found!");
 
             var medication = await repository.SelectAll()
                 .Where(x => x.MedicationName == dto.MedicationName)
@@ -41,6 +41,24 @@ namespace AstroPharm.Service.Services.Medications
                 throw new AstroPharmException(409, "This medication already exists");
 
             var mapped = mapper.Map<Medication>(dto);
+
+            if (dto.Image != null)
+            {
+                var folderPath = Path.Combine("wwwroot", "medication");
+                if (!Directory.Exists(folderPath))
+                    Directory.CreateDirectory(folderPath);
+
+                var fileName = Guid.NewGuid().ToString("N") + Path.GetExtension(dto.Image.FileName);
+                var filePath = Path.Combine(folderPath, fileName);
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await dto.Image.CopyToAsync(stream);
+                }
+
+                mapped.Image = Path.Combine("medication", fileName); 
+            }
+
             await repository.InsertAsync(mapped);
 
             return mapper.Map<MedicationForResultDto>(mapped);
@@ -83,13 +101,32 @@ namespace AstroPharm.Service.Services.Medications
 
             var category = await categoryInterface.GetByIdAsync(dto.CategoryId);
             if (category == null)
-                throw new AstroPharmException(404, "Categpry not found!");
+                throw new AstroPharmException(404, "Category not found!");
 
             mapper.Map(dto, medication);
+
+            if (dto.Image != null)
+            {
+                var folderPath = Path.Combine("wwwroot", "medication");
+                if (!Directory.Exists(folderPath))
+                    Directory.CreateDirectory(folderPath);
+
+                var fileName = Guid.NewGuid().ToString("N") + Path.GetExtension(dto.Image.FileName);
+                var filePath = Path.Combine(folderPath, fileName);
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await dto.Image.CopyToAsync(stream);
+                }
+
+                medication.Image = Path.Combine("medication", fileName); 
+            }
+
             await repository.UpdateAsync(medication);
 
             return mapper.Map<MedicationForResultDto>(medication);
         }
+
 
         public async Task<List<MedicationForResultDto>> SearchAsync(string searchTerm)
         {

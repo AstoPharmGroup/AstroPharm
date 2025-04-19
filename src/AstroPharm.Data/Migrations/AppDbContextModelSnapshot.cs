@@ -68,6 +68,30 @@ namespace AstroPharm.Data.Migrations
                             CreatedAt = new DateTime(2025, 4, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             LocationId = 2L,
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            BranchName = "Samarkand Plaza",
+                            CreatedAt = new DateTime(2025, 4, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            LocationId = 3L,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            BranchName = "Fergana Central",
+                            CreatedAt = new DateTime(2025, 4, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            LocationId = 4L,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 5L,
+                            BranchName = "Andijan Main",
+                            CreatedAt = new DateTime(2025, 4, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            LocationId = 5L,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
@@ -106,6 +130,27 @@ namespace AstroPharm.Data.Migrations
                             Id = 2L,
                             CreatedAt = new DateTime(2025, 4, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             LanguageName = "Uzbek",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            CreatedAt = new DateTime(2025, 4, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            LanguageName = "Russian",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            CreatedAt = new DateTime(2025, 4, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            LanguageName = "Spanish",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 5L,
+                            CreatedAt = new DateTime(2025, 4, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            LanguageName = "French",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
@@ -150,6 +195,30 @@ namespace AstroPharm.Data.Migrations
                             LoLatitude = 39.781700000000001,
                             Longitude = 64.428600000000003,
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            CreatedAt = new DateTime(2025, 4, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            LoLatitude = 40.110700000000001,
+                            Longitude = 69.111099999999993,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            CreatedAt = new DateTime(2025, 4, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            LoLatitude = 41.3123,
+                            Longitude = 69.278700000000001,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 5L,
+                            CreatedAt = new DateTime(2025, 4, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            LoLatitude = 38.535499999999999,
+                            Longitude = 66.973399999999998,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
@@ -186,20 +255,29 @@ namespace AstroPharm.Data.Migrations
                         new
                         {
                             Id = 1L,
-                            CreatedAt = new DateTime(2025, 4, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            OrderDate = new DateTime(2025, 4, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            TotalAmount = 23L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            OrderDate = new DateTime(2025, 4, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            TotalAmount = 1000L,
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserId = 1L
                         },
                         new
                         {
                             Id = 2L,
-                            CreatedAt = new DateTime(2025, 4, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            OrderDate = new DateTime(2025, 4, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            TotalAmount = 12L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            OrderDate = new DateTime(2025, 4, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            TotalAmount = 1500L,
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UserId = 1L
+                            UserId = 2L
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            OrderDate = new DateTime(2025, 4, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            TotalAmount = 700L,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = 3L
                         });
                 });
 
@@ -254,25 +332,49 @@ namespace AstroPharm.Data.Migrations
                         new
                         {
                             Id = 1L,
-                            CreatedAt = new DateTime(2025, 4, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Discount = 0m,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Discount = 1.50m,
                             MedicationId = 1L,
                             OrderId = 1L,
                             PaymentId = 1L,
                             Quantity = 2L,
-                            TotalAmount = 11.98m,
+                            TotalAmount = 10.48m,
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 2L,
-                            CreatedAt = new DateTime(2025, 4, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Discount = 0m,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Discount = 0.99m,
+                            MedicationId = 3L,
+                            OrderId = 1L,
+                            PaymentId = 1L,
+                            Quantity = 1L,
+                            TotalAmount = 8.00m,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Discount = 2.00m,
                             MedicationId = 2L,
                             OrderId = 2L,
                             PaymentId = 2L,
-                            Quantity = 1L,
-                            TotalAmount = 12.50m,
+                            Quantity = 3L,
+                            TotalAmount = 35.50m,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Discount = 1.00m,
+                            MedicationId = 4L,
+                            OrderId = 3L,
+                            PaymentId = 3L,
+                            Quantity = 2L,
+                            TotalAmount = 30.98m,
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
@@ -347,6 +449,45 @@ namespace AstroPharm.Data.Migrations
                             Price = 12.50m,
                             Status = 1,
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            CategoryId = 1L,
+                            CreatedAt = new DateTime(2025, 4, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Anti-inflammatory",
+                            ExpiredDate = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Image = "ibuprofen.jpg",
+                            MedicationName = "Ibuprofen",
+                            Price = 8.99m,
+                            Status = 1,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            CategoryId = 2L,
+                            CreatedAt = new DateTime(2025, 4, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Antibiotic",
+                            ExpiredDate = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Image = "ciprofloxacin.jpg",
+                            MedicationName = "Ciprofloxacin",
+                            Price = 15.99m,
+                            Status = 1,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 5L,
+                            CategoryId = 1L,
+                            CreatedAt = new DateTime(2025, 4, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Antihistamine",
+                            ExpiredDate = new DateTime(2026, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Image = "cetirizine.jpg",
+                            MedicationName = "Cetirizine",
+                            Price = 6.49m,
+                            Status = 1,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
@@ -384,9 +525,9 @@ namespace AstroPharm.Data.Migrations
                         new
                         {
                             Id = 1L,
-                            Amount = 23.48m,
-                            CreatedAt = new DateTime(2025, 4, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            PaymentDate = new DateTime(2025, 4, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Amount = 1000.50m,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            PaymentDate = new DateTime(2025, 4, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             PaymentMethod = 2,
                             PaymentStatus = 1,
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
@@ -394,11 +535,21 @@ namespace AstroPharm.Data.Migrations
                         new
                         {
                             Id = 2L,
-                            Amount = 12.50m,
-                            CreatedAt = new DateTime(2025, 4, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            PaymentDate = new DateTime(2025, 4, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            PaymentMethod = 1,
+                            Amount = 1500.75m,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            PaymentDate = new DateTime(2025, 4, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            PaymentMethod = 2,
                             PaymentStatus = 3,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            Amount = 700.00m,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            PaymentDate = new DateTime(2025, 4, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            PaymentMethod = 1,
+                            PaymentStatus = 2,
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
@@ -470,6 +621,39 @@ namespace AstroPharm.Data.Migrations
                             MedicationId = 2L,
                             Title = "Antibiotic Promo",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            CategoryId = 1L,
+                            CreatedAt = new DateTime(2025, 4, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "50% off on cold medications",
+                            Image = "winter_care.jpg",
+                            MedicationId = 3L,
+                            Title = "Winter Care Offer",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            CategoryId = 2L,
+                            CreatedAt = new DateTime(2025, 4, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "15% off probiotics",
+                            Image = "gut_health.jpg",
+                            MedicationId = 4L,
+                            Title = "Healthy Gut Sale",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 5L,
+                            CategoryId = 3L,
+                            CreatedAt = new DateTime(2025, 4, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "20% off on skin health products",
+                            Image = "beauty_boost.jpg",
+                            MedicationId = 5L,
+                            Title = "Beauty Boosters",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
@@ -508,6 +692,27 @@ namespace AstroPharm.Data.Migrations
                             Id = 2L,
                             CatalogName = "Antibiotics",
                             CreatedAt = new DateTime(2025, 4, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            CatalogName = "Vitamins & Supplements",
+                            CreatedAt = new DateTime(2025, 4, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            CatalogName = "Skin Care",
+                            CreatedAt = new DateTime(2025, 4, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 5L,
+                            CatalogName = "Cold & Flu",
+                            CreatedAt = new DateTime(2025, 4, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
@@ -561,6 +766,33 @@ namespace AstroPharm.Data.Migrations
                             CreatedAt = new DateTime(2025, 4, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Antibiotic medications",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            CatalogId = 3L,
+                            CategoryName = "Multivitamins",
+                            CreatedAt = new DateTime(2025, 4, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Various vitamins and supplements",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            CatalogId = 4L,
+                            CategoryName = "Moisturizers",
+                            CreatedAt = new DateTime(2025, 4, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Skin moisturizing products",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 5L,
+                            CatalogId = 5L,
+                            CategoryName = "Cough Syrups",
+                            CreatedAt = new DateTime(2025, 4, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Medicines for cough relief",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
@@ -612,39 +844,104 @@ namespace AstroPharm.Data.Migrations
                         new
                         {
                             Id = 1L,
-                            CreatedAt = new DateTime(2025, 4, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "john.doe@example.com",
                             FirstName = "John",
                             LanguageId = 1L,
                             LastName = "Doe",
-                            Password = "hashedpassword1",
-                            PhoneNumber = "+998901234567",
+                            Password = "hashedpassword123",
+                            PhoneNumber = "123-456-7890",
                             Role = 1,
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 2L,
-                            CreatedAt = new DateTime(2025, 4, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "admin@example.com",
-                            FirstName = "Admin",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "jane.smith@example.com",
+                            FirstName = "Jane",
                             LanguageId = 2L,
-                            LastName = "User",
-                            Password = "hashedpassword2",
-                            PhoneNumber = "+998901234568",
+                            LastName = "Smith",
+                            Password = "hashedpassword456",
+                            PhoneNumber = "987-654-3210",
                             Role = 3,
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 3L,
-                            CreatedAt = new DateTime(2025, 4, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "superadmin@example.com",
-                            FirstName = "SuperAdmin",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "alice.johnson@example.com",
+                            FirstName = "Alice",
                             LanguageId = 1L,
-                            LastName = "User",
-                            Password = "hashedpassword3",
-                            PhoneNumber = "+998901234569",
+                            LastName = "Johnson",
+                            Password = "hashedpassword789",
+                            PhoneNumber = "555-123-4567",
+                            Role = 1,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "bob.brown@example.com",
+                            FirstName = "Bob",
+                            LanguageId = 3L,
+                            LastName = "Brown",
+                            Password = "hashedpassword012",
+                            PhoneNumber = "321-654-9870",
+                            Role = 1,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 5L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "charlie.davis@example.com",
+                            FirstName = "Charlie",
+                            LanguageId = 2L,
+                            LastName = "Davis",
+                            Password = "hashedpassword345",
+                            PhoneNumber = "654-321-9876",
+                            Role = 4,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 6L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "diana.evans@example.com",
+                            FirstName = "Diana",
+                            LanguageId = 1L,
+                            LastName = "Evans",
+                            Password = "hashedpassword678",
+                            PhoneNumber = "456-789-1230",
+                            Role = 3,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 7L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "eve.white@example.com",
+                            FirstName = "Eve",
+                            LanguageId = 4L,
+                            LastName = "White",
+                            Password = "hashedpassword901",
+                            PhoneNumber = "111-222-3333",
+                            Role = 1,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 8L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "frank.green@example.com",
+                            FirstName = "Frank",
+                            LanguageId = 3L,
+                            LastName = "Green",
+                            Password = "hashedpassword234",
+                            PhoneNumber = "777-888-9999",
                             Role = 4,
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
@@ -699,6 +996,33 @@ namespace AstroPharm.Data.Migrations
                             MedicationId = 2L,
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserId = 1L
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            Count = 3,
+                            CreatedAt = new DateTime(2025, 4, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            MedicationId = 1L,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = 2L
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            Count = 1,
+                            CreatedAt = new DateTime(2025, 4, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            MedicationId = 2L,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = 3L
+                        },
+                        new
+                        {
+                            Id = 5L,
+                            Count = 5,
+                            CreatedAt = new DateTime(2025, 4, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            MedicationId = 1L,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = 2L
                         });
                 });
 
@@ -734,18 +1058,34 @@ namespace AstroPharm.Data.Migrations
                         new
                         {
                             Id = 1L,
-                            CreatedAt = new DateTime(2025, 4, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            MedicationId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            MedicationId = 2L,
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserId = 1L
                         },
                         new
                         {
                             Id = 2L,
-                            CreatedAt = new DateTime(2025, 4, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            MedicationId = 2L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            MedicationId = 3L,
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserId = 1L
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            MedicationId = 1L,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = 2L
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            MedicationId = 4L,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = 3L
                         });
                 });
 
@@ -781,28 +1121,6 @@ namespace AstroPharm.Data.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("RefreshTokens");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1L,
-                            CreatedAt = new DateTime(2025, 4, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ExpiryDate = new DateTime(2025, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsRevoked = false,
-                            Token = "token123",
-                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UserId = 1L
-                        },
-                        new
-                        {
-                            Id = 2L,
-                            CreatedAt = new DateTime(2025, 4, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ExpiryDate = new DateTime(2025, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsRevoked = false,
-                            Token = "token456",
-                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UserId = 2L
-                        });
                 });
 
             modelBuilder.Entity("AstroPharm.Domain.Entities.Branch", b =>
