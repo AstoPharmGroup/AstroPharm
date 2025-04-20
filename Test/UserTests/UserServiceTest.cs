@@ -115,9 +115,15 @@
 
 //        //    var result = await _userServiceMock.Object.ModifyAsync(1, updateDto);
 
+<<<<<<< HEAD
 //        //    Assert.NotNull(result);
 //        //    Assert.Equal("UpdatedZuc", result.FirstName);
 //        //}
+=======
+            Assert.NotNull(result);
+            Assert.Equal("Zuc", result.FirstName);
+        }
+>>>>>>> 3d582fb09b5f69099a724ebd43f136db675af55a
 
 //        [Fact]
 //        public async Task RemoveUser_Mock_Test()
