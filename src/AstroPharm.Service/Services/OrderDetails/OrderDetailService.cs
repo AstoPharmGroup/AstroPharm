@@ -73,7 +73,12 @@ public class OrderDetailService : IOrderDetailInterface
         var payment = await paymentService.GetByIdAsync(dto.PaymentId)
             ?? throw new AstroPharmException(404, "Payment not found");
 
+        decimal totalPriceBeforeDiscount = med.Price * dto.Quantity;
+        decimal discountAmount = totalPriceBeforeDiscount * (dto.Discount / 100);
+        decimal totalAmount = totalPriceBeforeDiscount - discountAmount;
+
         mapper.Map(dto, orderDetail);
+        orderDetail.TotalAmount = totalAmount;
         orderDetail.UpdatedAt = DateTime.Now;
         return mapper.Map<OrderDetailForResultDto>(await repository.UpdateAsync(orderDetail));
     }

@@ -41,13 +41,7 @@ public class CategoryController : BaseController
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteAsync([FromRoute] long id)
     {
-        var userRole = User.FindFirst(ClaimTypes.Role)?.Value;
-
-        if (userRole == null || (userRole != "Admin" && userRole != "SuperAdmin"))
-        {
-
-            return Unauthorized(new { message = $"{userRole} ,You are not allowed to use this method!" });
-        }
+        
 
         return Ok(new Response
         {
@@ -60,14 +54,7 @@ public class CategoryController : BaseController
     [HttpPost]
     public async Task<IActionResult> AddAsync([FromBody] CategoryForCreationDto Category)
     {
-        var userRole = User.FindFirst(ClaimTypes.Role)?.Value;
-
-        if (userRole == null || (userRole != "Admin" && userRole != "SuperAdmin"))
-        {
-
-            return Unauthorized(new { message = $"{userRole} ,You are not allowed to use this method!" });
-        }
-
+        
         return Ok(new Response
         {
             StatusCode = 200,
@@ -79,13 +66,7 @@ public class CategoryController : BaseController
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateAsync([FromBody] CategoryForUpdateDto Category, [FromRoute] long id)
     {
-        var userRole = User.FindFirst(ClaimTypes.Role)?.Value;
-
-        if (userRole == null || (userRole != "Admin" && userRole != "SuperAdmin"))
-        {
-
-            return Unauthorized(new { message = $"{userRole} ,You are not allowed to use this method!" });
-        }
+      
 
         return Ok(new Response
         {

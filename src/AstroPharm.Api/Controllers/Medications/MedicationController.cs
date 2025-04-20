@@ -59,16 +59,9 @@ namespace AstroPharm.Api.Controllers.Medications
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddAsync([FromBody] MedicationForCreationDto medication)
+        public async Task<IActionResult> AddAsync([FromForm] MedicationForCreationDto medication)
         {
 
-            var userRole = User.FindFirst(ClaimTypes.Role)?.Value;
-
-            if (userRole == null || (userRole != "Admin" && userRole != "SuperAdmin"))
-            {
-
-                return Unauthorized(new { message = $"{userRole} ,You are not allowed to use this method!" });
-            }
 
             return Ok(new Response
             {
@@ -79,15 +72,9 @@ namespace AstroPharm.Api.Controllers.Medications
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateAsync([FromBody] MedicationForUpdateDto medication, [FromRoute] long id)
+        public async Task<IActionResult> UpdateAsync([FromForm] MedicationForUpdateDto medication, [FromRoute] long id)
         {
-            var userRole = User.FindFirst(ClaimTypes.Role)?.Value;
-
-            if (userRole == null || (userRole != "Admin" && userRole != "SuperAdmin"))
-            {
-
-                return Unauthorized(new { message = $"{userRole} ,You are not allowed to use this method!" });
-            }
+            
 
             return Ok(new Response
             {
